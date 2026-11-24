@@ -1,0 +1,130 @@
+# Franchise rows on the map, top to bottom. Each title names its row with `row`.
+# Rows are based on titles, so they never give anything away.
+
+[[row]]
+name = "Iron Man"
+colour = "#d7262b"
+
+[[row]]
+name = "Hulk"
+colour = "#2f9e44"
+
+[[row]]
+name = "Thor"
+colour = "#3b8fd9"
+
+[[row]]
+name = "Captain America"
+colour = "#2b4fb8"
+
+[[row]]
+name = "Avengers"
+colour = "#8a8a8a"
+
+[[row]]
+name = "Guardians"
+colour = "#e0861a"
+
+[[row]]
+name = "Ant-Man"
+colour = "#9b4dca"
+
+[[row]]
+name = "Doctor Strange"
+colour = "#0f9d8a"
+
+[[row]]
+name = "Spider-Man"
+colour = "#e0457b"
+
+[[row]]
+name = "Black Panther"
+colour = "#8a6a3c"
+
+[[row]]
+name = "Captain Marvel"
+colour = "#c99a00"
+
+[[row]]
+name = "Black Widow"
+colour = "#6b7d8f"
+
+[[row]]
+name = "WandaVision"
+colour = "#a8327a"
+
+[[row]]
+name = "Loki"
+colour = "#6f9a1f"
+
+[[row]]
+name = "What If...?"
+colour = "#00a3c4"
+
+[[row]]
+name = "Shang-Chi"
+colour = "#e0582a"
+
+[[row]]
+name = "Eternals"
+colour = "#b5892e"
+
+[[row]]
+name = "Hawkeye"
+colour = "#7b3fa0"
+
+[[row]]
+name = "Moon Knight"
+colour = "#7c7c99"
+
+[[row]]
+name = "Ms. Marvel"
+colour = "#2b8fb8"
+
+[[row]]
+name = "Werewolf by Night"
+colour = "#4f6b3a"
+
+[[row]]
+name = "Deadpool"
+colour = "#b8243a"
+
+[[row]]
+name = "Thunderbolts*"
+colour = "#3f6e8c"
+
+[[row]]
+name = "Secret Invasion"
+colour = "#4c8c4a"
+
+[[row]]
+name = "Echo"
+colour = "#9a6fb0"
+
+[[row]]
+name = "Agatha"
+colour = "#6a3d9a"
+
+[[row]]
+name = "Daredevil"
+colour = "#8b1a1a"
+
+[[row]]
+name = "Ironheart"
+colour = "#d4553b"
+
+[[row]]
+name = "Fantastic Four"
+colour = "#1f6fd1"
+
+[[row]]
+name = "Marvel Zombies"
+colour = "#5e7a3a"
+
+[[row]]
+name = "Wonder Man"
+colour = "#c2185b"
+
+[[row]]
+name = "Punisher"
+colour = "#555b66"

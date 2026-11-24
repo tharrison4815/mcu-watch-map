@@ -1,9 +1,11 @@
 # MCU Watch Map: notes for Claude
 
-An unofficial, spoiler-safe map of the MCU. The whole app is `site/index.html`: a single static page
-with inline CSS and JS and no build step. It is published as a private claude.ai artifact, and
-progress is saved in the browser's localStorage under the key `mcu-watch-map-v1`. The README
-covers user-facing behaviour; this file records the rules and decisions behind it.
+An unofficial, spoiler-safe map of the MCU. The app is one static page, `src/index.html` (inline
+CSS and JS, no framework), with its data kept in TOML files in `data/`. `build.ts` validates the
+data and inserts it into the page, writing `dist/`. Progress is saved in the browser's
+localStorage under the key `mcu-watch-map-v1`. The README covers user-facing behaviour,
+CONTRIBUTING.md is the guide for outside contributors (keep its spoiler rules in step with the
+ones below), and this file records the rules and decisions behind it all.
 
 Status (24 Nov 2026): Phases 1 to 6 done up to VisionQuest: 38 films, 22 series, 3 specials and the
 2 seasons of I Am Groot shorts, plus 5 upcoming Phase 6 titles (Avengers: Doomsday, Your Friendly
@@ -14,54 +16,67 @@ article; Eyes of Wakanda and Marvel Zombies are not in it.
 
 ## Workflow
 
-- Everything served lives in `site/` (index.html, fonts/, _headers); notes like this file stay
-  outside it so the host doesn't publish them. Edit `site/index.html`, then republish to the existing
-  artifact with publish_files (the slug is in local memory): `as: index.html` from
-  `site/index.html`, plus `fonts/*.woff2` only if the fonts change (never `_headers` or the OFL
-  files). Then commit. Push only when the user asks.
-- Public site: https://mcu-watch-map-4ui.pages.dev/ on Cloudflare Pages (free plan), connected to
-  the GitHub repo: every push to `main` deploys `site/` (no build command). So a push is a public
-  release. Unknown paths serve index.html, so files outside `site/` are never exposed.
+- The repo (github.com/tharrison4815/mcu-watch-map) is public, so people can open issues (forms in
+  .github/ISSUE_TEMPLATE: data, spoiler, bug) and send pull requests for data fixes. Review every
+  outside PR against the spoiler rules: the build can't catch a spoiler in a sentence.
+- Node runs on the host, not in Claude's sandbox: Node (Homebrew) is at
+  /home/linuxbrew/.linuxbrew/bin. Run through `flatpak-spawn --host --directory=<repo> env
+  PATH=/home/linuxbrew/.linuxbrew/bin:/usr/bin:/bin npm run build` (or `npm run check`). Scratch files
+  for host commands must live under the repo or home, since the host can't see the sandbox's /tmp.
+- `npm run check` validates the data and syntax-checks the page's scripts; `npm run build` also
+  writes `dist/` (index.html with the data, fonts, _headers). `dist/` and node_modules are
+  gitignored. The build still can't run the page, so behaviour changes remain untested in a
+  browser: tell the user.
+- Edit `src/index.html` or the data, build, then republish `dist/` to the artifact with
+  publish_files (the slug is in local memory): `as: index.html` from `dist/index.html`, plus
+  `fonts/*.woff2` only if the fonts change (never `_headers` or the OFL files). Then commit.
 - Environments: the claude.ai artifact is the test (non-production) copy and the Cloudflare site is
   production. Publish changes to the artifact first for the user to try; push only when they ask.
+- Public site: https://mcu-watch-map-4ui.pages.dev/ on Cloudflare Pages (free plan), connected to
+  the GitHub repo: every push to `main` runs `npm run build` and deploys `dist/` (Node version from
+  `.node-version`). So a push is a public release. Pull requests get preview deploys, and the
+  GitHub Action in .github/workflows/check.yml runs `npm run check` on them.
 - Cloudflare Web Analytics (cookie-free) is switched on in the Pages project, which injects its
   beacon script on the live site. `_headers` allows static.cloudflareinsights.com (script) and
   cloudflareinsights.com (connect) for it; nothing else external is allowed.
 - Artifact page limits: no remote images or fetches (CSP), and no `alert` or `confirm`, so
   confirmations are built into the page (see Reset and "Mark all as seen").
-- Fonts are self-hosted (no Google requests, for privacy), declared in an inline @font-face block:
-  Anton 400, Barlow 400/600, Barlow Condensed 500/600/700. They are subset with fonttools'
-  pyftsubset to ASCII plus a few characters (U+00A0, é, ’, –, —, …) to halve their size. If page
-  text gains other non-ASCII characters, re-subset from the full fonts (or those characters fall
-  back to a system font). OFL licences sit beside them in site/fonts/.
-- `site/_headers` (Cloudflare Pages / Netlify format) sets a CSP, security headers and a long cache
-  for fonts. The CSP allows only 'self' plus inline script/style and data: images.
-- There is no JS runtime in the sandbox, so the page can't be tested here. Read changes carefully
-  and tell the user it is untested.
+- Fonts are self-hosted in src/fonts (no Google requests, for privacy), declared in an inline
+  @font-face block: Anton 400, Barlow 400/600, Barlow Condensed 500/600/700. They are subset with
+  fonttools' pyftsubset to ASCII plus a few characters (U+00A0, é, ’, –, —, …) to halve their size.
+  If page text gains other non-ASCII characters, re-subset from the full fonts (or those characters
+  fall back to a system font). OFL licences sit beside them.
+- `src/_headers` (Cloudflare Pages / Netlify format) sets a CSP, security headers and a long cache
+  for fonts.
 
-## Data (arrays at the top of the script)
+## Data
 
-- `E` titles: `id`, `up` (1 = upcoming), `dm` (1 = only the release month is known), `an` (1 = animated), `p` (phase, defaults to 1), `ty` ('film' default, 'show',
-  'special', 'shorts'), `ep` (episode or short count, for shows and shorts, which have no `rt`), `t` (title), `n` (title split into node lines; keep
-  lines short so they fit ~110-150px at 15px Barlow Condensed), `d` (release date), `rt` (minutes),
-  `lane` (index into `LANES`), `so` (story-order position), `sy` (in-story year label), `syn`.
-  `E` must stay in release order.
+The TOML files are what people edit; each starts with a field guide. The build turns them into the
+compact shapes the page's code uses, inserted at the `/*@E*/null`-style markers:
+
+- `data/titles/phase-N.toml` (phase comes from the file name, entries in release order) becomes
+  `E`: `id`, `up` (upcoming), `dm` (month_only), `an` (animated), `p` (phase), `ty` (type: film,
+  show, special, shorts), `ep` (episodes), `t` (title), `n` (map_lines: up to 3 short lines, which
+  fit ~110-150px at 15px Barlow Condensed), `d` (released), `rt` (runtime), `lane` (row, as an index
+  into `LANES`), `so` (story_order), `sy` (story_year), `syn` (synopsis). The build sorts all
+  titles by release date; upcoming titles get `so` 9001+ and `sy` 'Upcoming' automatically.
   Shows are tracked one entry per season ("Loki (Season 1)", id `loki1`); a new season is a new
-  entry, normally in the same row. Multi-line `n` up to 3 lines (box height grows).
-- `LANES` franchise rows `[name, colour]`. Rows are based on titles, so they never spoil.
-- `L` links: `f` to `t`, `s` strength (3 essential, 2 helpful, 1 minor), optional
-  `k: 'pc' | 'cameo'` when the link exists only because of a post-credits scene or cameo, and `n` (note).
+  entry, normally in the same row.
+- Each title's `cast` becomes `C[id]` rows `[name, role, hero?, twist?]`. Roles: Lead, Main,
+  Supporting, Cameo, Post-credits. `name` is the character's stable id across titles (real name,
+  e.g. "Johann Schmidt" with hero "Red Skull"). The hero name belongs to that appearance only.
+- `data/rows.toml` becomes `LANES` `[name, colour]`. Rows are based on titles, so they never spoil.
+- `data/links.toml` becomes `L`: `f` to `t` (from, to), `s` strength (3 essential, 2 helpful,
+  1 minor), optional `k: 'pc' | 'cameo'` (only = post-credits or cameo) when the link exists only
+  because of a post-credits scene or cameo, and `n` (note).
 - A character id means one instance of that character. Alternate-universe versions get their own
   id, "Name, <where they're from>" (e.g. "Peggy Carter, What If...?", "Karl Mordo, Earth-838"), so
   the tracer never joins them to the main one. Time travel to an earlier point in the same person's
   life keeps the same id (Endgame's 2012 Loki and 2014 Gamora, and Loki in Loki season 1).
-- `C[id]` cast rows: `[name, role, heroName?, majorTwist?]`. Roles: Lead, Main, Supporting, Cameo,
-  Post-credits. `name` is the character's stable id across films (real name, e.g. "Johann Schmidt"
-  with hero name "Red Skull"). The hero name belongs to that appearance only.
-- `so` values are spaced (multiples of 10, with 15 and 105 slotted in), so a new title can take an
-  unused number between its neighbours without renumbering. Only the order matters.
-- `sy` for Endgame is '2018' (where it opens), not '2023', so the always-visible year doesn't give
-  away its time jump. Far From Home shows '2024'.
+- story_order values are spaced (multiples of 10, with 15 and 105 slotted in), so a new title can
+  take an unused number between its neighbours without renumbering. Only the order matters.
+- story_year for Endgame is '2018' (where it opens), not '2023', so the always-visible year doesn't
+  give away its time jump. Far From Home shows '2024'.
 - All synopses, casts, roles and link notes were written from memory and still need checking
   against reliable sources.
 

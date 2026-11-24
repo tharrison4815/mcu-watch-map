@@ -1,0 +1,840 @@
+# Links between titles: "watch `from` before `to`". `from` must come out before `to`.
+#   strength  essential, helpful or minor
+#   only      post-credits or cameo, when the link exists only because of a
+#             post-credits scene or a cameo (leave it out otherwise)
+#   note      why it matters. People may read it having seen only one of the two titles,
+#             so it must not spoil either of them, or any other title (see CONTRIBUTING.md).
+# Grouped by the `from` title, roughly in release order.
+
+[[link]]
+from = "im"
+to = "im2"
+strength = "essential"
+note = "Direct sequel, picking up right after Tony tells the world he is Iron Man."
+
+[[link]]
+from = "im"
+to = "av"
+strength = "essential"
+note = """
+Introduces Tony Stark, Pepper Potts and Agent Coulson. The post-credits scene is where Nick \
+Fury first mentions the Avengers Initiative."""
+
+[[link]]
+from = "im"
+to = "hulk"
+strength = "minor"
+only = "cameo"
+note = """
+Tony Stark turns up in the closing scene to talk about a team being put together."""
+
+[[link]]
+from = "im2"
+to = "av"
+strength = "helpful"
+note = """
+Introduces Natasha Romanoff and shows S.H.I.E.L.D. assessing Tony for the Avengers."""
+
+[[link]]
+from = "im2"
+to = "thor"
+strength = "minor"
+only = "post-credits"
+note = "Post-credits scene: Coulson reports a find in the New Mexico desert."
+
+[[link]]
+from = "hulk"
+to = "av"
+strength = "helpful"
+note = """
+Bruce Banner's story. The Avengers picks him up after his time on the run (with a different \
+actor)."""
+
+[[link]]
+from = "thor"
+to = "av"
+strength = "essential"
+note = """
+Loki becomes the villain of The Avengers, and the post-credits scene sets up the Tesseract."""
+
+[[link]]
+from = "thor"
+to = "cap"
+strength = "minor"
+note = "The Red Skull's hunt for the Tesseract references Asgard and Odin."
+
+[[link]]
+from = "cap"
+to = "av"
+strength = "essential"
+note = "Steve Rogers's origin, and where the Tesseract comes from."
+
+[[link]]
+from = "av"
+to = "im3"
+strength = "essential"
+note = """
+Tony is still reeling from the Battle of New York, and the whole film is about what it did \
+to him."""
+
+[[link]]
+from = "im2"
+to = "im3"
+strength = "helpful"
+note = "Continues Tony and Pepper's story, and Rhodey's armour."
+
+[[link]]
+from = "thor"
+to = "tdw"
+strength = "essential"
+note = """
+Direct sequel: Jane Foster, Asgard and Thor's family pick up where Thor left them."""
+
+[[link]]
+from = "av"
+to = "tdw"
+strength = "essential"
+note = "Loki is a prisoner in Asgard because of what he did in The Avengers."
+
+[[link]]
+from = "cap"
+to = "tws"
+strength = "essential"
+note = "Peggy Carter, Hydra and more of Steve's past come back from the first film."
+
+[[link]]
+from = "av"
+to = "tws"
+strength = "essential"
+note = """
+Steve is adjusting to modern life and working for S.H.I.E.L.D. with Natasha after New York."""
+
+[[link]]
+from = "tdw"
+to = "gotg"
+strength = "minor"
+only = "post-credits"
+note = """
+Post-credits scene: the Collector is introduced and given something for safekeeping."""
+
+[[link]]
+from = "av"
+to = "gotg"
+strength = "minor"
+only = "post-credits"
+note = "The figure from The Avengers' post-credits scene is behind events here."
+
+[[link]]
+from = "tws"
+to = "aou"
+strength = "essential"
+note = """
+The fallout from S.H.I.E.L.D.'s collapse, and the post-credits scene introduces two new \
+characters."""
+
+[[link]]
+from = "av"
+to = "aou"
+strength = "essential"
+note = "The team reunites, still chasing loose ends from the first film."
+
+[[link]]
+from = "im3"
+to = "aou"
+strength = "helpful"
+note = "Where Tony and his suits stand going into the film."
+
+[[link]]
+from = "tdw"
+to = "aou"
+strength = "minor"
+note = """
+Selvig returns, and Thor's side-quest builds on what he has learned about the Infinity \
+Stones."""
+
+[[link]]
+from = "aou"
+to = "antman"
+strength = "helpful"
+note = "Set just after Age of Ultron, with a visit to the new Avengers base."
+
+[[link]]
+from = "tws"
+to = "antman"
+strength = "minor"
+only = "cameo"
+note = "Falcon turns up briefly, and Hydra is still around in the background."
+
+[[link]]
+from = "tws"
+to = "cw"
+strength = "essential"
+note = """
+Picks up Steve's story after S.H.I.E.L.D., including the loose end he set out to chase at \
+the end of The Winter Soldier."""
+
+[[link]]
+from = "aou"
+to = "cw"
+strength = "essential"
+note = """
+What happened in Age of Ultron is a big part of why the world's governments want the \
+Avengers supervised, and the team line-up follows on from its ending."""
+
+[[link]]
+from = "cap"
+to = "cw"
+strength = "helpful"
+note = "Steve and Bucky's shared past from the first film matters a lot here."
+
+[[link]]
+from = "antman"
+to = "cw"
+strength = "helpful"
+note = "Scott Lang joins in, following up his run-in with Falcon in Ant-Man."
+
+[[link]]
+from = "hulk"
+to = "cw"
+strength = "minor"
+note = "Thaddeus Ross is back, now in a government role."
+
+[[link]]
+from = "gotg"
+to = "gotg2"
+strength = "essential"
+note = "Direct sequel: the same team, a few months later."
+
+[[link]]
+from = "cw"
+to = "hc"
+strength = "essential"
+note = """
+Peter Parker is introduced in Civil War, and Homecoming opens with his side of it."""
+
+[[link]]
+from = "av"
+to = "hc"
+strength = "minor"
+note = "The opening scene is set during the clean-up after the Battle of New York."
+
+[[link]]
+from = "tdw"
+to = "tr"
+strength = "essential"
+note = "Picks up where The Dark World left Thor, Loki and Asgard."
+
+[[link]]
+from = "aou"
+to = "tr"
+strength = "helpful"
+note = "Follows on from where Age of Ultron left Thor and Bruce Banner."
+
+[[link]]
+from = "ds"
+to = "tr"
+strength = "minor"
+only = "post-credits"
+note = """
+Doctor Strange's mid-credits scene with Thor leads straight into a scene in Ragnarok."""
+
+[[link]]
+from = "cw"
+to = "bp"
+strength = "essential"
+note = """
+T'Challa and Everett Ross are introduced in Civil War, and Black Panther picks up a week \
+after it."""
+
+[[link]]
+from = "aou"
+to = "bp"
+strength = "minor"
+note = "Ulysses Klaue and his trade in vibranium first turn up in Age of Ultron."
+
+[[link]]
+from = "aou"
+to = "iw"
+strength = "helpful"
+note = "Vision, Wanda and the Mind Stone all come from Age of Ultron."
+
+[[link]]
+from = "cw"
+to = "iw"
+strength = "essential"
+note = "Infinity War starts with the Avengers where Civil War left them."
+
+[[link]]
+from = "tr"
+to = "iw"
+strength = "essential"
+note = "Infinity War opens moments after Ragnarok ends."
+
+[[link]]
+from = "gotg"
+to = "iw"
+strength = "essential"
+note = """
+The Guardians, Gamora, Nebula and Thanos's interest in the Infinity Stones all come from \
+here."""
+
+[[link]]
+from = "gotg2"
+to = "iw"
+strength = "helpful"
+note = "Introduces Mantis and moves Gamora and Nebula's story along."
+
+[[link]]
+from = "ds"
+to = "iw"
+strength = "essential"
+note = "Stephen Strange, Wong and the Eye of Agamotto play a big part."
+
+[[link]]
+from = "bp"
+to = "iw"
+strength = "helpful"
+note = "Wakanda and its people play a major part."
+
+[[link]]
+from = "hc"
+to = "iw"
+strength = "helpful"
+note = "Peter's relationship with Tony Stark carries on into Infinity War."
+
+[[link]]
+from = "av"
+to = "iw"
+strength = "helpful"
+note = """
+Loki and the Tesseract come back, and the figure from The Avengers' post-credits scene \
+finally takes centre stage."""
+
+[[link]]
+from = "antman"
+to = "amw"
+strength = "essential"
+note = "Direct sequel: Scott, Hope and Hank pick up the threads Ant-Man left."
+
+[[link]]
+from = "cw"
+to = "amw"
+strength = "helpful"
+note = "Scott is still dealing with the consequences of joining in during Civil War."
+
+[[link]]
+from = "gotg"
+to = "cm"
+strength = "minor"
+note = "Ronan and Korath appear years before the events of Guardians of the Galaxy."
+
+[[link]]
+from = "av"
+to = "cm"
+strength = "minor"
+note = """
+A younger Nick Fury and Phil Coulson, long before the Avengers, and where the Avengers \
+Initiative got its name."""
+
+[[link]]
+from = "iw"
+to = "cm"
+strength = "minor"
+only = "post-credits"
+note = "Infinity War's post-credits scene ends with a symbol that this film explains."
+
+[[link]]
+from = "iw"
+to = "eg"
+strength = "essential"
+note = "Direct continuation. Endgame makes little sense without it."
+
+[[link]]
+from = "cm"
+to = "eg"
+strength = "helpful"
+note = "Carol Danvers's origin. Captain Marvel's mid-credits scene leads into Endgame."
+
+[[link]]
+from = "amw"
+to = "eg"
+strength = "essential"
+note = """
+The quantum realm, and where the mid-credits scene leaves Scott, matter a great deal in \
+Endgame."""
+
+[[link]]
+from = "cw"
+to = "eg"
+strength = "helpful"
+note = "The strained friendship between Tony and Steve carries on."
+
+[[link]]
+from = "hc"
+to = "ffh"
+strength = "essential"
+note = """
+Direct sequel: Peter, his friends, Aunt May and Happy Hogan carry on from Homecoming."""
+
+[[link]]
+from = "eg"
+to = "ffh"
+strength = "essential"
+note = "Set shortly after Endgame, and a lot of it is about what Endgame left behind."
+
+[[link]]
+from = "aou"
+to = "wv"
+strength = "helpful"
+note = "Wanda and Vision's story begins in Age of Ultron."
+
+[[link]]
+from = "eg"
+to = "wv"
+strength = "essential"
+note = """
+Set just after Endgame, and Wanda's state of mind comes out of the films before it."""
+
+[[link]]
+from = "cm"
+to = "wv"
+strength = "minor"
+note = "Monica Rambeau, a child in Captain Marvel, is grown up."
+
+[[link]]
+from = "thor"
+to = "wv"
+strength = "minor"
+note = "Darcy Lewis returns."
+
+[[link]]
+from = "amw"
+to = "wv"
+strength = "minor"
+note = "Jimmy Woo returns."
+
+[[link]]
+from = "eg"
+to = "fatws"
+strength = "essential"
+note = "Picks up Sam and Bucky's story after Endgame."
+
+[[link]]
+from = "tws"
+to = "fatws"
+strength = "helpful"
+note = "Characters and threads from The Winter Soldier come back."
+
+[[link]]
+from = "cw"
+to = "fatws"
+strength = "helpful"
+note = "Helmut Zemo and Sharon Carter return from Civil War."
+
+[[link]]
+from = "bp"
+to = "fatws"
+strength = "minor"
+note = "Ayo and the Dora Milaje come from Wakanda."
+
+[[link]]
+from = "eg"
+to = "loki1"
+strength = "essential"
+note = "Starts from events in Endgame, so watch that first."
+
+[[link]]
+from = "thor"
+to = "loki1"
+strength = "helpful"
+note = "Loki's history and family go back to Thor."
+
+[[link]]
+from = "eg"
+to = "wi1"
+strength = "helpful"
+note = """
+Each episode retells a moment from the films with one change, so it works best once you know \
+the originals."""
+
+[[link]]
+from = "loki1"
+to = "wi1"
+strength = "minor"
+note = "Best watched after Loki's first season."
+
+[[link]]
+from = "cw"
+to = "bw"
+strength = "essential"
+note = "Set just after Civil War, so watch that first."
+
+[[link]]
+from = "im3"
+to = "shang"
+strength = "minor"
+note = "A loose end from Iron Man 3 is tied up."
+
+[[link]]
+from = "hulk"
+to = "shang"
+strength = "minor"
+only = "cameo"
+note = "Emil Blonsky turns up briefly."
+
+[[link]]
+from = "ds"
+to = "shang"
+strength = "minor"
+only = "cameo"
+note = "Wong turns up."
+
+[[link]]
+from = "eg"
+to = "hk"
+strength = "helpful"
+note = "Set after Endgame, and Clint is still working through it."
+
+[[link]]
+from = "av"
+to = "hk"
+strength = "minor"
+note = "The Battle of New York is a big part of Kate Bishop's backstory."
+
+[[link]]
+from = "ffh"
+to = "nwh"
+strength = "essential"
+note = "Direct sequel, starting the moment Far From Home ends."
+
+[[link]]
+from = "hc"
+to = "nwh"
+strength = "helpful"
+note = "Peter, MJ, Ned and Aunt May carry on from Homecoming."
+
+[[link]]
+from = "ds"
+to = "nwh"
+strength = "helpful"
+note = "Stephen Strange and Wong play a big part."
+
+[[link]]
+from = "wv"
+to = "mom"
+strength = "essential"
+note = "Wanda's story continues directly from WandaVision."
+
+[[link]]
+from = "ds"
+to = "mom"
+strength = "essential"
+note = "Sequel to Doctor Strange."
+
+[[link]]
+from = "nwh"
+to = "mom"
+strength = "minor"
+note = "Set some time after No Way Home."
+
+[[link]]
+from = "wi1"
+to = "mom"
+strength = "minor"
+note = "Builds on the multiverse ideas in What If...?."
+
+[[link]]
+from = "cm"
+to = "msm"
+strength = "minor"
+note = "Kamala is a huge Captain Marvel fan."
+
+[[link]]
+from = "tr"
+to = "lt"
+strength = "essential"
+note = "Thor's next film after Ragnarok. Valkyrie and Korg return."
+
+[[link]]
+from = "eg"
+to = "lt"
+strength = "helpful"
+note = "Picks up where Endgame left Thor."
+
+[[link]]
+from = "tdw"
+to = "lt"
+strength = "helpful"
+note = "Jane Foster returns."
+
+[[link]]
+from = "hulk"
+to = "sh"
+strength = "helpful"
+note = "Jennifer is Bruce Banner's cousin, and Emil Blonsky returns."
+
+[[link]]
+from = "shang"
+to = "sh"
+strength = "minor"
+note = "Picks up Emil Blonsky's story after his brief appearance in Shang-Chi."
+
+[[link]]
+from = "bp"
+to = "wf"
+strength = "essential"
+note = "Sequel to Black Panther."
+
+[[link]]
+from = "gotg2"
+to = "hs"
+strength = "helpful"
+note = "The Guardians at Christmas, with Mantis, Drax and Kraglin."
+
+[[link]]
+from = "lt"
+to = "hs"
+strength = "minor"
+note = "Set after the Guardians part ways with Thor in Love and Thunder."
+
+[[link]]
+from = "gotg2"
+to = "iag1"
+strength = "minor"
+note = "Set around the time of Guardians Vol. 2."
+
+[[link]]
+from = "iag1"
+to = "iag2"
+strength = "minor"
+note = "More shorts in the same style."
+
+[[link]]
+from = "amw"
+to = "qm"
+strength = "essential"
+note = "Direct sequel: Janet and the Quantum Realm are at the centre of it."
+
+[[link]]
+from = "eg"
+to = "qm"
+strength = "helpful"
+note = "Shows Scott's life after Endgame."
+
+[[link]]
+from = "loki1"
+to = "qm"
+strength = "helpful"
+note = "Builds on where Loki season 1 left the multiverse."
+
+[[link]]
+from = "gotg2"
+to = "gotg3"
+strength = "essential"
+note = "The final chapter of the Guardians trilogy."
+
+[[link]]
+from = "eg"
+to = "gotg3"
+strength = "essential"
+note = "Picks up where Endgame left the Guardians."
+
+[[link]]
+from = "hs"
+to = "gotg3"
+strength = "minor"
+note = "Set just before Vol. 3, with Knowhere as the Guardians' new base."
+
+[[link]]
+from = "cm"
+to = "si"
+strength = "helpful"
+note = "Nick Fury and Talos first meet in Captain Marvel."
+
+[[link]]
+from = "ffh"
+to = "si"
+strength = "minor"
+note = "Picks up threads from Far From Home."
+
+[[link]]
+from = "loki1"
+to = "loki2"
+strength = "essential"
+note = "Direct continuation of season 1."
+
+[[link]]
+from = "qm"
+to = "loki2"
+strength = "minor"
+only = "post-credits"
+note = "Quantumania's post-credits scene leads into season 2."
+
+[[link]]
+from = "cm"
+to = "marvels"
+strength = "essential"
+note = "Sequel to Captain Marvel."
+
+[[link]]
+from = "msm"
+to = "marvels"
+strength = "essential"
+note = "Kamala's story carries straight on from the end of Ms. Marvel."
+
+[[link]]
+from = "wv"
+to = "marvels"
+strength = "helpful"
+note = "Monica Rambeau's story continues from WandaVision."
+
+[[link]]
+from = "wi1"
+to = "wi2"
+strength = "helpful"
+note = "Continues the anthology from season 1."
+
+[[link]]
+from = "wi2"
+to = "wi3"
+strength = "helpful"
+note = "Continues the anthology and wraps it up."
+
+[[link]]
+from = "hk"
+to = "echo"
+strength = "essential"
+note = "Maya Lopez is introduced in Hawkeye, and Echo picks up right after it."
+
+[[link]]
+from = "loki1"
+to = "dw"
+strength = "minor"
+note = "The Time Variance Authority plays a part."
+
+[[link]]
+from = "wv"
+to = "aaa"
+strength = "essential"
+note = "A spin-off of WandaVision."
+
+[[link]]
+from = "fatws"
+to = "bnw"
+strength = "essential"
+note = "Sam's story continues from The Falcon and the Winter Soldier."
+
+[[link]]
+from = "hulk"
+to = "bnw"
+strength = "helpful"
+note = "Thaddeus Ross, Betty Ross and Samuel Sterns all come from The Incredible Hulk."
+
+[[link]]
+from = "eter"
+to = "bnw"
+strength = "helpful"
+note = "A loose end from Eternals plays a big part."
+
+[[link]]
+from = "sh"
+to = "dd1"
+strength = "minor"
+note = "Matt Murdock's earlier appearance in the MCU."
+
+[[link]]
+from = "echo"
+to = "dd1"
+strength = "helpful"
+note = "Wilson Fisk's story continues from Echo."
+
+[[link]]
+from = "bw"
+to = "tb"
+strength = "essential"
+note = "Yelena, Alexei, Melina and Valentina carry on from Black Widow."
+
+[[link]]
+from = "fatws"
+to = "tb"
+strength = "helpful"
+note = "Bucky Barnes and John Walker come from The Falcon and the Winter Soldier."
+
+[[link]]
+from = "amw"
+to = "tb"
+strength = "minor"
+note = "Ghost returns from Ant-Man and the Wasp."
+
+[[link]]
+from = "wf"
+to = "ih"
+strength = "essential"
+note = "Riri Williams is introduced in Wakanda Forever."
+
+[[link]]
+from = "bp"
+to = "eow"
+strength = "minor"
+note = "Expands on Wakanda's history and its War Dogs."
+
+[[link]]
+from = "wi1"
+to = "mz"
+strength = "essential"
+note = "Carries on the zombie universe from one of What If...?'s season 1 episodes."
+
+[[link]]
+from = "shang"
+to = "wm"
+strength = "helpful"
+note = "Trevor Slattery returns from Shang-Chi."
+
+[[link]]
+from = "dd1"
+to = "dd2"
+strength = "essential"
+note = "Direct continuation of season 1."
+
+[[link]]
+from = "dd1"
+to = "pun"
+strength = "helpful"
+note = "Frank Castle's story carries on from Daredevil: Born Again."
+
+[[link]]
+from = "nwh"
+to = "bnd"
+strength = "essential"
+note = "Direct sequel to No Way Home."
+
+[[link]]
+from = "pun"
+to = "bnd"
+strength = "minor"
+note = "One Last Kill shows where Frank Castle's head is at going in."
+
+[[link]]
+from = "tb"
+to = "bnd"
+strength = "minor"
+only = "cameo"
+note = "Yelena Belova turns up."
+
+[[link]]
+from = "wv"
+to = "vq"
+strength = "essential"
+note = "A spin-off and sequel to WandaVision."
+
+[[link]]
+from = "aaa"
+to = "vq"
+strength = "helpful"
+note = "Set 18 months after Agatha All Along."
+
+[[link]]
+from = "aou"
+to = "vq"
+strength = "helpful"
+note = "Vision and Ultron both come from Age of Ultron."

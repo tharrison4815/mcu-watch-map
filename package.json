@@ -1,0 +1,16 @@
+{
+  "name": "mcu-watch-map",
+  "private": true,
+  "type": "module",
+  "description": "Builds the MCU Watch Map page from the TOML data in data/",
+  "scripts": {
+    "check": "node build.ts --check",
+    "build": "node build.ts"
+  },
+  "engines": {
+    "node": ">=24"
+  },
+  "dependencies": {
+    "smol-toml": "1.9.1"
+  }
+}

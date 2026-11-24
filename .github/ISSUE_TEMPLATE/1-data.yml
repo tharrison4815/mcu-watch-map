@@ -1,0 +1,27 @@
+name: Wrong or missing information
+description: A date, running time, synopsis, cast entry or link between titles that is wrong or missing.
+labels: [data]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping. Issues here are public, so please don't put spoilers in the title,
+        and keep them out of the description where you can.
+  - type: input
+    id: title
+    attributes:
+      label: Which title?
+      placeholder: e.g. Iron Man 3
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What's wrong, and what should it be?
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Source (optional)
+      description: A link that backs this up, such as the title's Wikipedia article.

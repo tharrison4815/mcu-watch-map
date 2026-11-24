@@ -1,0 +1,306 @@
+# Titles in Phase 6, in release order (the build checks the order).
+# Field guide and the spoiler rules every entry must follow: see CONTRIBUTING.md.
+#
+#   id           short unique id, used by links (never change an existing one)
+#   title        full title; series are one entry per season, e.g. "Loki (Season 1)"
+#   map_lines    the title split into 1 to 3 short lines for its box on the map
+#   type         film, show, special or shorts
+#   released     release date (first episode for a series)
+#   runtime      minutes (films and specials) / episodes: count (series and shorts)
+#   animated     true for animated titles (hidden unless "Animated" is ticked)
+#   row          franchise row, a name from rows.toml
+#   story_order  position in story order; only the order matters, so pick an
+#                unused number between the neighbours
+#   story_year   in-story year shown on the map (always visible, so no spoilers)
+#   synopsis     premise only: no twists, and nothing about how earlier titles end
+#   cast         { name, role, hero, twist }: name is the character's stable id across
+#                titles; role is Lead, Main, Supporting, Cameo or Post-credits; hero is the
+#                hero name in this title (leave it out if it would spoil anything);
+#                twist = true hides the appearance behind a second spoiler flap
+#   upcoming     true for announced titles that aren't out: only id, title, map_lines,
+#                type, released (with month_only = true if only the month is known),
+#                animated and row. No other details.
+
+[[title]]
+id = "f4"
+title = "The Fantastic Four: First Steps"
+map_lines = ["Fantastic Four:", "First Steps"]
+type = "film"
+released = 2025-07-25
+runtime = 114
+row = "Fantastic Four"
+story_order = 270
+story_year = "Another universe"
+synopsis = """
+In a retro-futuristic world of their own, Reed Richards, Sue Storm, Johnny Storm and Ben \
+Grimm, the Fantastic Four, face their greatest test when the planet-devouring Galactus and \
+his herald, the Silver Surfer, set their sights on Earth."""
+cast = [
+  { name = "Reed Richards", role = "Lead", hero = "Mister Fantastic" },
+  { name = "Sue Storm", role = "Lead", hero = "Invisible Woman" },
+  { name = "Johnny Storm", role = "Lead", hero = "Human Torch" },
+  { name = "Ben Grimm", role = "Lead", hero = "The Thing" },
+  { name = "Shalla-Bal", role = "Main", hero = "Silver Surfer" },
+  { name = "Galactus", role = "Main" },
+  { name = "H.E.R.B.I.E.", role = "Supporting" },
+  { name = "Harvey Elder", role = "Supporting", hero = "Mole Man" },
+  { name = "Rachel Rozman", role = "Supporting" },
+  { name = "Franklin Richards", role = "Supporting" },
+  { name = "Victor von Doom", role = "Post-credits", hero = "Doctor Doom", twist = true },
+]
+
+[[title]]
+id = "eow"
+title = "Eyes of Wakanda"
+map_lines = ["Eyes of", "Wakanda"]
+type = "show"
+released = 2025-08-01
+episodes = 4
+animated = true
+row = "Black Panther"
+story_order = 5
+story_year = "1260 BC to 1896"
+synopsis = """
+An animated anthology following the Hatut Zeraze, Wakanda's secret War Dogs, on missions \
+across history to recover stolen vibranium, from the Bronze Age to the 1890s."""
+cast = [
+  { name = "Noni", role = "Lead" },
+  { name = "Nkati", role = "Main", hero = "The Lion" },
+  { name = "B'Kai", role = "Main" },
+  { name = "Achilles", role = "Main" },
+  { name = "Basha", role = "Main" },
+  { name = "Jorani", role = "Main", hero = "Iron Fist" },
+  { name = "Tafari", role = "Main" },
+  { name = "Kuda", role = "Main" },
+  { name = "Akeya", role = "Supporting" },
+  { name = "Odysseus", role = "Supporting" },
+  { name = "Helen of Troy", role = "Supporting" },
+  { name = "The last Black Panther", role = "Supporting", twist = true },
+  { name = "The Watcher", role = "Cameo" },
+  { name = "Erik Stevens", role = "Cameo", hero = "Killmonger", twist = true },
+]
+
+[[title]]
+id = "mz"
+title = "Marvel Zombies"
+map_lines = ["Marvel", "Zombies"]
+type = "show"
+released = 2025-09-24
+episodes = 4
+animated = true
+row = "Marvel Zombies"
+story_order = 258
+story_year = "Another universe"
+synopsis = """
+An animated series set in an alternate universe overrun by a zombie plague, carrying on from \
+one of the What If...? episodes. Five years in, Kamala Khan and a band of survivors search \
+for a way to save what is left."""
+cast = [
+  { name = "Kamala Khan, Marvel Zombies", role = "Lead", hero = "Ms. Marvel" },
+  { name = "Riri Williams, Marvel Zombies", role = "Main", hero = "Ironheart" },
+  { name = "Kate Bishop, Marvel Zombies", role = "Main" },
+  { name = "Blade Knight", role = "Main" },
+  { name = "Yelena Belova, Marvel Zombies", role = "Main" },
+  { name = "Alexei Shostakov, Marvel Zombies", role = "Main", hero = "Red Guardian" },
+  { name = "Melina Vostokoff, Marvel Zombies", role = "Main" },
+  { name = "Shang-Chi, Marvel Zombies", role = "Main" },
+  { name = "Katy, Marvel Zombies", role = "Supporting" },
+  { name = "Wanda Maximoff, Marvel Zombies", role = "Main" },
+  { name = "Okoye, Marvel Zombies", role = "Supporting" },
+  { name = "Jimmy Woo, Marvel Zombies", role = "Supporting" },
+  { name = "Xu Wenwu, Marvel Zombies", role = "Supporting" },
+]
+
+[[title]]
+id = "wm"
+title = "Wonder Man"
+map_lines = ["Wonder Man"]
+type = "show"
+released = 2026-01-27
+episodes = 8
+row = "Wonder Man"
+story_order = 254
+story_year = "Unclear"
+synopsis = """
+Struggling actor Simon Williams, who is hiding powers of his own, chases the lead in a \
+remake of the superhero film Wonder Man, and finds an unlikely friend in a fellow actor, \
+Trevor Slattery."""
+cast = [
+  { name = "Simon Williams", role = "Lead", hero = "Wonder Man" },
+  { name = "Trevor Slattery", role = "Lead" },
+  { name = "Von Kovak", role = "Main" },
+  { name = "P. Cleary", role = "Main" },
+  { name = "Janelle Jackson", role = "Supporting" },
+  { name = "DeMarr Davis", role = "Supporting", hero = "Doorman" },
+  { name = "Joe Pantoliano", role = "Supporting" },
+  { name = "Josh Gad", role = "Supporting" },
+  { name = "Vivian", role = "Supporting" },
+  { name = "Martha Williams", role = "Supporting" },
+  { name = "Eric Williams", role = "Supporting" },
+]
+
+[[title]]
+id = "dd2"
+title = "Daredevil: Born Again (Season 2)"
+map_lines = ["Daredevil:", "Born Again", "Season 2"]
+type = "show"
+released = 2026-03-24
+episodes = 8
+row = "Daredevil"
+story_order = 260
+story_year = "2027"
+synopsis = """
+With Wilson Fisk tightening his grip on New York and vigilantes outlawed, Matt Murdock takes \
+the fight to him and his Anti-Vigilante Task Force."""
+cast = [
+  { name = "Matt Murdock", role = "Lead", hero = "Daredevil" },
+  { name = "Wilson Fisk", role = "Lead", hero = "Kingpin" },
+  { name = "Karen Page", role = "Main" },
+  { name = "Heather Glenn", role = "Main" },
+  { name = "Vanessa Fisk", role = "Main" },
+  { name = "Mr. Charles", role = "Main" },
+  { name = "Jack Duquesne", role = "Main", hero = "Swordsman" },
+  { name = "Daniel Blake", role = "Main" },
+  { name = "Kirsten McDuffie", role = "Main" },
+  { name = "Buck Cashman", role = "Main" },
+  { name = "BB Urich", role = "Main" },
+  { name = "Benjamin Poindexter", role = "Main", hero = "Bullseye" },
+  { name = "Jessica Jones", role = "Main" },
+  { name = "Cherry", role = "Supporting" },
+  { name = "Sheila Rivera", role = "Supporting" },
+  { name = "Marge McCaffrey", role = "Supporting" },
+  { name = "Angela del Toro", role = "Supporting", hero = "White Tiger" },
+  { name = "Foggy Nelson", role = "Supporting" },
+  { name = "Luke Cage", role = "Cameo", twist = true },
+]
+
+[[title]]
+id = "pun"
+title = "The Punisher: One Last Kill"
+map_lines = ["The Punisher:", "One Last Kill"]
+type = "special"
+released = 2026-05-12
+runtime = 51
+row = "Punisher"
+story_order = 261
+story_year = "2027"
+synopsis = """
+Haunted by his past, Frank Castle is pulled back into the fight when a crime boss puts a \
+bounty on his head and his neighbourhood comes under attack."""
+cast = [
+  { name = "Frank Castle", role = "Lead", hero = "Punisher" },
+  { name = "Ma Gnucci", role = "Main" },
+  { name = "Karen Page", role = "Supporting" },
+  { name = "Curtis Hoyle", role = "Supporting" },
+  { name = "Dre", role = "Supporting" },
+  { name = "Maria Castle", role = "Supporting" },
+  { name = "Lisa Castle", role = "Supporting" },
+]
+
+[[title]]
+id = "bnd"
+title = "Spider-Man: Brand New Day"
+map_lines = ["Spider-Man:", "Brand New Day"]
+type = "film"
+released = 2026-07-31
+runtime = 145
+row = "Spider-Man"
+story_order = 262
+story_year = "2028"
+synopsis = """
+Years after No Way Home, Peter Parker is protecting New York on his own as Spider-Man when a \
+mysterious telepath starts attacking the city's secret prisons, just as his own powers begin \
+to change."""
+cast = [
+  { name = "Peter Parker", role = "Lead", hero = "Spider-Man" },
+  { name = "Michelle Jones", role = "Main" },
+  { name = "Bill Metzger", role = "Main" },
+  { name = "Jean Grey", role = "Main", twist = true },
+  { name = "Ned Leeds", role = "Supporting" },
+  { name = "Frank Castle", role = "Supporting", hero = "Punisher" },
+  { name = "Bruce Banner", role = "Supporting", hero = "Hulk" },
+  { name = "Mac Gargan", role = "Supporting" },
+  { name = "Jean DeWolff", role = "Supporting" },
+  { name = "Yelena Belova", role = "Cameo" },
+  { name = "May Parker", role = "Cameo" },
+]
+
+[[title]]
+id = "vq"
+title = "VisionQuest"
+map_lines = ["VisionQuest"]
+type = "show"
+released = 2026-10-13
+episodes = 8
+row = "WandaVision"
+story_order = 264
+story_year = "2028"
+synopsis = """
+Vision, living quietly in Scotland, is hunted by a bounty hunter working for a mysterious \
+client, and is drawn into the past of the people who made him."""
+cast = [
+  { name = "Vision", role = "Lead" },
+  { name = "Ultron", role = "Lead" },
+  { name = "Tommy Maximoff", role = "Lead" },
+  { name = "Paladin", role = "Main" },
+  { name = "Lisa Molinari", role = "Main" },
+  { name = "Jocasta", role = "Main", twist = true },
+  { name = "F.R.I.D.A.Y.", role = "Supporting" },
+  { name = "E.D.I.T.H.", role = "Supporting" },
+  { name = "J.A.R.V.I.S.", role = "Supporting" },
+  { name = "Raza al-Wazar", role = "Supporting" },
+  { name = "Virgil Horton", role = "Supporting", twist = true },
+  { name = "Billy Maximoff", role = "Cameo" },
+  { name = "The Watcher", role = "Cameo" },
+  { name = "Wanda Maximoff", role = "Post-credits", twist = true },
+  { name = "Victor von Doom", role = "Post-credits", hero = "Doctor Doom", twist = true },
+]
+
+[[title]]
+id = "doom"
+title = "Avengers: Doomsday"
+map_lines = ["Avengers:", "Doomsday"]
+type = "film"
+upcoming = true
+released = 2026-12-18
+row = "Avengers"
+
+[[title]]
+id = "yfnsm2"
+title = "Your Friendly Neighborhood Spider-Man (Season 2)"
+map_lines = ["Your Friendly", "Neighborhood", "Spider-Man S2"]
+type = "show"
+upcoming = true
+released = 2027-01-13
+animated = true
+row = "Spider-Man"
+
+[[title]]
+id = "dd3"
+title = "Daredevil: Born Again (Season 3)"
+map_lines = ["Daredevil:", "Born Again", "Season 3"]
+type = "show"
+upcoming = true
+released = 2027-03-01
+month_only = true
+row = "Daredevil"
+
+[[title]]
+id = "mzws"
+title = "Marvel Zombies: The Winter Soldier"
+map_lines = ["Marvel Zombies:", "The Winter", "Soldier"]
+type = "special"
+upcoming = true
+released = 2027-10-01
+month_only = true
+animated = true
+row = "Marvel Zombies"
+
+[[title]]
+id = "sw"
+title = "Avengers: Secret Wars"
+map_lines = ["Avengers:", "Secret Wars"]
+type = "film"
+upcoming = true
+released = 2027-12-17
+row = "Avengers"

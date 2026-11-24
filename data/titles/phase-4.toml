@@ -1,0 +1,499 @@
+# Titles in Phase 4, in release order (the build checks the order).
+# Field guide and the spoiler rules every entry must follow: see CONTRIBUTING.md.
+#
+#   id           short unique id, used by links (never change an existing one)
+#   title        full title; series are one entry per season, e.g. "Loki (Season 1)"
+#   map_lines    the title split into 1 to 3 short lines for its box on the map
+#   type         film, show, special or shorts
+#   released     release date (first episode for a series)
+#   runtime      minutes (films and specials) / episodes: count (series and shorts)
+#   animated     true for animated titles (hidden unless "Animated" is ticked)
+#   row          franchise row, a name from rows.toml
+#   story_order  position in story order; only the order matters, so pick an
+#                unused number between the neighbours
+#   story_year   in-story year shown on the map (always visible, so no spoilers)
+#   synopsis     premise only: no twists, and nothing about how earlier titles end
+#   cast         { name, role, hero, twist }: name is the character's stable id across
+#                titles; role is Lead, Main, Supporting, Cameo or Post-credits; hero is the
+#                hero name in this title (leave it out if it would spoil anything);
+#                twist = true hides the appearance behind a second spoiler flap
+#   upcoming     true for announced titles that aren't out: only id, title, map_lines,
+#                type, released (with month_only = true if only the month is known),
+#                animated and row. No other details.
+
+[[title]]
+id = "wv"
+title = "WandaVision"
+map_lines = ["WandaVision"]
+type = "show"
+released = 2021-01-15
+episodes = 9
+row = "WandaVision"
+story_order = 206
+story_year = "2023"
+synopsis = """
+Wanda Maximoff and Vision settle into suburban life in the town of Westview, living out a \
+different classic sitcom in each episode, until cracks start to show in their perfect world."""
+cast = [
+  { name = "Wanda Maximoff", role = "Lead" },
+  { name = "Vision", role = "Lead" },
+  { name = "Monica Rambeau", role = "Main" },
+  { name = "Agatha Harkness", role = "Main", twist = true },
+  { name = "Jimmy Woo", role = "Supporting" },
+  { name = "Darcy Lewis", role = "Supporting" },
+  { name = "Tyler Hayward", role = "Supporting" },
+  { name = "Billy Maximoff", role = "Supporting" },
+  { name = "Tommy Maximoff", role = "Supporting" },
+  { name = "Ralph Bohner", role = "Supporting", twist = true },
+]
+
+[[title]]
+id = "fatws"
+title = "The Falcon and the Winter Soldier"
+map_lines = ["The Falcon and", "the Winter Soldier"]
+type = "show"
+released = 2021-03-19
+episodes = 6
+row = "Captain America"
+story_order = 208
+story_year = "2024"
+synopsis = """
+Sam Wilson and Bucky Barnes reluctantly team up against the Flag Smashers, a group fighting \
+for a world without borders, while each of them works out what comes next for him."""
+cast = [
+  { name = "Sam Wilson", role = "Lead", hero = "Falcon" },
+  { name = "Bucky Barnes", role = "Lead" },
+  { name = "John Walker", role = "Main" },
+  { name = "Helmut Zemo", role = "Main" },
+  { name = "Karli Morgenthau", role = "Main" },
+  { name = "Sharon Carter", role = "Supporting", hero = "Agent 13" },
+  { name = "Isaiah Bradley", role = "Supporting" },
+  { name = "Joaquin Torres", role = "Supporting" },
+  { name = "Lemar Hoskins", role = "Supporting", hero = "Battlestar" },
+  { name = "Sarah Wilson", role = "Supporting" },
+  { name = "Ayo", role = "Supporting" },
+  { name = "Valentina Allegra de Fontaine", role = "Supporting" },
+]
+
+[[title]]
+id = "loki1"
+title = "Loki (Season 1)"
+map_lines = ["Loki", "Season 1"]
+type = "show"
+released = 2021-06-09
+episodes = 6
+row = "Loki"
+story_order = 202
+story_year = "Outside time"
+synopsis = """
+A version of Loki is arrested by the Time Variance Authority, an organisation that polices \
+the timeline, and is offered a deal: help them hunt down a dangerous fugitive."""
+cast = [
+  { name = "Loki", role = "Lead" },
+  { name = "Mobius M. Mobius", role = "Main" },
+  { name = "Sylvie", role = "Main" },
+  { name = "Ravonna Renslayer", role = "Main" },
+  { name = "Hunter B-15", role = "Supporting" },
+  { name = "Miss Minutes", role = "Supporting" },
+  { name = "He Who Remains", role = "Supporting", twist = true },
+]
+
+[[title]]
+id = "bw"
+title = "Black Widow"
+map_lines = ["Black Widow"]
+type = "film"
+released = 2021-07-09
+runtime = 134
+row = "Black Widow"
+story_order = 135
+story_year = "2016"
+synopsis = """
+Natasha Romanoff is forced to confront her past when a conspiracy brings her back to the \
+family she left behind and the Red Room programme that trained her."""
+cast = [
+  { name = "Natasha Romanoff", role = "Lead", hero = "Black Widow" },
+  { name = "Yelena Belova", role = "Main" },
+  { name = "Alexei Shostakov", role = "Main", hero = "Red Guardian" },
+  { name = "Melina Vostokoff", role = "Main" },
+  { name = "Dreykov", role = "Main" },
+  { name = "Antonia Dreykov", role = "Supporting", hero = "Taskmaster", twist = true },
+  { name = "Rick Mason", role = "Supporting" },
+  { name = "Thaddeus Ross", role = "Supporting" },
+  { name = "Valentina Allegra de Fontaine", role = "Post-credits" },
+]
+
+[[title]]
+id = "wi1"
+title = "What If...? (Season 1)"
+map_lines = ["What If...?", "Season 1"]
+type = "show"
+released = 2021-08-11
+episodes = 9
+animated = true
+row = "What If...?"
+story_order = 204
+story_year = "Multiverse"
+synopsis = """
+An animated anthology. The Watcher observes alternate universes where a single moment went \
+differently, such as Peggy Carter taking the super-soldier serum instead of Steve Rogers."""
+cast = [
+  { name = "The Watcher", role = "Lead" },
+  { name = "Peggy Carter, What If...?", role = "Main", hero = "Captain Carter" },
+  { name = "T'Challa, What If...?", role = "Main", hero = "Star-Lord" },
+  { name = "Stephen Strange, What If...?", role = "Main" },
+  { name = "Ultron, What If...?", role = "Main" },
+  { name = "Gamora, What If...?", role = "Supporting" },
+  { name = "Erik Stevens, What If...?", role = "Supporting", hero = "Killmonger" },
+  { name = "Nick Fury, What If...?", role = "Supporting" },
+]
+
+[[title]]
+id = "shang"
+title = "Shang-Chi and the Legend of the Ten Rings"
+map_lines = ["Shang-Chi and", "the Ten Rings"]
+type = "film"
+released = 2021-09-03
+runtime = 132
+row = "Shang-Chi"
+story_order = 212
+story_year = "2024"
+synopsis = """
+Shang-Chi has spent years living quietly in San Francisco, but when his father, the leader \
+of the secret Ten Rings organisation, comes after him, he has to face the past he ran from."""
+cast = [
+  { name = "Shang-Chi", role = "Lead" },
+  { name = "Katy", role = "Main" },
+  { name = "Xu Wenwu", role = "Main" },
+  { name = "Xu Xialing", role = "Main" },
+  { name = "Ying Nan", role = "Supporting" },
+  { name = "Ying Li", role = "Supporting" },
+  { name = "Trevor Slattery", role = "Supporting" },
+  { name = "Razor Fist", role = "Supporting" },
+  { name = "Death Dealer", role = "Supporting" },
+  { name = "Morris", role = "Supporting" },
+  { name = "Wong", role = "Supporting" },
+  { name = "Emil Blonsky", role = "Cameo", hero = "Abomination" },
+  { name = "Bruce Banner", role = "Post-credits" },
+  { name = "Carol Danvers", role = "Post-credits", hero = "Captain Marvel" },
+]
+
+[[title]]
+id = "eter"
+title = "Eternals"
+map_lines = ["Eternals"]
+type = "film"
+released = 2021-11-05
+runtime = 156
+row = "Eternals"
+story_order = 214
+story_year = "2024"
+synopsis = """
+The Eternals, immortal beings who have secretly lived on Earth for thousands of years, \
+reunite to protect humanity from their ancient enemies, the Deviants."""
+cast = [
+  { name = "Sersi", role = "Lead" },
+  { name = "Ikaris", role = "Main" },
+  { name = "Thena", role = "Main" },
+  { name = "Ajak", role = "Main" },
+  { name = "Kingo", role = "Main" },
+  { name = "Sprite", role = "Main" },
+  { name = "Phastos", role = "Main" },
+  { name = "Makkari", role = "Main" },
+  { name = "Druig", role = "Main" },
+  { name = "Gilgamesh", role = "Main" },
+  { name = "Dane Whitman", role = "Supporting" },
+  { name = "Kro", role = "Supporting" },
+  { name = "Arishem", role = "Supporting" },
+  { name = "Eros", role = "Post-credits", hero = "Starfox" },
+  { name = "Pip the Troll", role = "Post-credits" },
+]
+
+[[title]]
+id = "hk"
+title = "Hawkeye"
+map_lines = ["Hawkeye"]
+type = "show"
+released = 2021-11-24
+episodes = 6
+row = "Hawkeye"
+story_order = 218
+story_year = "2024"
+synopsis = """
+In New York at Christmas, Clint Barton just wants to get home to his family, until young \
+archer Kate Bishop gets him tangled up with a dangerous criminal gang."""
+cast = [
+  { name = "Clint Barton", role = "Lead", hero = "Hawkeye" },
+  { name = "Kate Bishop", role = "Lead" },
+  { name = "Maya Lopez", role = "Main", hero = "Echo" },
+  { name = "Eleanor Bishop", role = "Main" },
+  { name = "Jack Duquesne", role = "Supporting" },
+  { name = "Kazi", role = "Supporting" },
+  { name = "Laura Barton", role = "Supporting" },
+  { name = "Yelena Belova", role = "Supporting", twist = true },
+  { name = "Wilson Fisk", role = "Supporting", hero = "Kingpin", twist = true },
+]
+
+[[title]]
+id = "nwh"
+title = "Spider-Man: No Way Home"
+map_lines = ["Spider-Man:", "No Way Home"]
+type = "film"
+released = 2021-12-17
+runtime = 148
+row = "Spider-Man"
+story_order = 216
+story_year = "2024"
+synopsis = """
+Peter Parker asks Doctor Strange for help with a problem in his own life, and a spell gone \
+wrong opens the door to visitors from other universes."""
+cast = [
+  { name = "Peter Parker", role = "Lead", hero = "Spider-Man" },
+  { name = "Michelle Jones", role = "Main" },
+  { name = "Ned Leeds", role = "Main" },
+  { name = "May Parker", role = "Main" },
+  { name = "Stephen Strange", role = "Main", hero = "Doctor Strange" },
+  { name = "Happy Hogan", role = "Supporting" },
+  { name = "Wong", role = "Supporting" },
+  { name = "Otto Octavius", role = "Main", hero = "Doctor Octopus" },
+  { name = "Norman Osborn", role = "Main", hero = "Green Goblin" },
+  { name = "Max Dillon", role = "Supporting", hero = "Electro" },
+  { name = "Flint Marko", role = "Supporting", hero = "Sandman" },
+  { name = "Curt Connors", role = "Supporting", hero = "Lizard" },
+  { name = "J. Jonah Jameson", role = "Supporting" },
+  { name = "Flash Thompson", role = "Supporting" },
+  { name = "Betty Brant", role = "Supporting" },
+  { name = "Peter-Two", role = "Main", hero = "Spider-Man", twist = true },
+  { name = "Peter-Three", role = "Main", hero = "Spider-Man", twist = true },
+  { name = "Matt Murdock", role = "Cameo", twist = true },
+  { name = "Eddie Brock", role = "Post-credits", hero = "Venom", twist = true },
+]
+
+[[title]]
+id = "mk"
+title = "Moon Knight"
+map_lines = ["Moon Knight"]
+type = "show"
+released = 2022-03-30
+episodes = 6
+row = "Moon Knight"
+story_order = 220
+story_year = "2025"
+synopsis = """
+Gift-shop worker Steven Grant suffers blackouts and memories of another life, and discovers \
+he shares a body with mercenary Marc Spector, who serves the Egyptian moon god Khonshu."""
+cast = [
+  { name = "Steven Grant", role = "Lead", hero = "Mr. Knight" },
+  { name = "Marc Spector", role = "Lead", hero = "Moon Knight" },
+  { name = "Layla El-Faouly", role = "Main" },
+  { name = "Arthur Harrow", role = "Main" },
+  { name = "Khonshu", role = "Main" },
+  { name = "Taweret", role = "Supporting" },
+  { name = "Ammit", role = "Supporting" },
+  { name = "Jake Lockley", role = "Supporting", twist = true },
+]
+
+[[title]]
+id = "mom"
+title = "Doctor Strange in the Multiverse of Madness"
+map_lines = ["Doctor Strange:", "Multiverse", "of Madness"]
+type = "film"
+released = 2022-05-06
+runtime = 126
+row = "Doctor Strange"
+story_order = 222
+story_year = "2024"
+synopsis = """
+Stephen Strange meets America Chavez, a teenager who can travel between universes, and is \
+pulled across the multiverse protecting her from a powerful threat that wants her ability."""
+cast = [
+  { name = "Stephen Strange", role = "Lead", hero = "Doctor Strange" },
+  { name = "Wanda Maximoff", role = "Main", hero = "Scarlet Witch" },
+  { name = "America Chavez", role = "Main" },
+  { name = "Wong", role = "Main" },
+  { name = "Christine Palmer", role = "Supporting" },
+  { name = "Karl Mordo, Earth-838", role = "Supporting" },
+  { name = "Billy Maximoff, Earth-838", role = "Supporting" },
+  { name = "Tommy Maximoff, Earth-838", role = "Supporting" },
+  { name = "Charles Xavier", role = "Supporting", twist = true },
+  { name = "Reed Richards", role = "Supporting", twist = true },
+  { name = "Black Bolt", role = "Supporting", twist = true },
+  { name = "Maria Rambeau, Earth-838", role = "Supporting", hero = "Captain Marvel", twist = true },
+  { name = "Peggy Carter, Earth-838", role = "Supporting", hero = "Captain Carter", twist = true },
+  { name = "Clea", role = "Post-credits" },
+]
+
+[[title]]
+id = "msm"
+title = "Ms. Marvel"
+map_lines = ["Ms. Marvel"]
+type = "show"
+released = 2022-06-08
+episodes = 6
+row = "Ms. Marvel"
+story_order = 224
+story_year = "2025"
+synopsis = """
+Kamala Khan, a Pakistani-American teenager in Jersey City and an Avengers superfan, finds \
+that a family heirloom gives her powers of her own."""
+cast = [
+  { name = "Kamala Khan", role = "Lead", hero = "Ms. Marvel" },
+  { name = "Bruno Carrelli", role = "Main" },
+  { name = "Nakia Bahadir", role = "Main" },
+  { name = "Kamran", role = "Main" },
+  { name = "Muneeba Khan", role = "Supporting" },
+  { name = "Yusuf Khan", role = "Supporting" },
+  { name = "Aamir Khan", role = "Supporting" },
+  { name = "Najma", role = "Supporting" },
+  { name = "Sadia Dever", role = "Supporting" },
+  { name = "Kleb", role = "Supporting" },
+  { name = "Carol Danvers", role = "Post-credits", hero = "Captain Marvel" },
+]
+
+[[title]]
+id = "lt"
+title = "Thor: Love and Thunder"
+map_lines = ["Thor: Love", "and Thunder"]
+type = "film"
+released = 2022-07-08
+runtime = 119
+row = "Thor"
+story_order = 226
+story_year = "2025"
+synopsis = """
+Thor's search for inner peace is interrupted by Gorr the God Butcher, who is hunting down \
+gods, and he teams up with Valkyrie, Korg and his ex-girlfriend Jane Foster, who now wields \
+Mjolnir."""
+cast = [
+  { name = "Thor", role = "Lead" },
+  { name = "Jane Foster", role = "Main", hero = "Mighty Thor" },
+  { name = "Gorr", role = "Main", hero = "God Butcher" },
+  { name = "Valkyrie", role = "Main" },
+  { name = "Korg", role = "Main" },
+  { name = "Zeus", role = "Supporting" },
+  { name = "Peter Quill", role = "Supporting", hero = "Star-Lord" },
+  { name = "Drax", role = "Supporting" },
+  { name = "Nebula", role = "Supporting" },
+  { name = "Mantis", role = "Supporting" },
+  { name = "Rocket", role = "Supporting" },
+  { name = "Groot", role = "Supporting" },
+  { name = "Kraglin", role = "Supporting" },
+  { name = "Hercules", role = "Post-credits" },
+  { name = "Heimdall", role = "Post-credits", twist = true },
+]
+
+[[title]]
+id = "iag1"
+title = "I Am Groot (Season 1)"
+map_lines = ["I Am Groot", "Season 1"]
+type = "shorts"
+released = 2022-08-10
+episodes = 5
+animated = true
+row = "Guardians"
+story_order = 102
+story_year = "2014"
+synopsis = """
+Five animated shorts following Baby Groot's misadventures, each a few minutes long."""
+cast = [
+  { name = "Groot", role = "Lead" },
+]
+
+[[title]]
+id = "sh"
+title = "She-Hulk: Attorney at Law"
+map_lines = ["She-Hulk:", "Attorney at Law"]
+type = "show"
+released = 2022-08-18
+episodes = 9
+row = "Hulk"
+story_order = 228
+story_year = "2025"
+synopsis = """
+Lawyer Jennifer Walters gets her cousin Bruce Banner's Hulk powers in an accident, and has \
+to balance a new job in superhuman law with being a 6-foot-7 green superhero."""
+cast = [
+  { name = "Jennifer Walters", role = "Lead", hero = "She-Hulk" },
+  { name = "Bruce Banner", role = "Main", hero = "Hulk" },
+  { name = "Emil Blonsky", role = "Main", hero = "Abomination" },
+  { name = "Nikki Ramos", role = "Supporting" },
+  { name = "Pug Pugliese", role = "Supporting" },
+  { name = "Mallory Book", role = "Supporting" },
+  { name = "Todd Phelps", role = "Supporting" },
+  { name = "Titania", role = "Supporting" },
+  { name = "Wong", role = "Supporting" },
+  { name = "Matt Murdock", role = "Supporting", hero = "Daredevil" },
+  { name = "Skaar", role = "Cameo", twist = true },
+]
+
+[[title]]
+id = "wbn"
+title = "Werewolf by Night"
+map_lines = ["Werewolf", "by Night"]
+type = "special"
+released = 2022-10-07
+runtime = 53
+row = "Werewolf by Night"
+story_order = 230
+story_year = "Unclear"
+synopsis = """
+A secret group of monster hunters gathers at Bloodstone Temple after the death of their \
+leader, to compete in a deadly hunt for a powerful relic."""
+cast = [
+  { name = "Jack Russell", role = "Lead" },
+  { name = "Elsa Bloodstone", role = "Lead" },
+  { name = "Verussa Bloodstone", role = "Main" },
+  { name = "Ted", role = "Supporting", hero = "Man-Thing" },
+]
+
+[[title]]
+id = "wf"
+title = "Black Panther: Wakanda Forever"
+map_lines = ["Black Panther:", "Wakanda Forever"]
+type = "film"
+released = 2022-11-11
+runtime = 161
+row = "Black Panther"
+story_order = 232
+story_year = "2025"
+synopsis = """
+Wakanda mourns its king, and Queen Ramonda, Shuri and the Dora Milaje fight to protect the \
+nation as other powers move against it and a hidden underwater kingdom led by Namor emerges."""
+cast = [
+  { name = "Shuri", role = "Lead" },
+  { name = "Ramonda", role = "Main" },
+  { name = "Okoye", role = "Main" },
+  { name = "Nakia", role = "Main" },
+  { name = "M'Baku", role = "Main" },
+  { name = "Namor", role = "Main" },
+  { name = "Riri Williams", role = "Main" },
+  { name = "Everett Ross", role = "Supporting" },
+  { name = "Valentina Allegra de Fontaine", role = "Supporting" },
+  { name = "Aneka", role = "Supporting" },
+  { name = "Toussaint", role = "Post-credits", twist = true },
+]
+
+[[title]]
+id = "hs"
+title = "The Guardians of the Galaxy Holiday Special"
+map_lines = ["Guardians", "Holiday Special"]
+type = "special"
+released = 2022-11-25
+runtime = 44
+row = "Guardians"
+story_order = 234
+story_year = "2025"
+synopsis = """
+Mantis and Drax set out to give a down-hearted Peter Quill the perfect Christmas by \
+kidnapping his childhood hero, Kevin Bacon."""
+cast = [
+  { name = "Mantis", role = "Lead" },
+  { name = "Drax", role = "Lead" },
+  { name = "Peter Quill", role = "Main", hero = "Star-Lord" },
+  { name = "Kevin Bacon", role = "Main" },
+  { name = "Nebula", role = "Supporting" },
+  { name = "Rocket", role = "Supporting" },
+  { name = "Groot", role = "Supporting" },
+  { name = "Kraglin", role = "Supporting" },
+  { name = "Cosmo", role = "Supporting" },
+]

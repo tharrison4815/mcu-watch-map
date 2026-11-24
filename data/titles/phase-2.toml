@@ -1,0 +1,209 @@
+# Titles in Phase 2, in release order (the build checks the order).
+# Field guide and the spoiler rules every entry must follow: see CONTRIBUTING.md.
+#
+#   id           short unique id, used by links (never change an existing one)
+#   title        full title; series are one entry per season, e.g. "Loki (Season 1)"
+#   map_lines    the title split into 1 to 3 short lines for its box on the map
+#   type         film, show, special or shorts
+#   released     release date (first episode for a series)
+#   runtime      minutes (films and specials) / episodes: count (series and shorts)
+#   animated     true for animated titles (hidden unless "Animated" is ticked)
+#   row          franchise row, a name from rows.toml
+#   story_order  position in story order; only the order matters, so pick an
+#                unused number between the neighbours
+#   story_year   in-story year shown on the map (always visible, so no spoilers)
+#   synopsis     premise only: no twists, and nothing about how earlier titles end
+#   cast         { name, role, hero, twist }: name is the character's stable id across
+#                titles; role is Lead, Main, Supporting, Cameo or Post-credits; hero is the
+#                hero name in this title (leave it out if it would spoil anything);
+#                twist = true hides the appearance behind a second spoiler flap
+#   upcoming     true for announced titles that aren't out: only id, title, map_lines,
+#                type, released (with month_only = true if only the month is known),
+#                animated and row. No other details.
+
+[[title]]
+id = "im3"
+title = "Iron Man 3"
+map_lines = ["Iron Man 3"]
+type = "film"
+released = 2013-05-03
+runtime = 130
+row = "Iron Man"
+story_order = 70
+story_year = "2012"
+synopsis = """
+Shaken by the Battle of New York and unable to sleep, Tony Stark buries himself in building \
+suits until a terrorist called the Mandarin strikes his home and leaves him with almost \
+nothing."""
+cast = [
+  { name = "Tony Stark", role = "Lead", hero = "Iron Man" },
+  { name = "Pepper Potts", role = "Main" },
+  { name = "James Rhodes", role = "Main", hero = "Iron Patriot" },
+  { name = "Aldrich Killian", role = "Main" },
+  { name = "Trevor Slattery", role = "Main", hero = "The Mandarin", twist = true },
+  { name = "Maya Hansen", role = "Supporting" },
+  { name = "Happy Hogan", role = "Supporting" },
+  { name = "Harley Keener", role = "Supporting" },
+  { name = "Eric Savin", role = "Supporting" },
+  { name = "J.A.R.V.I.S.", role = "Supporting" },
+  { name = "Bruce Banner", role = "Post-credits" },
+]
+
+[[title]]
+id = "tdw"
+title = "Thor: The Dark World"
+map_lines = ["Thor:", "The Dark World"]
+type = "film"
+released = 2013-11-08
+runtime = 112
+row = "Thor"
+story_order = 80
+story_year = "2013"
+synopsis = """
+Jane Foster stumbles on the Aether, an ancient force the Dark Elf Malekith wants back to \
+plunge the universe into darkness, and Thor needs his imprisoned brother Loki's help to stop \
+him."""
+cast = [
+  { name = "Thor", role = "Lead" },
+  { name = "Jane Foster", role = "Main" },
+  { name = "Loki", role = "Main" },
+  { name = "Malekith", role = "Main" },
+  { name = "Odin", role = "Main" },
+  { name = "Frigga", role = "Supporting" },
+  { name = "Heimdall", role = "Supporting" },
+  { name = "Erik Selvig", role = "Supporting" },
+  { name = "Darcy Lewis", role = "Supporting" },
+  { name = "Sif", role = "Supporting" },
+  { name = "Algrim", role = "Supporting", hero = "Kurse" },
+  { name = "Taneleer Tivan", role = "Post-credits", hero = "The Collector" },
+]
+
+[[title]]
+id = "tws"
+title = "Captain America: The Winter Soldier"
+map_lines = ["Captain America:", "The Winter Soldier"]
+type = "film"
+released = 2014-04-04
+runtime = 136
+row = "Captain America"
+story_order = 90
+story_year = "2014"
+synopsis = """
+Two years after New York, Steve Rogers works for S.H.I.E.L.D. but distrusts its secrets. \
+When Nick Fury is attacked, Steve and Natasha go on the run, hunted by a ghostly assassin \
+known as the Winter Soldier."""
+cast = [
+  { name = "Steve Rogers", role = "Lead", hero = "Captain America" },
+  { name = "Natasha Romanoff", role = "Main", hero = "Black Widow" },
+  { name = "Sam Wilson", role = "Main", hero = "Falcon" },
+  { name = "Bucky Barnes", role = "Main", hero = "Winter Soldier", twist = true },
+  { name = "Nick Fury", role = "Main" },
+  { name = "Alexander Pierce", role = "Main" },
+  { name = "Maria Hill", role = "Supporting" },
+  { name = "Sharon Carter", role = "Supporting", hero = "Agent 13" },
+  { name = "Brock Rumlow", role = "Supporting" },
+  { name = "Jasper Sitwell", role = "Supporting" },
+  { name = "Peggy Carter", role = "Supporting" },
+  { name = "Arnim Zola", role = "Supporting" },
+  { name = "Wolfgang von Strucker", role = "Post-credits" },
+  { name = "Wanda Maximoff", role = "Post-credits" },
+  { name = "Pietro Maximoff", role = "Post-credits" },
+]
+
+[[title]]
+id = "gotg"
+title = "Guardians of the Galaxy"
+map_lines = ["Guardians of", "the Galaxy"]
+type = "film"
+released = 2014-08-01
+runtime = 121
+row = "Guardians"
+story_order = 100
+story_year = "2014"
+synopsis = """
+Space scavenger Peter Quill steals a mysterious orb and falls into an uneasy alliance with \
+an assassin, a warrior, a raccoon and a talking tree, all hunted by the fanatic Ronan."""
+cast = [
+  { name = "Peter Quill", role = "Lead", hero = "Star-Lord" },
+  { name = "Gamora", role = "Main" },
+  { name = "Drax", role = "Main" },
+  { name = "Rocket", role = "Main" },
+  { name = "Groot", role = "Main" },
+  { name = "Ronan", role = "Main" },
+  { name = "Nebula", role = "Supporting" },
+  { name = "Yondu Udonta", role = "Supporting" },
+  { name = "Thanos", role = "Supporting" },
+  { name = "Taneleer Tivan", role = "Supporting", hero = "The Collector" },
+  { name = "Korath", role = "Supporting" },
+  { name = "Rhomann Dey", role = "Supporting" },
+  { name = "Howard the Duck", role = "Post-credits" },
+]
+
+[[title]]
+id = "aou"
+title = "Avengers: Age of Ultron"
+map_lines = ["Avengers:", "Age of Ultron"]
+type = "film"
+released = 2015-05-01
+runtime = 141
+row = "Avengers"
+story_order = 110
+story_year = "2015"
+synopsis = """
+Tony Stark and Bruce Banner build Ultron, an artificial intelligence meant to protect the \
+world, but it decides humanity is the problem, and the Avengers have to stop their own \
+creation."""
+cast = [
+  { name = "Tony Stark", role = "Lead", hero = "Iron Man" },
+  { name = "Steve Rogers", role = "Lead", hero = "Captain America" },
+  { name = "Thor", role = "Lead" },
+  { name = "Bruce Banner", role = "Lead", hero = "Hulk" },
+  { name = "Natasha Romanoff", role = "Lead", hero = "Black Widow" },
+  { name = "Clint Barton", role = "Lead", hero = "Hawkeye" },
+  { name = "Ultron", role = "Main" },
+  { name = "Wanda Maximoff", role = "Main" },
+  { name = "Pietro Maximoff", role = "Main" },
+  { name = "Vision", role = "Main" },
+  { name = "Nick Fury", role = "Supporting" },
+  { name = "Maria Hill", role = "Supporting" },
+  { name = "James Rhodes", role = "Supporting", hero = "War Machine" },
+  { name = "Sam Wilson", role = "Supporting", hero = "Falcon" },
+  { name = "Erik Selvig", role = "Supporting" },
+  { name = "Ulysses Klaue", role = "Supporting" },
+  { name = "Wolfgang von Strucker", role = "Supporting" },
+  { name = "Laura Barton", role = "Supporting" },
+  { name = "J.A.R.V.I.S.", role = "Supporting" },
+  { name = "Peggy Carter", role = "Cameo" },
+  { name = "Heimdall", role = "Cameo" },
+  { name = "Thanos", role = "Post-credits" },
+]
+
+[[title]]
+id = "antman"
+title = "Ant-Man"
+map_lines = ["Ant-Man"]
+type = "film"
+released = 2015-07-17
+runtime = 117
+row = "Ant-Man"
+story_order = 120
+story_year = "2015"
+synopsis = """
+Ex-con Scott Lang is recruited by scientist Hank Pym to steal back the shrinking technology \
+Pym invented, before his former protégé can sell it as a weapon."""
+cast = [
+  { name = "Scott Lang", role = "Lead", hero = "Ant-Man" },
+  { name = "Hope van Dyne", role = "Main" },
+  { name = "Hank Pym", role = "Main" },
+  { name = "Darren Cross", role = "Main", hero = "Yellowjacket" },
+  { name = "Luis", role = "Main" },
+  { name = "Cassie Lang", role = "Supporting" },
+  { name = "Maggie Lang", role = "Supporting" },
+  { name = "Jim Paxton", role = "Supporting" },
+  { name = "Mitchell Carson", role = "Supporting" },
+  { name = "Sam Wilson", role = "Cameo", hero = "Falcon" },
+  { name = "Peggy Carter", role = "Cameo" },
+  { name = "Howard Stark", role = "Cameo" },
+  { name = "Steve Rogers", role = "Post-credits" },
+  { name = "Bucky Barnes", role = "Post-credits" },
+]

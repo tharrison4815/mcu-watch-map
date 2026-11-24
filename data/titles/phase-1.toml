@@ -1,0 +1,182 @@
+# Titles in Phase 1, in release order (the build checks the order).
+# Field guide and the spoiler rules every entry must follow: see CONTRIBUTING.md.
+#
+#   id           short unique id, used by links (never change an existing one)
+#   title        full title; series are one entry per season, e.g. "Loki (Season 1)"
+#   map_lines    the title split into 1 to 3 short lines for its box on the map
+#   type         film, show, special or shorts
+#   released     release date (first episode for a series)
+#   runtime      minutes (films and specials) / episodes: count (series and shorts)
+#   animated     true for animated titles (hidden unless "Animated" is ticked)
+#   row          franchise row, a name from rows.toml
+#   story_order  position in story order; only the order matters, so pick an
+#                unused number between the neighbours
+#   story_year   in-story year shown on the map (always visible, so no spoilers)
+#   synopsis     premise only: no twists, and nothing about how earlier titles end
+#   cast         { name, role, hero, twist }: name is the character's stable id across
+#                titles; role is Lead, Main, Supporting, Cameo or Post-credits; hero is the
+#                hero name in this title (leave it out if it would spoil anything);
+#                twist = true hides the appearance behind a second spoiler flap
+#   upcoming     true for announced titles that aren't out: only id, title, map_lines,
+#                type, released (with month_only = true if only the month is known),
+#                animated and row. No other details.
+
+[[title]]
+id = "im"
+title = "Iron Man"
+map_lines = ["Iron Man"]
+type = "film"
+released = 2008-05-02
+runtime = 126
+row = "Iron Man"
+story_order = 20
+story_year = "2008"
+synopsis = """
+Weapons maker Tony Stark is captured while demonstrating his company's missiles overseas. He \
+builds a crude armoured suit to escape, then comes home rethinking everything his company \
+makes."""
+cast = [
+  { name = "Tony Stark", role = "Lead", hero = "Iron Man" },
+  { name = "Pepper Potts", role = "Main" },
+  { name = "James Rhodes", role = "Main" },
+  { name = "Obadiah Stane", role = "Main", hero = "Iron Monger" },
+  { name = "Phil Coulson", role = "Supporting" },
+  { name = "Happy Hogan", role = "Supporting" },
+  { name = "J.A.R.V.I.S.", role = "Supporting" },
+  { name = "Ho Yinsen", role = "Supporting" },
+  { name = "Nick Fury", role = "Post-credits" },
+]
+
+[[title]]
+id = "hulk"
+title = "The Incredible Hulk"
+map_lines = ["The Incredible", "Hulk"]
+type = "film"
+released = 2008-06-13
+runtime = 112
+row = "Hulk"
+story_order = 40
+story_year = "2010"
+synopsis = """
+Scientist Bruce Banner hides in Brazil, searching for a cure for the condition that turns \
+him into the Hulk, while General Ross and the US Army close in."""
+cast = [
+  { name = "Bruce Banner", role = "Lead", hero = "Hulk" },
+  { name = "Betty Ross", role = "Main" },
+  { name = "Thaddeus Ross", role = "Main" },
+  { name = "Emil Blonsky", role = "Main", hero = "Abomination" },
+  { name = "Samuel Sterns", role = "Supporting" },
+  { name = "Tony Stark", role = "Cameo" },
+]
+
+[[title]]
+id = "im2"
+title = "Iron Man 2"
+map_lines = ["Iron Man 2"]
+type = "film"
+released = 2010-05-07
+runtime = 124
+row = "Iron Man"
+story_order = 30
+story_year = "2010"
+synopsis = """
+Having told the world he is Iron Man, Tony faces government pressure to hand over the suit, \
+a power source that is slowly poisoning him, and a rival with a grudge against the Stark \
+family."""
+cast = [
+  { name = "Tony Stark", role = "Lead", hero = "Iron Man" },
+  { name = "Pepper Potts", role = "Main" },
+  { name = "James Rhodes", role = "Main", hero = "War Machine" },
+  { name = "Natasha Romanoff", role = "Main", hero = "Black Widow" },
+  { name = "Ivan Vanko", role = "Main", hero = "Whiplash" },
+  { name = "Justin Hammer", role = "Main" },
+  { name = "Nick Fury", role = "Supporting" },
+  { name = "Phil Coulson", role = "Supporting" },
+  { name = "Happy Hogan", role = "Supporting" },
+  { name = "Howard Stark", role = "Supporting" },
+  { name = "J.A.R.V.I.S.", role = "Supporting" },
+]
+
+[[title]]
+id = "thor"
+title = "Thor"
+map_lines = ["Thor"]
+type = "film"
+released = 2011-05-06
+runtime = 115
+row = "Thor"
+story_order = 50
+story_year = "2010"
+synopsis = """
+Stripped of his powers and banished to Earth by his father Odin, the arrogant Thor has to \
+prove himself worthy while his brother Loki schemes in Asgard."""
+cast = [
+  { name = "Thor", role = "Lead" },
+  { name = "Loki", role = "Main" },
+  { name = "Jane Foster", role = "Main" },
+  { name = "Odin", role = "Main" },
+  { name = "Erik Selvig", role = "Supporting" },
+  { name = "Darcy Lewis", role = "Supporting" },
+  { name = "Frigga", role = "Supporting" },
+  { name = "Heimdall", role = "Supporting" },
+  { name = "Sif", role = "Supporting" },
+  { name = "Phil Coulson", role = "Supporting" },
+  { name = "Clint Barton", role = "Cameo" },
+  { name = "Nick Fury", role = "Post-credits" },
+]
+
+[[title]]
+id = "cap"
+title = "Captain America: The First Avenger"
+map_lines = ["Captain America:", "The First Avenger"]
+type = "film"
+released = 2011-07-22
+runtime = 124
+row = "Captain America"
+story_order = 10
+story_year = "1940s"
+synopsis = """
+In 1942 frail volunteer Steve Rogers is transformed by an experimental serum into a \
+super-soldier and sent against Hydra, a rogue science division led by the Red Skull."""
+cast = [
+  { name = "Steve Rogers", role = "Lead", hero = "Captain America" },
+  { name = "Peggy Carter", role = "Main" },
+  { name = "Bucky Barnes", role = "Main" },
+  { name = "Johann Schmidt", role = "Main", hero = "Red Skull" },
+  { name = "Howard Stark", role = "Supporting" },
+  { name = "Chester Phillips", role = "Supporting" },
+  { name = "Abraham Erskine", role = "Supporting" },
+  { name = "Arnim Zola", role = "Supporting" },
+  { name = "Dum Dum Dugan", role = "Supporting" },
+  { name = "Nick Fury", role = "Cameo" },
+]
+
+[[title]]
+id = "av"
+title = "The Avengers"
+map_lines = ["The Avengers"]
+type = "film"
+released = 2012-05-04
+runtime = 143
+row = "Avengers"
+story_order = 60
+story_year = "2012"
+synopsis = """
+When Loki steals the Tesseract, Nick Fury brings Iron Man, Captain America, Thor, the Hulk, \
+Black Widow and Hawkeye together to stop an invasion of Earth."""
+cast = [
+  { name = "Tony Stark", role = "Lead", hero = "Iron Man" },
+  { name = "Steve Rogers", role = "Lead", hero = "Captain America" },
+  { name = "Thor", role = "Lead" },
+  { name = "Bruce Banner", role = "Lead", hero = "Hulk" },
+  { name = "Natasha Romanoff", role = "Lead", hero = "Black Widow" },
+  { name = "Clint Barton", role = "Main", hero = "Hawkeye" },
+  { name = "Loki", role = "Main" },
+  { name = "Nick Fury", role = "Main" },
+  { name = "Maria Hill", role = "Supporting" },
+  { name = "Phil Coulson", role = "Supporting" },
+  { name = "Erik Selvig", role = "Supporting" },
+  { name = "Pepper Potts", role = "Supporting" },
+  { name = "J.A.R.V.I.S.", role = "Supporting" },
+  { name = "Thanos", role = "Post-credits" },
+]

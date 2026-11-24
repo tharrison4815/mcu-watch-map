@@ -1,0 +1,27 @@
+name: Spoiler problem
+description: The map or a panel gave something away before you had seen or revealed it.
+labels: [spoiler]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Issues here are public, so please describe **where** the spoiler appears, not what it
+        gives away. For example: "the note on the link from Black Widow to Hawkeye spoils
+        Hawkeye", rather than quoting the spoiler itself.
+  - type: input
+    id: where
+    attributes:
+      label: Where did you see it?
+      placeholder: e.g. the cast list for Iron Man 3, a link note, a hero name in the character list
+    validations:
+      required: true
+  - type: input
+    id: spoils
+    attributes:
+      label: Which title does it spoil?
+    validations:
+      required: true
+  - type: textarea
+    id: state
+    attributes:
+      label: What had you marked as seen or revealed? (optional)

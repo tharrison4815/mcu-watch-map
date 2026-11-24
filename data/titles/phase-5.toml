@@ -1,0 +1,422 @@
+# Titles in Phase 5, in release order (the build checks the order).
+# Field guide and the spoiler rules every entry must follow: see CONTRIBUTING.md.
+#
+#   id           short unique id, used by links (never change an existing one)
+#   title        full title; series are one entry per season, e.g. "Loki (Season 1)"
+#   map_lines    the title split into 1 to 3 short lines for its box on the map
+#   type         film, show, special or shorts
+#   released     release date (first episode for a series)
+#   runtime      minutes (films and specials) / episodes: count (series and shorts)
+#   animated     true for animated titles (hidden unless "Animated" is ticked)
+#   row          franchise row, a name from rows.toml
+#   story_order  position in story order; only the order matters, so pick an
+#                unused number between the neighbours
+#   story_year   in-story year shown on the map (always visible, so no spoilers)
+#   synopsis     premise only: no twists, and nothing about how earlier titles end
+#   cast         { name, role, hero, twist }: name is the character's stable id across
+#                titles; role is Lead, Main, Supporting, Cameo or Post-credits; hero is the
+#                hero name in this title (leave it out if it would spoil anything);
+#                twist = true hides the appearance behind a second spoiler flap
+#   upcoming     true for announced titles that aren't out: only id, title, map_lines,
+#                type, released (with month_only = true if only the month is known),
+#                animated and row. No other details.
+
+[[title]]
+id = "qm"
+title = "Ant-Man and the Wasp: Quantumania"
+map_lines = ["Ant-Man:", "Quantumania"]
+type = "film"
+released = 2023-02-17
+runtime = 125
+row = "Ant-Man"
+story_order = 236
+story_year = "2025"
+synopsis = """
+Scott Lang, Hope van Dyne and their family are pulled into the Quantum Realm, where they \
+discover a hidden world and a powerful exile Janet never told them about."""
+cast = [
+  { name = "Scott Lang", role = "Lead", hero = "Ant-Man" },
+  { name = "Hope van Dyne", role = "Lead", hero = "Wasp" },
+  { name = "Janet van Dyne", role = "Main" },
+  { name = "Hank Pym", role = "Main" },
+  { name = "Cassie Lang", role = "Main" },
+  { name = "Kang the Conqueror", role = "Main" },
+  { name = "Jentorra", role = "Supporting" },
+  { name = "Krylar", role = "Supporting" },
+  { name = "Veb", role = "Supporting" },
+  { name = "Darren Cross", role = "Main", hero = "M.O.D.O.K.", twist = true },
+  { name = "Victor Timely", role = "Post-credits" },
+  { name = "Loki", role = "Post-credits", twist = true },
+  { name = "Mobius M. Mobius", role = "Post-credits", twist = true },
+]
+
+[[title]]
+id = "gotg3"
+title = "Guardians of the Galaxy Vol. 3"
+map_lines = ["Guardians of the", "Galaxy Vol. 3"]
+type = "film"
+released = 2023-05-05
+runtime = 150
+row = "Guardians"
+story_order = 238
+story_year = "2026"
+synopsis = """
+Peter Quill rallies the Guardians on a dangerous mission to protect one of their own, which \
+leads them deep into Rocket's mysterious past."""
+cast = [
+  { name = "Peter Quill", role = "Lead", hero = "Star-Lord" },
+  { name = "Rocket", role = "Lead" },
+  { name = "Gamora", role = "Main" },
+  { name = "Nebula", role = "Main" },
+  { name = "Drax", role = "Main" },
+  { name = "Mantis", role = "Main" },
+  { name = "Groot", role = "Main" },
+  { name = "High Evolutionary", role = "Main" },
+  { name = "Adam Warlock", role = "Main" },
+  { name = "Kraglin", role = "Supporting" },
+  { name = "Cosmo", role = "Supporting" },
+  { name = "Ayesha", role = "Supporting" },
+  { name = "Lylla", role = "Supporting" },
+  { name = "Stakar Ogord", role = "Cameo" },
+  { name = "Jason Quill", role = "Post-credits" },
+]
+
+[[title]]
+id = "si"
+title = "Secret Invasion"
+map_lines = ["Secret Invasion"]
+type = "show"
+released = 2023-06-21
+episodes = 6
+row = "Secret Invasion"
+story_order = 240
+story_year = "2026"
+synopsis = """
+Nick Fury races to stop a rebel faction of shape-shifting Skrulls who have been quietly \
+taking the places of people in power on Earth."""
+cast = [
+  { name = "Nick Fury", role = "Lead" },
+  { name = "Talos", role = "Main" },
+  { name = "Gravik", role = "Main" },
+  { name = "G'iah", role = "Main" },
+  { name = "Sonya Falsworth", role = "Main" },
+  { name = "Maria Hill", role = "Supporting" },
+  { name = "Everett Ross", role = "Supporting" },
+  { name = "James Rhodes", role = "Supporting" },
+  { name = "Priscilla Davis", role = "Supporting" },
+  { name = "Varra", role = "Supporting" },
+]
+
+[[title]]
+id = "iag2"
+title = "I Am Groot (Season 2)"
+map_lines = ["I Am Groot", "Season 2"]
+type = "shorts"
+released = 2023-09-06
+episodes = 5
+animated = true
+row = "Guardians"
+story_order = 103
+story_year = "2014"
+synopsis = "Five more animated shorts with Baby Groot, each a few minutes long."
+cast = [
+  { name = "Groot", role = "Lead" },
+]
+
+[[title]]
+id = "loki2"
+title = "Loki (Season 2)"
+map_lines = ["Loki", "Season 2"]
+type = "show"
+released = 2023-10-05
+episodes = 6
+row = "Loki"
+story_order = 203
+story_year = "Outside time"
+synopsis = """
+Loki finds himself slipping uncontrollably between past, present and future, and has to work \
+with Mobius and Sylvie to save the TVA and the timeline."""
+cast = [
+  { name = "Loki", role = "Lead" },
+  { name = "Mobius M. Mobius", role = "Main" },
+  { name = "Sylvie", role = "Main" },
+  { name = "Ouroboros", role = "Main" },
+  { name = "Victor Timely", role = "Main" },
+  { name = "Hunter B-15", role = "Supporting" },
+  { name = "Ravonna Renslayer", role = "Supporting" },
+  { name = "Miss Minutes", role = "Supporting" },
+  { name = "Casey", role = "Supporting" },
+  { name = "He Who Remains", role = "Supporting", twist = true },
+]
+
+[[title]]
+id = "marvels"
+title = "The Marvels"
+map_lines = ["The Marvels"]
+type = "film"
+released = 2023-11-10
+runtime = 105
+row = "Captain Marvel"
+story_order = 242
+story_year = "2026"
+synopsis = """
+Carol Danvers, Kamala Khan and Monica Rambeau find their powers tangled, so that they swap \
+places whenever they use them, and have to work together against a Kree revolutionary."""
+cast = [
+  { name = "Carol Danvers", role = "Lead", hero = "Captain Marvel" },
+  { name = "Kamala Khan", role = "Lead", hero = "Ms. Marvel" },
+  { name = "Monica Rambeau", role = "Lead" },
+  { name = "Dar-Benn", role = "Main" },
+  { name = "Nick Fury", role = "Supporting" },
+  { name = "Prince Yan", role = "Supporting" },
+  { name = "Muneeba Khan", role = "Supporting" },
+  { name = "Yusuf Khan", role = "Supporting" },
+  { name = "Aamir Khan", role = "Supporting" },
+  { name = "Goose", role = "Supporting" },
+  { name = "Kate Bishop", role = "Post-credits" },
+  { name = "Hank McCoy", role = "Post-credits", hero = "Beast", twist = true },
+  { name = "Maria Rambeau, another universe", role = "Post-credits", hero = "Binary", twist = true },
+]
+
+[[title]]
+id = "wi2"
+title = "What If...? (Season 2)"
+map_lines = ["What If...?", "Season 2"]
+type = "show"
+released = 2023-12-22
+episodes = 9
+animated = true
+row = "What If...?"
+story_order = 205
+story_year = "Multiverse"
+synopsis = """
+More animated stories from across the multiverse, each one asking what would happen if a \
+single moment had gone differently."""
+cast = [
+  { name = "The Watcher", role = "Lead" },
+  { name = "Kahhori, What If...?", role = "Main" },
+  { name = "Peggy Carter, What If...?", role = "Main", hero = "Captain Carter" },
+  { name = "Nebula, What If...?", role = "Supporting" },
+  { name = "Stephen Strange, What If...?", role = "Supporting" },
+]
+
+[[title]]
+id = "echo"
+title = "Echo"
+map_lines = ["Echo"]
+type = "show"
+released = 2024-01-09
+episodes = 5
+row = "Echo"
+story_order = 233
+story_year = "2025"
+synopsis = """
+Maya Lopez returns to her hometown in Oklahoma, where she has to face her family and her \
+heritage while a powerful enemy is on her trail."""
+cast = [
+  { name = "Maya Lopez", role = "Lead", hero = "Echo" },
+  { name = "Wilson Fisk", role = "Main", hero = "Kingpin" },
+  { name = "Chula", role = "Main" },
+  { name = "Henry Lopez", role = "Main" },
+  { name = "Bonnie", role = "Supporting" },
+  { name = "William Lopez", role = "Supporting" },
+  { name = "Skully", role = "Supporting" },
+  { name = "Matt Murdock", role = "Cameo", hero = "Daredevil" },
+]
+
+[[title]]
+id = "dw"
+title = "Deadpool & Wolverine"
+map_lines = ["Deadpool &", "Wolverine"]
+type = "film"
+released = 2024-07-26
+runtime = 128
+row = "Deadpool"
+story_order = 246
+story_year = "2024"
+synopsis = """
+A listless Deadpool is pulled into a mission by the Time Variance Authority, and has to team \
+up with a reluctant and very different Wolverine to save his world."""
+cast = [
+  { name = "Wade Wilson", role = "Lead", hero = "Deadpool" },
+  { name = "Logan", role = "Lead", hero = "Wolverine" },
+  { name = "Cassandra Nova", role = "Main" },
+  { name = "Mr. Paradox", role = "Main" },
+  { name = "Hunter B-15", role = "Supporting" },
+  { name = "Vanessa", role = "Supporting" },
+  { name = "Blind Al", role = "Supporting" },
+  { name = "Happy Hogan", role = "Cameo" },
+  { name = "Laura", role = "Cameo", hero = "X-23", twist = true },
+  { name = "Elektra Natchios", role = "Cameo", twist = true },
+  { name = "Eric Brooks", role = "Cameo", hero = "Blade", twist = true },
+  { name = "Remy LeBeau", role = "Cameo", hero = "Gambit", twist = true },
+  { name = "Johnny Storm, the Void", role = "Cameo", hero = "Human Torch", twist = true },
+]
+
+[[title]]
+id = "aaa"
+title = "Agatha All Along"
+map_lines = ["Agatha", "All Along"]
+type = "show"
+released = 2024-09-18
+episodes = 9
+row = "Agatha"
+story_order = 244
+story_year = "2026"
+synopsis = """
+Agatha Harkness gathers a coven of misfit witches to walk the legendary Witches' Road, a \
+series of deadly trials, with a mysterious teenager in tow."""
+cast = [
+  { name = "Agatha Harkness", role = "Lead" },
+  { name = "Billy Maximoff", role = "Main", twist = true },
+  { name = "Rio Vidal", role = "Main" },
+  { name = "Lilia Calderu", role = "Main" },
+  { name = "Jennifer Kale", role = "Main" },
+  { name = "Alice Wu-Gulliver", role = "Main" },
+  { name = "Ralph Bohner", role = "Supporting" },
+]
+
+[[title]]
+id = "wi3"
+title = "What If...? (Season 3)"
+map_lines = ["What If...?", "Season 3"]
+type = "show"
+released = 2024-12-22
+episodes = 8
+animated = true
+row = "What If...?"
+story_order = 207
+story_year = "Multiverse"
+synopsis = """
+The final season of the animated anthology, with more alternate takes on familiar heroes."""
+cast = [
+  { name = "The Watcher", role = "Lead" },
+  { name = "Peggy Carter, What If...?", role = "Main", hero = "Captain Carter" },
+  { name = "Kahhori, What If...?", role = "Main" },
+  { name = "Stephen Strange, What If...?", role = "Supporting" },
+]
+
+[[title]]
+id = "yfnsm"
+title = "Your Friendly Neighborhood Spider-Man (Season 1)"
+map_lines = ["Your Friendly", "Neighborhood", "Spider-Man S1"]
+type = "show"
+released = 2025-01-29
+episodes = 10
+animated = true
+row = "Spider-Man"
+story_order = 256
+story_year = "Another universe"
+synopsis = """
+An animated story set in another universe: Peter Parker's first year as Spider-Man, with \
+Norman Osborn as his mentor."""
+cast = [
+  { name = "Peter Parker, Friendly Neighborhood", role = "Lead", hero = "Spider-Man" },
+  { name = "Norman Osborn, Friendly Neighborhood", role = "Main" },
+  { name = "Harry Osborn", role = "Main" },
+  { name = "Nico Minoru", role = "Main" },
+  { name = "Lonnie Lincoln", role = "Main" },
+  { name = "Pearl Pangan", role = "Supporting" },
+  { name = "May Parker, Friendly Neighborhood", role = "Supporting" },
+  { name = "Otto Octavius, Friendly Neighborhood", role = "Supporting" },
+]
+
+[[title]]
+id = "bnw"
+title = "Captain America: Brave New World"
+map_lines = ["Captain America:", "Brave New World"]
+type = "film"
+released = 2025-02-14
+runtime = 118
+row = "Captain America"
+story_order = 250
+story_year = "2027"
+synopsis = """
+Sam Wilson is caught up in an international incident after meeting the newly elected US \
+President, Thaddeus Ross, and has to uncover the plot behind it."""
+cast = [
+  { name = "Sam Wilson", role = "Lead", hero = "Captain America" },
+  { name = "Thaddeus Ross", role = "Main", hero = "Red Hulk" },
+  { name = "Joaquin Torres", role = "Main", hero = "Falcon" },
+  { name = "Isaiah Bradley", role = "Main" },
+  { name = "Samuel Sterns", role = "Main", hero = "The Leader" },
+  { name = "Ruth Bat-Seraph", role = "Main" },
+  { name = "Betty Ross", role = "Supporting" },
+  { name = "Seth Voelker", role = "Supporting", hero = "Sidewinder" },
+]
+
+[[title]]
+id = "dd1"
+title = "Daredevil: Born Again (Season 1)"
+map_lines = ["Daredevil:", "Born Again", "Season 1"]
+type = "show"
+released = 2025-03-04
+episodes = 9
+row = "Daredevil"
+story_order = 248
+story_year = "2026"
+synopsis = """
+Matt Murdock, a blind lawyer who fights crime as Daredevil, crosses paths again with Wilson \
+Fisk, who is running to become mayor of New York."""
+cast = [
+  { name = "Matt Murdock", role = "Lead", hero = "Daredevil" },
+  { name = "Wilson Fisk", role = "Lead", hero = "Kingpin" },
+  { name = "Vanessa Fisk", role = "Main" },
+  { name = "Heather Glenn", role = "Main" },
+  { name = "Karen Page", role = "Supporting" },
+  { name = "Foggy Nelson", role = "Supporting" },
+  { name = "Frank Castle", role = "Supporting", hero = "Punisher" },
+  { name = "Benjamin Poindexter", role = "Supporting", hero = "Bullseye" },
+  { name = "Hector Ayala", role = "Supporting", hero = "White Tiger" },
+  { name = "Muse", role = "Supporting" },
+  { name = "Daniel Blake", role = "Supporting" },
+]
+
+[[title]]
+id = "tb"
+title = "Thunderbolts*"
+map_lines = ["Thunderbolts*"]
+type = "film"
+released = 2025-05-02
+runtime = 127
+row = "Thunderbolts*"
+story_order = 252
+story_year = "2027"
+synopsis = """
+Yelena Belova and a group of disillusioned antiheroes are caught in a deadly trap set by \
+Valentina Allegra de Fontaine, and are forced to work together to get out of it."""
+cast = [
+  { name = "Yelena Belova", role = "Lead" },
+  { name = "Bucky Barnes", role = "Main" },
+  { name = "Alexei Shostakov", role = "Main", hero = "Red Guardian" },
+  { name = "John Walker", role = "Main" },
+  { name = "Ava Starr", role = "Main", hero = "Ghost" },
+  { name = "Bob Reynolds", role = "Main", hero = "Sentry" },
+  { name = "Valentina Allegra de Fontaine", role = "Main" },
+  { name = "Antonia Dreykov", role = "Supporting" },
+  { name = "Melina Vostokoff", role = "Supporting" },
+  { name = "Mel", role = "Supporting" },
+]
+
+[[title]]
+id = "ih"
+title = "Ironheart"
+map_lines = ["Ironheart"]
+type = "show"
+released = 2025-06-24
+episodes = 6
+row = "Ironheart"
+story_order = 249
+story_year = "2026"
+synopsis = """
+Young genius inventor Riri Williams returns home to Chicago with her own suit of armour, and \
+gets mixed up with a mysterious criminal known as the Hood."""
+cast = [
+  { name = "Riri Williams", role = "Lead", hero = "Ironheart" },
+  { name = "Parker Robbins", role = "Main", hero = "The Hood" },
+  { name = "Natalie Washington", role = "Main" },
+  { name = "Xavier", role = "Supporting" },
+  { name = "Joe McGillicuddy", role = "Supporting" },
+  { name = "Zelma Stanton", role = "Supporting" },
+  { name = "Mephisto", role = "Supporting", twist = true },
+]

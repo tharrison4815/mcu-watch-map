@@ -1,0 +1,417 @@
+# Titles in Phase 3, in release order (the build checks the order).
+# Field guide and the spoiler rules every entry must follow: see CONTRIBUTING.md.
+#
+#   id           short unique id, used by links (never change an existing one)
+#   title        full title; series are one entry per season, e.g. "Loki (Season 1)"
+#   map_lines    the title split into 1 to 3 short lines for its box on the map
+#   type         film, show, special or shorts
+#   released     release date (first episode for a series)
+#   runtime      minutes (films and specials) / episodes: count (series and shorts)
+#   animated     true for animated titles (hidden unless "Animated" is ticked)
+#   row          franchise row, a name from rows.toml
+#   story_order  position in story order; only the order matters, so pick an
+#                unused number between the neighbours
+#   story_year   in-story year shown on the map (always visible, so no spoilers)
+#   synopsis     premise only: no twists, and nothing about how earlier titles end
+#   cast         { name, role, hero, twist }: name is the character's stable id across
+#                titles; role is Lead, Main, Supporting, Cameo or Post-credits; hero is the
+#                hero name in this title (leave it out if it would spoil anything);
+#                twist = true hides the appearance behind a second spoiler flap
+#   upcoming     true for announced titles that aren't out: only id, title, map_lines,
+#                type, released (with month_only = true if only the month is known),
+#                animated and row. No other details.
+
+[[title]]
+id = "cw"
+title = "Captain America: Civil War"
+map_lines = ["Captain America:", "Civil War"]
+type = "film"
+released = 2016-05-06
+runtime = 147
+row = "Captain America"
+story_order = 130
+story_year = "2016"
+synopsis = """
+After a mission ends in civilian deaths, the world's governments demand that the Avengers \
+answer to official oversight. Tony Stark backs the plan, Steve Rogers refuses, and a bombing \
+in Vienna turns their disagreement into an open fight between the team."""
+cast = [
+  { name = "Steve Rogers", role = "Lead", hero = "Captain America" },
+  { name = "Tony Stark", role = "Lead", hero = "Iron Man" },
+  { name = "Natasha Romanoff", role = "Main", hero = "Black Widow" },
+  { name = "Bucky Barnes", role = "Main" },
+  { name = "Sam Wilson", role = "Main", hero = "Falcon" },
+  { name = "James Rhodes", role = "Main", hero = "War Machine" },
+  { name = "Wanda Maximoff", role = "Main" },
+  { name = "Vision", role = "Main" },
+  { name = "T'Challa", role = "Main", hero = "Black Panther" },
+  { name = "Helmut Zemo", role = "Main" },
+  { name = "Clint Barton", role = "Supporting", hero = "Hawkeye" },
+  { name = "Scott Lang", role = "Supporting", hero = "Ant-Man" },
+  { name = "Peter Parker", role = "Supporting", hero = "Spider-Man" },
+  { name = "Sharon Carter", role = "Supporting", hero = "Agent 13" },
+  { name = "Thaddeus Ross", role = "Supporting" },
+  { name = "Everett Ross", role = "Supporting" },
+  { name = "T'Chaka", role = "Supporting" },
+  { name = "Brock Rumlow", role = "Supporting", hero = "Crossbones" },
+  { name = "May Parker", role = "Supporting" },
+  { name = "Howard Stark", role = "Supporting" },
+  { name = "Maria Stark", role = "Supporting" },
+]
+
+[[title]]
+id = "ds"
+title = "Doctor Strange"
+map_lines = ["Doctor Strange"]
+type = "film"
+released = 2016-11-04
+runtime = 115
+row = "Doctor Strange"
+story_order = 160
+story_year = "2016"
+synopsis = """
+After a car crash wrecks his hands, brilliant and arrogant surgeon Stephen Strange travels \
+to Nepal in search of a cure, and finds a hidden order of sorcerers led by the Ancient One."""
+cast = [
+  { name = "Stephen Strange", role = "Lead", hero = "Doctor Strange" },
+  { name = "Christine Palmer", role = "Main" },
+  { name = "Karl Mordo", role = "Main" },
+  { name = "The Ancient One", role = "Main" },
+  { name = "Kaecilius", role = "Main" },
+  { name = "Wong", role = "Supporting" },
+  { name = "Dormammu", role = "Supporting" },
+  { name = "Thor", role = "Post-credits" },
+]
+
+[[title]]
+id = "gotg2"
+title = "Guardians of the Galaxy Vol. 2"
+map_lines = ["Guardians of the", "Galaxy Vol. 2"]
+type = "film"
+released = 2017-05-05
+runtime = 136
+row = "Guardians"
+story_order = 105
+story_year = "2014"
+synopsis = """
+Now famous across the galaxy, the Guardians are on the run after Rocket offends a powerful \
+people, and Peter Quill finally meets a man who says he is his long-lost father."""
+cast = [
+  { name = "Peter Quill", role = "Lead", hero = "Star-Lord" },
+  { name = "Gamora", role = "Main" },
+  { name = "Drax", role = "Main" },
+  { name = "Rocket", role = "Main" },
+  { name = "Groot", role = "Main" },
+  { name = "Yondu Udonta", role = "Main" },
+  { name = "Nebula", role = "Main" },
+  { name = "Ego", role = "Main" },
+  { name = "Mantis", role = "Main" },
+  { name = "Ayesha", role = "Supporting" },
+  { name = "Kraglin", role = "Supporting" },
+  { name = "Stakar Ogord", role = "Supporting" },
+  { name = "Taserface", role = "Supporting" },
+  { name = "Meredith Quill", role = "Supporting" },
+  { name = "Howard the Duck", role = "Cameo" },
+]
+
+[[title]]
+id = "hc"
+title = "Spider-Man: Homecoming"
+map_lines = ["Spider-Man:", "Homecoming"]
+type = "film"
+released = 2017-07-07
+runtime = 133
+row = "Spider-Man"
+story_order = 150
+story_year = "2016"
+synopsis = """
+Fifteen-year-old Peter Parker is back at school in Queens, waiting for Tony Stark to call \
+with his next mission, and tries to prove himself by taking on a gang selling weapons built \
+from alien technology."""
+cast = [
+  { name = "Peter Parker", role = "Lead", hero = "Spider-Man" },
+  { name = "Tony Stark", role = "Main", hero = "Iron Man" },
+  { name = "Adrian Toomes", role = "Main", hero = "Vulture" },
+  { name = "Happy Hogan", role = "Main" },
+  { name = "Ned Leeds", role = "Main" },
+  { name = "May Parker", role = "Supporting" },
+  { name = "Michelle Jones", role = "Supporting" },
+  { name = "Liz Allan", role = "Supporting" },
+  { name = "Flash Thompson", role = "Supporting" },
+  { name = "Herman Schultz", role = "Supporting", hero = "Shocker" },
+  { name = "Phineas Mason", role = "Supporting" },
+  { name = "Aaron Davis", role = "Supporting" },
+  { name = "Pepper Potts", role = "Cameo" },
+  { name = "Steve Rogers", role = "Cameo", hero = "Captain America" },
+  { name = "Mac Gargan", role = "Post-credits" },
+]
+
+[[title]]
+id = "tr"
+title = "Thor: Ragnarok"
+map_lines = ["Thor:", "Ragnarok"]
+type = "film"
+released = 2017-11-03
+runtime = 130
+row = "Thor"
+story_order = 170
+story_year = "2017"
+synopsis = """
+Stranded on a junk planet on the far side of the universe without his hammer, Thor is forced \
+to fight as a gladiator, and has to escape and get home before Hela, the goddess of death, \
+destroys Asgard."""
+cast = [
+  { name = "Thor", role = "Lead" },
+  { name = "Loki", role = "Main" },
+  { name = "Bruce Banner", role = "Main", hero = "Hulk" },
+  { name = "Hela", role = "Main" },
+  { name = "Valkyrie", role = "Main" },
+  { name = "Grandmaster", role = "Main" },
+  { name = "Heimdall", role = "Supporting" },
+  { name = "Skurge", role = "Supporting" },
+  { name = "Korg", role = "Supporting" },
+  { name = "Miek", role = "Supporting" },
+  { name = "Odin", role = "Supporting" },
+  { name = "Stephen Strange", role = "Cameo", hero = "Doctor Strange" },
+]
+
+[[title]]
+id = "bp"
+title = "Black Panther"
+map_lines = ["Black Panther"]
+type = "film"
+released = 2018-02-16
+runtime = 134
+row = "Black Panther"
+story_order = 140
+story_year = "2016"
+synopsis = """
+T'Challa returns home to Wakanda, a hidden and technologically advanced African nation, to \
+be crowned king, but a challenger with a claim of his own puts the throne and the country at \
+risk."""
+cast = [
+  { name = "T'Challa", role = "Lead", hero = "Black Panther" },
+  { name = "Erik Stevens", role = "Main", hero = "Killmonger" },
+  { name = "Nakia", role = "Main" },
+  { name = "Okoye", role = "Main" },
+  { name = "Shuri", role = "Main" },
+  { name = "Ramonda", role = "Supporting" },
+  { name = "M'Baku", role = "Supporting" },
+  { name = "W'Kabi", role = "Supporting" },
+  { name = "Zuri", role = "Supporting" },
+  { name = "Everett Ross", role = "Supporting" },
+  { name = "Ulysses Klaue", role = "Supporting" },
+  { name = "T'Chaka", role = "Supporting" },
+  { name = "N'Jobu", role = "Supporting" },
+  { name = "Bucky Barnes", role = "Post-credits", hero = "White Wolf" },
+]
+
+[[title]]
+id = "iw"
+title = "Avengers: Infinity War"
+map_lines = ["Avengers:", "Infinity War"]
+type = "film"
+released = 2018-04-27
+runtime = 149
+row = "Avengers"
+story_order = 190
+story_year = "2018"
+synopsis = """
+Thanos sets out to collect all six Infinity Stones, and heroes scattered across Earth and \
+space try to stop him before he can use them."""
+cast = [
+  { name = "Thanos", role = "Lead" },
+  { name = "Tony Stark", role = "Lead", hero = "Iron Man" },
+  { name = "Thor", role = "Main" },
+  { name = "Steve Rogers", role = "Main", hero = "Captain America" },
+  { name = "Bruce Banner", role = "Main", hero = "Hulk" },
+  { name = "Natasha Romanoff", role = "Main", hero = "Black Widow" },
+  { name = "Stephen Strange", role = "Main", hero = "Doctor Strange" },
+  { name = "Peter Parker", role = "Main", hero = "Spider-Man" },
+  { name = "Peter Quill", role = "Main", hero = "Star-Lord" },
+  { name = "Gamora", role = "Main" },
+  { name = "Wanda Maximoff", role = "Main" },
+  { name = "Vision", role = "Main" },
+  { name = "T'Challa", role = "Main", hero = "Black Panther" },
+  { name = "Drax", role = "Supporting" },
+  { name = "Rocket", role = "Supporting" },
+  { name = "Groot", role = "Supporting" },
+  { name = "Mantis", role = "Supporting" },
+  { name = "Nebula", role = "Supporting" },
+  { name = "Bucky Barnes", role = "Supporting" },
+  { name = "Sam Wilson", role = "Supporting", hero = "Falcon" },
+  { name = "James Rhodes", role = "Supporting", hero = "War Machine" },
+  { name = "Okoye", role = "Supporting" },
+  { name = "Shuri", role = "Supporting" },
+  { name = "M'Baku", role = "Supporting" },
+  { name = "Wong", role = "Supporting" },
+  { name = "Loki", role = "Supporting" },
+  { name = "Heimdall", role = "Supporting" },
+  { name = "Pepper Potts", role = "Supporting" },
+  { name = "Eitri", role = "Supporting" },
+  { name = "Ebony Maw", role = "Supporting" },
+  { name = "Proxima Midnight", role = "Supporting" },
+  { name = "Corvus Glaive", role = "Supporting" },
+  { name = "Cull Obsidian", role = "Supporting" },
+  { name = "Thaddeus Ross", role = "Supporting" },
+  { name = "Johann Schmidt", role = "Supporting", hero = "Red Skull", twist = true },
+  { name = "Ned Leeds", role = "Cameo" },
+  { name = "Taneleer Tivan", role = "Cameo", hero = "The Collector" },
+  { name = "Nick Fury", role = "Post-credits" },
+  { name = "Maria Hill", role = "Post-credits" },
+]
+
+[[title]]
+id = "amw"
+title = "Ant-Man and the Wasp"
+map_lines = ["Ant-Man and", "the Wasp"]
+type = "film"
+released = 2018-07-06
+runtime = 118
+row = "Ant-Man"
+story_order = 180
+story_year = "2018"
+synopsis = """
+Scott Lang is trying to keep a low profile when Hope van Dyne and Hank Pym pull him into a \
+risky rescue mission, while a mysterious thief called Ghost hunts for their technology."""
+cast = [
+  { name = "Scott Lang", role = "Lead", hero = "Ant-Man" },
+  { name = "Hope van Dyne", role = "Lead", hero = "Wasp" },
+  { name = "Hank Pym", role = "Main" },
+  { name = "Janet van Dyne", role = "Main" },
+  { name = "Ava Starr", role = "Main", hero = "Ghost" },
+  { name = "Bill Foster", role = "Supporting" },
+  { name = "Sonny Burch", role = "Supporting" },
+  { name = "Luis", role = "Supporting" },
+  { name = "Jimmy Woo", role = "Supporting" },
+  { name = "Cassie Lang", role = "Supporting" },
+  { name = "Maggie Lang", role = "Supporting" },
+  { name = "Jim Paxton", role = "Supporting" },
+]
+
+[[title]]
+id = "cm"
+title = "Captain Marvel"
+map_lines = ["Captain Marvel"]
+type = "film"
+released = 2019-03-08
+runtime = 123
+row = "Captain Marvel"
+story_order = 15
+story_year = "1995"
+synopsis = """
+In 1995 Carol Danvers, a Kree warrior with no memory of her past, crash-lands on Earth in \
+the middle of a war between the Kree and the shape-shifting Skrulls, and teams up with a \
+young S.H.I.E.L.D. agent named Nick Fury to find out who she was."""
+cast = [
+  { name = "Carol Danvers", role = "Lead", hero = "Captain Marvel" },
+  { name = "Nick Fury", role = "Main" },
+  { name = "Talos", role = "Main" },
+  { name = "Yon-Rogg", role = "Main" },
+  { name = "Maria Rambeau", role = "Main" },
+  { name = "Wendy Lawson", role = "Main", hero = "Mar-Vell", twist = true },
+  { name = "Monica Rambeau", role = "Supporting" },
+  { name = "Phil Coulson", role = "Supporting" },
+  { name = "Ronan", role = "Supporting" },
+  { name = "Korath", role = "Supporting" },
+  { name = "Goose", role = "Supporting" },
+  { name = "Steve Rogers", role = "Post-credits" },
+  { name = "Natasha Romanoff", role = "Post-credits" },
+  { name = "Bruce Banner", role = "Post-credits" },
+  { name = "James Rhodes", role = "Post-credits" },
+]
+
+[[title]]
+id = "eg"
+title = "Avengers: Endgame"
+map_lines = ["Avengers:", "Endgame"]
+type = "film"
+released = 2019-04-26
+runtime = 181
+row = "Avengers"
+story_order = 200
+story_year = "2018"
+synopsis = """
+The direct continuation of Avengers: Infinity War, in which the Avengers and their allies \
+face Thanos again in the final chapter of the Infinity Saga."""
+cast = [
+  { name = "Tony Stark", role = "Lead", hero = "Iron Man" },
+  { name = "Steve Rogers", role = "Lead", hero = "Captain America" },
+  { name = "Thor", role = "Lead" },
+  { name = "Natasha Romanoff", role = "Lead", hero = "Black Widow" },
+  { name = "Bruce Banner", role = "Lead", hero = "Hulk" },
+  { name = "Clint Barton", role = "Lead", hero = "Hawkeye" },
+  { name = "Scott Lang", role = "Main", hero = "Ant-Man" },
+  { name = "Rocket", role = "Main" },
+  { name = "Nebula", role = "Main" },
+  { name = "James Rhodes", role = "Main", hero = "War Machine" },
+  { name = "Thanos", role = "Main" },
+  { name = "Carol Danvers", role = "Main", hero = "Captain Marvel" },
+  { name = "Pepper Potts", role = "Supporting" },
+  { name = "Okoye", role = "Supporting" },
+  { name = "Happy Hogan", role = "Supporting" },
+  { name = "Laura Barton", role = "Supporting" },
+  { name = "Valkyrie", role = "Supporting" },
+  { name = "Korg", role = "Supporting" },
+  { name = "Wong", role = "Supporting" },
+  { name = "Morgan Stark", role = "Supporting", twist = true },
+  { name = "Peter Parker", role = "Supporting", hero = "Spider-Man", twist = true },
+  { name = "T'Challa", role = "Supporting", hero = "Black Panther", twist = true },
+  { name = "Stephen Strange", role = "Supporting", hero = "Doctor Strange", twist = true },
+  { name = "Wanda Maximoff", role = "Supporting", twist = true },
+  { name = "Sam Wilson", role = "Supporting", hero = "Falcon", twist = true },
+  { name = "Bucky Barnes", role = "Supporting", twist = true },
+  { name = "Peter Quill", role = "Supporting", hero = "Star-Lord", twist = true },
+  { name = "Drax", role = "Supporting", twist = true },
+  { name = "Mantis", role = "Supporting", twist = true },
+  { name = "Groot", role = "Supporting", twist = true },
+  { name = "Shuri", role = "Supporting", twist = true },
+  { name = "Hope van Dyne", role = "Supporting", hero = "Wasp", twist = true },
+  { name = "Gamora", role = "Supporting", twist = true },
+  { name = "Loki", role = "Supporting", twist = true },
+  { name = "The Ancient One", role = "Supporting", twist = true },
+  { name = "Frigga", role = "Supporting", twist = true },
+  { name = "Howard Stark", role = "Supporting", twist = true },
+  { name = "Johann Schmidt", role = "Supporting", hero = "Red Skull", twist = true },
+  { name = "Peggy Carter", role = "Cameo", twist = true },
+  { name = "Edwin Jarvis", role = "Cameo", twist = true },
+  { name = "Jasper Sitwell", role = "Cameo", twist = true },
+  { name = "Brock Rumlow", role = "Cameo", twist = true },
+  { name = "Alexander Pierce", role = "Cameo", twist = true },
+  { name = "Nick Fury", role = "Cameo", twist = true },
+  { name = "Maria Hill", role = "Cameo", twist = true },
+  { name = "Thaddeus Ross", role = "Cameo", twist = true },
+  { name = "Harley Keener", role = "Cameo", twist = true },
+]
+
+[[title]]
+id = "ffh"
+title = "Spider-Man: Far From Home"
+map_lines = ["Spider-Man:", "Far From Home"]
+type = "film"
+released = 2019-07-02
+runtime = 129
+row = "Spider-Man"
+story_order = 210
+story_year = "2024"
+synopsis = """
+Peter Parker hopes a school trip to Europe will be a break from being Spider-Man, but Nick \
+Fury tracks him down and pairs him with a new hero, Mysterio, to fight giant elemental \
+creatures."""
+cast = [
+  { name = "Peter Parker", role = "Lead", hero = "Spider-Man" },
+  { name = "Quentin Beck", role = "Main", hero = "Mysterio" },
+  { name = "Nick Fury", role = "Main" },
+  { name = "Happy Hogan", role = "Main" },
+  { name = "Michelle Jones", role = "Main" },
+  { name = "Ned Leeds", role = "Main" },
+  { name = "May Parker", role = "Supporting" },
+  { name = "Maria Hill", role = "Supporting" },
+  { name = "Betty Brant", role = "Supporting" },
+  { name = "Flash Thompson", role = "Supporting" },
+  { name = "Brad Davis", role = "Supporting" },
+  { name = "William Riva", role = "Supporting" },
+  { name = "J. Jonah Jameson", role = "Post-credits", twist = true },
+  { name = "Talos", role = "Post-credits", twist = true },
+  { name = "Soren", role = "Post-credits", twist = true },
+]
