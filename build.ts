@@ -265,6 +265,8 @@ writeFileSync('dist/index.html', html);
 cpSync('src/fonts', 'dist/fonts', { recursive: true });
 cpSync('src/_headers', 'dist/_headers');
 cpSync('src/og.png', 'dist/og.png');
+// Search-engine ownership files (Google Search Console's googleXXXX.html, Bing's BingSiteAuth.xml).
+for (const f of readdirSync('src')) if (/^google[0-9a-f]+\.html$|^BingSiteAuth\.xml$/.test(f)) cpSync(`src/${f}`, `dist/${f}`);
 writeFileSync('dist/robots.txt', `User-agent: *\nAllow: /\n\nSitemap: ${SITE}sitemap.xml\n`);
 const today = new Date().toISOString().slice(0, 10);
 writeFileSync('dist/sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url><loc>${SITE}</loc><lastmod>${today}</lastmod></url>\n</urlset>\n`);
