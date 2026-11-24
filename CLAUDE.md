@@ -29,6 +29,10 @@ Status (24 Nov 2026): Phases 1 to 4 done: 30 films, the 8 Phase 4 Disney+ series
 - `LANES` franchise rows `[name, colour]`. Rows are based on titles, so they never spoil.
 - `L` links: `f` to `t`, `s` strength (3 essential, 2 helpful, 1 minor), optional
   `k: 'pc' | 'cameo'` when the link exists only because of a post-credits scene or cameo, and `n` (note).
+- A character id means one instance of that character. Alternate-universe versions get their own
+  id, "Name, <where they're from>" (e.g. "Peggy Carter, What If...?", "Karl Mordo, Earth-838"), so
+  the tracer never joins them to the main one. Time travel to an earlier point in the same person's
+  life keeps the same id (Endgame's 2012 Loki and 2014 Gamora, and Loki in Loki season 1).
 - `C[id]` cast rows: `[name, role, heroName?, majorTwist?]`. Roles: Lead, Main, Supporting, Cameo,
   Post-credits. `name` is the character's stable id across films (real name, e.g. "Johann Schmidt"
   with hero name "Red Skull"). The hero name belongs to that appearance only.
@@ -63,7 +67,7 @@ Status (24 Nov 2026): Phases 1 to 4 done: 30 films, the 8 Phase 4 Disney+ series
 - More hero names left off to avoid cross-title leaks: Bucky in The Falcon and the Winter Soldier,
   John Walker ("Captain America" would give away Endgame), Xu Wenwu ("The Mandarin" touches the
   Iron Man 3 twist), Shuri in Wakanda Forever, Layla in Moon Knight. What If...? casts are
-  alternate versions of known characters, and only uncontroversial hero names are given.
+  alternate versions with their own ids (see Data), and only uncontroversial hero names are given.
 - No Black Widow to Hawkeye link, for the same reason as the one below (Yelena in Hawkeye is a
   twist).
 - No Captain Marvel to Far From Home link: any note on it would hint at Far From Home's
