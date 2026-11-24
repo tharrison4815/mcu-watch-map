@@ -8,7 +8,7 @@ Currently covers Phases 1 to 6 up to VisionQuest (autumn 2026): 38 films, 22 Dis
 entry per season), 3 specials and the I Am Groot shorts. Announced titles that aren't out yet are
 shown as greyed-out "Coming" boxes with no details. Animated titles
 are hidden unless you tick Animated in the header. The Phase buttons in the header choose which phases the map shows, and the Rows dialog
-chooses which franchises get their own row. It is a single static page: open `index.html` in a
+chooses which franchises get their own row. It is a single static page: open `site/index.html` in a
 browser. Progress is stored in the browser's localStorage.
 
 ## How spoilers are handled
@@ -26,7 +26,7 @@ browser. Progress is stored in the browser's localStorage.
 
 ## Data
 
-All data lives in arrays near the top of the script in `index.html`:
+All data lives in arrays near the top of the script in `site/index.html`:
 
 - `E`: films, series and specials (id, type, title, release date, phase, story order, franchise row, synopsis)
 - `L`: links between films (strength 1 to 3, optional `k: 'pc' | 'cameo'`, note)

@@ -1,6 +1,6 @@
 # MCU Watch Map: notes for Claude
 
-An unofficial, spoiler-safe map of the MCU. The whole app is `index.html`: a single static page
+An unofficial, spoiler-safe map of the MCU. The whole app is `site/index.html`: a single static page
 with inline CSS and JS and no build step. It is published as a private claude.ai artifact, and
 progress is saved in the browser's localStorage under the key `mcu-watch-map-v1`. The README
 covers user-facing behaviour; this file records the rules and decisions behind it.
@@ -14,10 +14,20 @@ article; Eyes of Wakanda and Marvel Zombies are not in it.
 
 ## Workflow
 
-- Edit `index.html` in this repo, then republish it to the existing artifact with publish_files
-  (the slug is in local memory) and commit. Push only when the user asks.
+- Everything served lives in `site/` (index.html, fonts/, _headers); notes like this file stay
+  outside it so the host doesn't publish them. Edit `site/index.html`, then republish to the existing
+  artifact with publish_files (the slug is in local memory): `as: index.html` from
+  `site/index.html`, plus `fonts/*.woff2` only if the fonts change (never `_headers` or the OFL
+  files). Then commit. Push only when the user asks.
 - Artifact page limits: no remote images or fetches (CSP), and no `alert` or `confirm`, so
-  confirmations are built into the page (see Reset and "Mark all as seen"). Fonts come from Google Fonts.
+  confirmations are built into the page (see Reset and "Mark all as seen").
+- Fonts are self-hosted (no Google requests, for privacy), declared in an inline @font-face block:
+  Anton 400, Barlow 400/600, Barlow Condensed 500/600/700. They are subset with fonttools'
+  pyftsubset to ASCII plus a few characters (U+00A0, é, ’, –, —, …) to halve their size. If page
+  text gains other non-ASCII characters, re-subset from the full fonts (or those characters fall
+  back to a system font). OFL licences sit beside them in site/fonts/.
+- `site/_headers` (Cloudflare Pages / Netlify format) sets a CSP, security headers and a long cache
+  for fonts. The CSP allows only 'self' plus inline script/style and data: images.
 - There is no JS runtime in the sandbox, so the page can't be tested here. Read changes carefully
   and tell the user it is untested.
 
