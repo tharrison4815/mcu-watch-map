@@ -124,6 +124,11 @@ article; Eyes of Wakanda and Marvel Zombies are not in it.
   is seen, in the map's order. First one is tagged "Next"; it shows 6 until "Show all" (`S.rx`), and
   each has a "Seen it" button. Phase filter is ignored (tag "Hidden on map"). Known, accepted leak:
   a title missing from the list tells you some link into it comes from a title you haven't seen.
+- Watch-status filter in Titles shown: "Seen", "Safe to watch", "Not safe yet" (`S.st` holds the
+  hidden ones, keys s / r / n; at least one stays ticked). Each title is in exactly one group
+  (`stOf`); upcoming titles count as "Not safe yet". "Not seen" was avoided as a label because safe
+  titles are unseen too. `RD` (the safe set) is computed once per render. The selected title always
+  stays on the map.
 - Header controls are grouped: "Titles shown" (phases, Animated) decides which titles are on the
   map; "Paths shown" (Helpful, Minor, Post-credits, Cameos) decides which lines are drawn. Keep new
   controls in the right group.

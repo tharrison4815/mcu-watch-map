@@ -95,6 +95,7 @@ h3{font:700 20px/1.2 "Barlow Condensed",sans-serif;margin:0 0 8px}
 aside{background:var(--band);border:2px solid var(--ink);border-radius:10px;padding:18px}
 aside .muted,.muted{color:var(--mute);font-size:15px}
 .tog{display:inline-flex;align-items:center;gap:8px;min-height:44px;font:600 16px "Barlow Condensed",sans-serif;cursor:pointer}
+.stg{display:inline-flex;flex-wrap:wrap;gap:0 14px;padding:0 10px;border-left:1.5px solid var(--line);border-right:1.5px solid var(--line)}
 .tog input{width:20px;height:20px;margin:0;accent-color:var(--ink);cursor:pointer}
 .btn.solid{background:var(--ink);color:var(--bg)}
 .btn.solid:hover{background:color-mix(in srgb,var(--ink) 85%,var(--bg))}
@@ -143,6 +144,9 @@ footer{font-size:14px;color:var(--mute);border-top:1px solid var(--line)}
       <button data-ph="6">Phase 6</button>
       </div>
       <label class="tog"><input type="checkbox" id="tAn"> Animated</label>
+      <span class="stg" role="group" aria-label="Watch status"><label class="tog"><input type="checkbox" id="tSn"> Seen</label>
+      <label class="tog"><input type="checkbox" id="tRd"> Safe to watch</label>
+      <label class="tog" title="Not seen, and something in its watch-first chain isn't seen either. Upcoming titles count here too"><input type="checkbox" id="tNs"> Not safe yet</label></span>
       <label class="tog" title="Show only the selected title and the titles joined to it by a line"><input type="checkbox" id="tRel"> Linked to selected only</label>
     </div>
     <div class="grp" role="group" aria-labelledby="gPaths">
@@ -496,7 +500,9 @@ const inS=e=>!!S.anim||!e.an;
 const real=e=>!e.up&&inS(e);
 const ordS=()=>order().filter(real);
 const relSet=()=>{if(!S.rel||!byId[S.sel])return null;const r=new Set([S.sel]);for(const l of L)if(linkVis(l)){if(l.f===S.sel)r.add(l.t);if(l.t===S.sel)r.add(l.f)}return r};
-const shownE=()=>{const r=relSet();return order().filter(e=>inS(e)&&(r?r.has(e.id):!S.hp[e.p]))};
+let RD=new Set();
+const stOf=e=>e.up?'n':S.seen[e.id]?'s':RD.has(e.id)?'r':'n';
+const shownE=()=>{const r=relSet(),st=S.st||{};return order().filter(e=>inS(e)&&(e.id===S.sel||!st[stOf(e)])&&(r?r.has(e.id):!S.hp[e.p]))};
 const TODAY=new Date().toISOString().slice(0,10);
 const outNow=e=>e.dm?TODAY.slice(0,7)>e.d.slice(0,7):TODAY>=e.d;
 const whenUp=e=>outNow(e)?'Out now, not added yet':'Coming '+new Date(e.d+'T12:00').toLocaleDateString('en-GB',e.dm?{month:'long',year:'numeric'}:{day:'numeric',month:'long',year:'numeric'});
@@ -683,7 +689,7 @@ function seenList(){
 }
 
 function ready(){
-  const el=document.getElementById('rdBody'),ord=ordS(),rd=ord.filter(e=>!S.seen[e.id]&&anc(e.id).every(x=>S.seen[x.id])),sh=new Set(shownE().map(e=>e.id)),max=S.rx?rd.length:6;
+  const el=document.getElementById('rdBody'),rd=ordS().filter(e=>RD.has(e.id)),sh=new Set(shownE().map(e=>e.id)),max=S.rx?rd.length:6;
   let h=`<p class="muted" style="margin:0">Titles you haven't seen whose whole "watch first" chain is on your seen list, in ${S.order==='story'?'story':'release'} order. It follows the Paths shown checkboxes${S.anim?'':', and leaves out animated titles'}.</p>`;
   if(!rd.length)h+='<p class="muted">Nothing left: you have seen everything that is out.</p>';
   else h+=`<ul class="rdl">${rd.slice(0,max).map((e,i)=>`<li><i class="lane" style="background:${LANES[e.lane][1]}"></i><span><button class="go" data-go="${e.id}">${esc(e.t)}</button> <span class="muted">${e.ty==='film'?'':kindOf(e)+', '}${S.order==='story'?esc(e.sy):e.d.slice(0,4)}</span>${i?'':'<span class="tick">Next</span>'}${sh.has(e.id)?'':'<span class="todo">Hidden on map</span>'}</span><button class="mini" data-mk="${e.id}" aria-label="Mark ${esc(e.t)} as seen">Seen it</button></li>`).join('')}</ul>${rd.length>6?`<button class="hide" data-rx="1">${S.rx?'Show fewer':'Show all '+rd.length}</button>`:''}`;
@@ -699,6 +705,8 @@ function rowList(){
 }
 
 function render(){
+  RD=new Set(ordS().filter(e=>!S.seen[e.id]&&anc(e.id).every(x=>S.seen[x.id])).map(e=>e.id));
+  const st=S.st||{};[['tSn','s'],['tRd','r'],['tNs','n']].forEach(([i,k])=>{document.getElementById(i).checked=!st[k]});
   document.getElementById('oRel').setAttribute('aria-pressed',S.order==='release');
   document.getElementById('oSto').setAttribute('aria-pressed',S.order==='story');
   document.querySelectorAll('[data-ph]').forEach(b=>b.setAttribute('aria-pressed',!S.hp[b.dataset.ph]));
@@ -770,6 +778,7 @@ cQ.addEventListener('input',applyCh);
 cQ.addEventListener('keydown',ev=>{if(ev.key==='Enter'){const b=[...document.querySelectorAll('#trBody .chips [data-ch]')].find(x=>!x.hidden);if(b){ev.preventDefault();S.ch=b.dataset.ch;render()}}else if(ev.key==='Escape'){cQ.value='';applyCh()}});
 document.getElementById('tPc').addEventListener('change',ev=>{S.pc=ev.target.checked;render()});
 document.getElementById('tCam').addEventListener('change',ev=>{S.cam=ev.target.checked;render()});
+[['tSn','s'],['tRd','r'],['tNs','n']].forEach(([i,k])=>document.getElementById(i).addEventListener('change',ev=>{S.st=S.st||{};if(ev.target.checked)delete S.st[k];else if(Object.keys(S.st).length<2)S.st[k]=1;else ev.target.checked=true;render()}));
 document.getElementById('tAn').addEventListener('change',ev=>{S.anim=ev.target.checked;render()});
 document.getElementById('tRel').addEventListener('change',ev=>{S.rel=ev.target.checked;if(S.rel)jump=1;render()});
 document.getElementById('tHlp').addEventListener('change',ev=>{S.hlp=ev.target.checked;render()});
