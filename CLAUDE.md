@@ -22,6 +22,11 @@ article; Eyes of Wakanda and Marvel Zombies are not in it.
 - Public site: https://mcu-watch-map-4ui.pages.dev/ on Cloudflare Pages (free plan), connected to
   the GitHub repo: every push to `main` deploys `site/` (no build command). So a push is a public
   release. Unknown paths serve index.html, so files outside `site/` are never exposed.
+- Environments: the claude.ai artifact is the test (non-production) copy and the Cloudflare site is
+  production. Publish changes to the artifact first for the user to try; push only when they ask.
+- Cloudflare Web Analytics (cookie-free) is switched on in the Pages project, which injects its
+  beacon script on the live site. `_headers` allows static.cloudflareinsights.com (script) and
+  cloudflareinsights.com (connect) for it; nothing else external is allowed.
 - Artifact page limits: no remote images or fetches (CSP), and no `alert` or `confirm`, so
   confirmations are built into the page (see Reset and "Mark all as seen").
 - Fonts are self-hosted (no Google requests, for privacy), declared in an inline @font-face block:
