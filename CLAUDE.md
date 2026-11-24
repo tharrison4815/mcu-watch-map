@@ -95,6 +95,9 @@ article; Eyes of Wakanda and Marvel Zombies are not in it.
   Off means out of scope everywhere (`inS`, `ordS`): map, links and watch-first chains, tracer
   appearances and "?" gaps, seen list, mark-all and mark-before. Opening one from search or a
   panel link turns the setting on.
+- Header controls are grouped: "Titles shown" (phases, Animated) decides which titles are on the
+  map; "Paths shown" (Helpful, Minor, Post-credits, Cameos) decides which lines are drawn. Keep new
+  controls in the right group.
 - Helpful and minor links can be turned off with header checkboxes (`S.hlp`, `S.mnr`; essential
   links always show). These replaced an All / Helpful / Essential dropdown.
 - Post-credits and cameo appearances or links can be turned off (header checkboxes). When on, they
