@@ -19,6 +19,9 @@ article; Eyes of Wakanda and Marvel Zombies are not in it.
   artifact with publish_files (the slug is in local memory): `as: index.html` from
   `site/index.html`, plus `fonts/*.woff2` only if the fonts change (never `_headers` or the OFL
   files). Then commit. Push only when the user asks.
+- Public site: https://mcu-watch-map-4ui.pages.dev/ on Cloudflare Pages (free plan), connected to
+  the GitHub repo: every push to `main` deploys `site/` (no build command). So a push is a public
+  release. Unknown paths serve index.html, so files outside `site/` are never exposed.
 - Artifact page limits: no remote images or fetches (CSP), and no `alert` or `confirm`, so
   confirmations are built into the page (see Reset and "Mark all as seen").
 - Fonts are self-hosted (no Google requests, for privacy), declared in an inline @font-face block:
