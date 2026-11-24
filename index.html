@@ -82,6 +82,8 @@ h3{font:700 20px/1.2 "Barlow Condensed",sans-serif;margin:0 0 8px}
 .s3{color:var(--red)}.s2{color:var(--blue)}.s1{color:var(--mute)}
 .chain{margin:6px 0 0;padding-left:22px}
 .chain li{padding:3px 0}
+.side{display:grid;gap:clamp(20px,3vw,32px)}
+.rdl{list-style:none;margin:6px 0 0;padding:0}.rdl li{display:flex;align-items:center;gap:8px;padding:4px 0;border-bottom:1px solid var(--line)}.rdl li>span{flex:1;min-width:0}.rdl .go{font-size:17px}
 .trace{list-style:none;padding-left:0}
 .gapli{color:var(--mute);font-size:14px;display:flex;align-items:center;gap:8px}
 .gapli span{display:inline-grid;place-items:center;width:22px;height:22px;border:1.5px solid var(--mute);border-radius:50%;font:400 13px Anton,Impact,sans-serif}
@@ -189,10 +191,13 @@ footer{font-size:14px;color:var(--mute);border-top:1px solid var(--line)}
 </div>
 <main class="band cols">
   <section id="panel" aria-live="polite"></section>
+  <div class="side">
+  <section id="ready"><h2>Safe to watch next</h2><div id="rdBody"></div></section>
   <aside id="tracer"><h2>Trace a character</h2>
     <div id="chFind" hidden><label for="cQ" class="flabel">Find a character you know</label><input type="search" id="cQ" placeholder="Name or hero name" autocomplete="off"></div>
     <div id="trBody"></div>
   </aside>
+  </div>
 </main>
 <footer class="band">Unofficial fan prototype, not affiliated with Marvel Studios or Disney. Links between titles only appear once you have seen them or chosen to reveal them. Your marks are saved in this browser only.</footer>
 <script>
@@ -677,6 +682,14 @@ function seenList(){
   document.getElementById('dlgBody').innerHTML=h;
 }
 
+function ready(){
+  const el=document.getElementById('rdBody'),ord=ordS(),rd=ord.filter(e=>!S.seen[e.id]&&anc(e.id).every(x=>S.seen[x.id])),sh=new Set(shownE().map(e=>e.id)),max=S.rx?rd.length:6;
+  let h=`<p class="muted" style="margin:0">Titles you haven't seen whose whole "watch first" chain is on your seen list, in ${S.order==='story'?'story':'release'} order. It follows the Paths shown checkboxes${S.anim?'':', and leaves out animated titles'}.</p>`;
+  if(!rd.length)h+='<p class="muted">Nothing left: you have seen everything that is out.</p>';
+  else h+=`<ul class="rdl">${rd.slice(0,max).map((e,i)=>`<li><i class="lane" style="background:${LANES[e.lane][1]}"></i><span><button class="go" data-go="${e.id}">${esc(e.t)}</button> <span class="muted">${e.ty==='film'?'':kindOf(e)+', '}${S.order==='story'?esc(e.sy):e.d.slice(0,4)}</span>${i?'':'<span class="tick">Next</span>'}${sh.has(e.id)?'':'<span class="todo">Hidden on map</span>'}</span><button class="mini" data-mk="${e.id}" aria-label="Mark ${esc(e.t)} as seen">Seen it</button></li>`).join('')}</ul>${rd.length>6?`<button class="hide" data-rx="1">${S.rx?'Show fewer':'Show all '+rd.length}</button>`:''}`;
+  el.innerHTML=h;
+}
+
 function rowList(){
   const off=Object.keys(S.off).length;
   let h=`<p class="muted" style="margin:0 0 8px">Ticked franchises get a row of their own. Unticked ones share an "Other" row at the bottom, and their boxes keep their colour stripe.</p>`;
@@ -697,7 +710,7 @@ function render(){
   document.getElementById('tAn').checked=!!S.anim;
   document.getElementById('tRel').checked=!!S.rel;
   document.getElementById('exNote').textContent=S.ex?'Example progress: Iron Man and The Incredible Hulk are marked as seen. Press Reset to start from nothing.':'';
-  size();draw();bar();panel();tracer();seenList();rowList();save();
+  size();draw();bar();panel();ready();tracer();seenList();rowList();save();
   if(jump){const p=lastPos[S.sel],w=wrap;if(p)w.scrollLeft=p.cx-w.clientWidth/2;if(jump===2){const n=svg.querySelector(`.node[data-id="${S.sel}"]`);if(n)n.focus({preventScroll:true})}jump=0}
 }
 
@@ -734,6 +747,8 @@ document.addEventListener('click',ev=>{
   else if(d.clear){undo={...S.seen};S.seen={};S.ex=0}
   else if(d.undo){S.seen=undo||{};undo=null}
   else if(d.before){const ord=ordS(),i=ord.findIndex(e=>e.id===d.before);undo={...S.seen};ord.slice(0,Math.max(i,0)).forEach(e=>{S.seen[e.id]=1});S.ex=0}
+  else if(d.mk){S.seen[d.mk]=1;S.ex=0}
+  else if(d.rx){S.rx=!S.rx}
   else if(b.id==='seenBtn'){if(S.seen[S.sel])delete S.seen[S.sel];else S.seen[S.sel]=1;S.ex=0}
   else if(b.id==='reset'){
     if(b.dataset.arm){S={...DEF(),seen:{},sel:null,ch:null,ex:0};b.textContent='Reset';delete b.dataset.arm}

@@ -119,6 +119,11 @@ article; Eyes of Wakanda and Marvel Zombies are not in it.
   ("Animated hidden", "Phase hidden", "Hidden on map"). The spoiler rules still decide which
   characters are listed.
 - Selecting the selected title again deselects it.
+- "Safe to watch next" (`ready()`, right column): unseen titles in scope (`ordS`) whose whole
+  watch-first chain (`anc`, the same one the panel lists, so it follows the Paths shown checkboxes)
+  is seen, in the map's order. First one is tagged "Next"; it shows 6 until "Show all" (`S.rx`), and
+  each has a "Seen it" button. Phase filter is ignored (tag "Hidden on map"). Known, accepted leak:
+  a title missing from the list tells you some link into it comes from a title you haven't seen.
 - Header controls are grouped: "Titles shown" (phases, Animated) decides which titles are on the
   map; "Paths shown" (Helpful, Minor, Post-credits, Cameos) decides which lines are drawn. Keep new
   controls in the right group.
