@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MCU Watch Map</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* VOICE everyday: a fan's planning tool, clear with a little comic-shop swagger
+   IDEA a wall chart in a comic shop: titles pinned on a timeline, ink lines drawn only once you've earned them, spoilers under yellow halftone flaps
+   PICTURE the connection map, full width: franchise rows, release-order columns, links that appear as you watch
+   COLOUR white paper / night #111318; ink; comic red for selection, process blue for seen, yellow for flaps and the character highlighter
+   TYPE Anton display + Barlow Condensed labels + Barlow text
+   LAYOUT title and controls across the top, map full width, then entry panel (2/3) beside character tracer (1/3); phone: map scrolls sideways, panels stack */
+:root{color-scheme:light dark;--bg:light-dark(#ffffff,#111318);--ink:light-dark(#141414,#ecebe6);--mute:light-dark(#686868,#9a9ca3);--line:light-dark(#dcdcd8,#30333c);--band:light-dark(#f4f4f0,#171a21);--card:light-dark(#ffffff,#1f222b);--red:light-dark(#d7262b,#ff5c61);--blue:light-dark(#1c5fd0,#6ea2ff);--yel:#ffd23f;--hl:light-dark(rgba(255,210,63,.75),rgba(255,210,63,.4))}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.55 Barlow,system-ui,sans-serif;overflow-x:clip}
+button{font:inherit;color:inherit}
+.band{padding:clamp(20px,3vw,40px) max(4vw,16px)}
+header.band{padding-bottom:18px;display:flex;flex-wrap:wrap;gap:16px 32px;align-items:end;justify-content:space-between}
+h1{font:400 clamp(36px,5vw,52px)/1.05 Anton,Impact,sans-serif;margin:0;letter-spacing:.01em}
+h1 small{display:block;font:600 18px/1.3 "Barlow Condensed",sans-serif;color:var(--mute);letter-spacing:0;margin-top:6px}
+.ctl{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.seg{display:inline-flex;border:2px solid var(--ink);border-radius:8px;overflow:hidden}
+.seg button{border:0;background:none;padding:0 14px;min-height:40px;cursor:pointer;font:600 16px "Barlow Condensed",sans-serif}
+.seg button[aria-pressed=true]{background:var(--ink);color:var(--bg)}
+select{font:600 16px "Barlow Condensed",sans-serif;min-height:44px;padding:0 10px;border:2px solid var(--ink);border-radius:8px;background:var(--bg);color:var(--ink)}
+.btn{min-height:44px;padding:0 14px;border:2px solid var(--ink);border-radius:8px;background:none;cursor:pointer;font:600 16px "Barlow Condensed",sans-serif}
+.btn:hover,.seg button:hover{background:color-mix(in srgb,var(--ink) 10%,transparent)}
+:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+.note{margin:0 max(4vw,16px) 12px;font-size:14px;color:var(--mute)}
+.mapwrap{overflow-x:auto;border-block:2px solid var(--ink)}
+.fig{position:relative;min-width:720px;height:470px}
+.fig>svg{position:absolute;inset:0;width:100%;height:100%}
+svg text{paint-order:stroke;stroke:var(--bg);stroke-width:4px}
+.node{cursor:pointer}
+.node text{stroke:none}
+.node:focus{outline:none}
+.node:focus-visible rect.box{stroke:var(--red);stroke-width:3}
+.node:hover rect.box{stroke-width:2.5}
+.grow{animation:grow .7s ease-out}
+@keyframes grow{from{opacity:0}to{opacity:1}}
+@media(prefers-reduced-motion:reduce){.grow{animation:none}}
+.legend{display:flex;flex-wrap:wrap;gap:6px 22px;padding:10px max(4vw,16px);font:500 15px "Barlow Condensed",sans-serif;color:var(--mute)}
+.legend span{display:inline-flex;align-items:center;gap:8px}
+.legend svg{width:34px;height:14px}
+.cols{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:clamp(20px,3vw,40px);align-items:start}
+@media(max-width:900px){.cols{grid-template-columns:minmax(0,1fr)}}
+h2{font:400 clamp(30px,3.6vw,40px)/1.05 Anton,Impact,sans-serif;margin:0 0 6px;letter-spacing:.01em;text-wrap:balance}
+h3{font:700 20px/1.2 "Barlow Condensed",sans-serif;margin:0 0 8px}
+.meta{color:var(--mute);margin:0 0 14px}
+.sec{border-top:2px solid var(--ink);padding:14px 0 18px}
+.sec p{margin:0 0 8px;max-width:68ch}
+.seen{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border:2px solid var(--blue);border-radius:8px;background:none;color:var(--blue);cursor:pointer;font:700 17px "Barlow Condensed",sans-serif;margin-bottom:16px}
+.seen.on{background:var(--blue);color:var(--bg)}
+.flap{display:flex;flex-wrap:wrap;align-items:center;gap:4px 14px;width:100%;min-height:64px;padding:10px 16px;border:2px solid #141414;border-radius:6px;cursor:pointer;color:#141414;text-align:left;background:radial-gradient(rgba(0,0,0,.16) 1.3px,transparent 1.7px) 0 0/8px 8px,var(--yel);transition:transform .15s}
+.flap:hover{transform:translateY(-2px)}
+.flap b{font:400 22px Anton,Impact,sans-serif;letter-spacing:.02em}
+.flap span{font:600 16px "Barlow Condensed",sans-serif;flex:1}
+.flap i{font:700 15px "Barlow Condensed",sans-serif;font-style:normal;background:#141414;color:var(--yel);padding:4px 10px;border-radius:4px;white-space:nowrap}
+.hide{border:0;background:none;color:var(--mute);text-decoration:underline;cursor:pointer;padding:8px 0;font-size:14px}
+.cast{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:2px 20px}
+.cast li{display:flex;justify-content:space-between;gap:10px;padding:5px 0;border-bottom:1px solid var(--line)}
+.cast em{font-style:normal;color:var(--mute);font-size:14px;white-space:nowrap}
+.cast em.pc{color:var(--red)}
+.links{list-style:none;margin:0 0 12px;padding:0}
+.links li{padding:8px 0;border-bottom:1px solid var(--line)}
+.links p{margin:2px 0 0;font-size:15px;color:var(--mute)}
+.go{border:0;background:none;padding:0;cursor:pointer;font:700 18px "Barlow Condensed",sans-serif;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+.chip{display:inline-block;margin-left:8px;padding:1px 8px;border-radius:4px;font:600 13px "Barlow Condensed",sans-serif;border:1.5px solid currentColor;white-space:nowrap}
+.s3{color:var(--red)}.s2{color:var(--blue)}.s1{color:var(--mute)}
+.chain{margin:6px 0 0;padding-left:22px}
+.chain li{padding:3px 0}
+.trace{list-style:none;padding-left:0}
+.gapli{color:var(--mute);font-size:14px;display:flex;align-items:center;gap:8px}
+.gapli span{display:inline-grid;place-items:center;width:22px;height:22px;border:1.5px solid var(--mute);border-radius:50%;font:400 13px Anton,Impact,sans-serif}
+.tick{color:var(--blue);font-weight:600;font-size:14px;margin-left:6px}
+.todo{color:var(--mute);font-size:14px;margin-left:6px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 16px}
+.chips button{min-height:36px;padding:0 12px;border:1.5px solid var(--line);border-radius:18px;background:var(--card);cursor:pointer;font:600 15px "Barlow Condensed",sans-serif}
+.chips button[aria-pressed=true]{background:var(--yel);border-color:#141414;color:#141414}
+aside{background:var(--band);border:2px solid var(--ink);border-radius:10px;padding:18px}
+aside .muted,.muted{color:var(--mute);font-size:15px}
+.tog{display:inline-flex;align-items:center;gap:8px;min-height:44px;font:600 16px "Barlow Condensed",sans-serif;cursor:pointer}
+.tog input{width:20px;height:20px;margin:0;accent-color:var(--ink);cursor:pointer}
+.btn.solid{background:var(--ink);color:var(--bg)}
+.btn.solid:hover{background:color-mix(in srgb,var(--ink) 85%,var(--bg))}
+dialog{width:min(520px,calc(100% - 32px));max-height:calc(100% - 48px);border:2px solid var(--ink);border-radius:10px;background:var(--bg);color:var(--ink);padding:0}
+dialog::backdrop{background:rgba(10,10,14,.55)}
+.dhead{position:sticky;top:0;z-index:1;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 18px 12px;background:var(--bg);border-bottom:2px solid var(--ink)}
+.dhead h2{margin:0;font-size:30px}
+#dlgBody{padding:12px 18px 18px}
+.rowck{display:flex;align-items:center;gap:10px;min-height:48px;padding:4px 0;border-bottom:1px solid var(--line)}
+.rowck label{flex:1;display:flex;align-items:center;gap:12px;min-height:44px;cursor:pointer}
+.mini{flex:none;min-height:36px;padding:0 10px;border:1.5px solid var(--line);border-radius:6px;background:var(--card);cursor:pointer;font:600 14px "Barlow Condensed",sans-serif;white-space:nowrap}
+.mini:hover{border-color:var(--ink)}
+.rowck input{width:22px;height:22px;accent-color:var(--blue);flex:none;margin:0;cursor:pointer}
+.rowck span{flex:1;font:600 18px "Barlow Condensed",sans-serif}
+.rowck em{font-style:normal;color:var(--mute);font-size:14px;white-space:nowrap}
+.lane{width:9px;height:9px;flex:none}
+.dacts{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:16px}
+.warn{margin-top:14px;padding:14px 16px;border:2px solid #141414;border-radius:6px;color:#141414;background:radial-gradient(rgba(0,0,0,.14) 1.3px,transparent 1.7px) 0 0/8px 8px,var(--yel)}
+.warn b{font:400 22px Anton,Impact,sans-serif;display:block;letter-spacing:.02em}
+.warn p{margin:4px 0 12px}
+.warn .btn{border-color:#141414;color:#141414;background:rgba(255,255,255,.5)}
+.warn .btn.go2{background:#141414;color:var(--yel)}
+footer{font-size:14px;color:var(--mute);border-top:1px solid var(--line)}
+</style>
+</head>
+<body>
+<header class="band">
+  <h1>MCU Watch Map<small>Phases 1 and 2: 12 films, 2008 to 2015</small></h1>
+  <div class="ctl">
+    <div class="seg" role="group" aria-label="Column order">
+      <button id="oRel" data-o="release">Release order</button>
+      <button id="oSto" data-o="story">Story order</button>
+    </div>
+    <select id="minSel" aria-label="Which links to draw">
+      <option value="1">All links</option>
+      <option value="2">Helpful and essential</option>
+      <option value="3">Essential only</option>
+    </select>
+    <label class="tog"><input type="checkbox" id="tPc"> Post-credits</label>
+    <label class="tog"><input type="checkbox" id="tCam"> Cameos</label>
+    <button class="btn solid" id="listBtn">Seen list</button>
+    <button class="btn" id="reset">Reset</button>
+  </div>
+</header>
+<dialog id="dlg" aria-labelledby="dlgT">
+  <div class="dhead"><h2 id="dlgT">What you've seen</h2><button class="btn" id="closeList">Done</button></div>
+  <div id="dlgBody"></div>
+</dialog>
+<p class="note" id="exNote"></p>
+<div class="mapwrap"><div class="fig" id="map"><svg id="svg" role="img" aria-label="Map of Phase 1 and 2 titles and the links you have unlocked"></svg></div></div>
+<div class="legend">
+  <span><svg viewBox="0 0 34 14"><line x1="2" y1="7" x2="32" y2="7" stroke="currentColor" stroke-width="3"/></svg>Essential</span>
+  <span><svg viewBox="0 0 34 14"><line x1="2" y1="7" x2="32" y2="7" stroke="currentColor" stroke-width="2"/></svg>Helpful</span>
+  <span><svg viewBox="0 0 34 14"><line x1="2" y1="7" x2="32" y2="7" stroke="currentColor" stroke-width="1.5" stroke-dasharray="5 4"/></svg>Minor reference</span>
+  <span><svg viewBox="0 0 34 14"><rect x="2" y="1" width="30" height="12" rx="3" fill="none" stroke="currentColor" stroke-dasharray="4 3"/></svg>Not seen yet</span>
+  <span><svg viewBox="0 0 34 14"><rect x="2" y="1" width="30" height="12" rx="3" fill="#ffd23f" stroke="#141414" stroke-width="1.5"/></svg>Traced character appears</span>
+  <span><svg viewBox="0 0 34 14"><line x1="2" y1="7" x2="32" y2="7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-dasharray="0.1 7"/></svg>Unseen titles in between</span>
+  <span><svg viewBox="0 0 40 14"><rect x="1" y="1" width="38" height="12" rx="6" fill="none" stroke="currentColor"/></svg>Only a post-credits scene or cameo</span>
+</div>
+<main class="band cols">
+  <section id="panel" aria-live="polite"></section>
+  <aside id="tracer"></aside>
+</main>
+<footer class="band">Unofficial fan prototype, not affiliated with Marvel Studios or Disney. Links between titles only appear once you have seen them or chosen to reveal them. Your marks are saved in this browser only.</footer>
+<script>
+{
+const E=[
+ {id:'im',t:'Iron Man',n:['Iron Man'],d:'2008-05-02',rt:126,lane:0,so:2,sy:'2008',syn:'Weapons maker Tony Stark is captured while demonstrating his company\'s missiles overseas. He builds a crude armoured suit to escape, then comes home rethinking everything his company makes.'},
+ {id:'hulk',t:'The Incredible Hulk',n:['The Incredible','Hulk'],d:'2008-06-13',rt:112,lane:1,so:4,sy:'2010',syn:'Scientist Bruce Banner hides in Brazil, searching for a cure for the condition that turns him into the Hulk, while General Ross and the US Army close in.'},
+ {id:'im2',t:'Iron Man 2',n:['Iron Man 2'],d:'2010-05-07',rt:124,lane:0,so:3,sy:'2010',syn:'Having told the world he is Iron Man, Tony faces government pressure to hand over the suit, a power source that is slowly poisoning him, and a rival with a grudge against the Stark family.'},
+ {id:'thor',t:'Thor',n:['Thor'],d:'2011-05-06',rt:115,lane:2,so:5,sy:'2010',syn:'Stripped of his powers and banished to Earth by his father Odin, the arrogant Thor has to prove himself worthy while his brother Loki schemes in Asgard.'},
+ {id:'cap',t:'Captain America: The First Avenger',n:['Captain America:','The First Avenger'],d:'2011-07-22',rt:124,lane:3,so:1,sy:'1940s',syn:'In 1942 frail volunteer Steve Rogers is transformed by an experimental serum into a super-soldier and sent against Hydra, a rogue science division led by the Red Skull.'},
+ {id:'av',t:'The Avengers',n:['The Avengers'],d:'2012-05-04',rt:143,lane:4,so:6,sy:'2012',syn:'When Loki steals the Tesseract, Nick Fury brings Iron Man, Captain America, Thor, the Hulk, Black Widow and Hawkeye together to stop an invasion of Earth.'},
+ {id:'im3',p:2,t:'Iron Man 3',n:['Iron Man 3'],d:'2013-05-03',rt:130,lane:0,so:7,sy:'2012',syn:'Shaken by the Battle of New York and unable to sleep, Tony Stark buries himself in building suits until a terrorist called the Mandarin strikes his home and leaves him with almost nothing.'},
+ {id:'tdw',p:2,t:'Thor: The Dark World',n:['Thor:','The Dark World'],d:'2013-11-08',rt:112,lane:2,so:8,sy:'2013',syn:'Jane Foster stumbles on the Aether, an ancient force the Dark Elf Malekith wants back to plunge the universe into darkness, and Thor needs his imprisoned brother Loki\'s help to stop him.'},
+ {id:'tws',p:2,t:'Captain America: The Winter Soldier',n:['Captain America:','The Winter Soldier'],d:'2014-04-04',rt:136,lane:3,so:9,sy:'2014',syn:'Two years after New York, Steve Rogers works for S.H.I.E.L.D. but distrusts its secrets. When Nick Fury is attacked, Steve and Natasha go on the run, hunted by a ghostly assassin known as the Winter Soldier.'},
+ {id:'gotg',p:2,t:'Guardians of the Galaxy',n:['Guardians of','the Galaxy'],d:'2014-08-01',rt:121,lane:5,so:10,sy:'2014',syn:'Space scavenger Peter Quill steals a mysterious orb and falls into an uneasy alliance with an assassin, a warrior, a raccoon and a talking tree, all hunted by the fanatic Ronan.'},
+ {id:'aou',p:2,t:'Avengers: Age of Ultron',n:['Avengers:','Age of Ultron'],d:'2015-05-01',rt:141,lane:4,so:11,sy:'2015',syn:'Tony Stark and Bruce Banner build Ultron, an artificial intelligence meant to protect the world, but it decides humanity is the problem, and the Avengers have to stop their own creation.'},
+ {id:'antman',p:2,t:'Ant-Man',n:['Ant-Man'],d:'2015-07-17',rt:117,lane:6,so:12,sy:'2015',syn:'Ex-con Scott Lang is recruited by scientist Hank Pym to steal back the shrinking technology Pym invented, before his former protégé can sell it as a weapon.'}
+];
+E.forEach(e=>{e.p=e.p||1});
+const LANES=[['Iron Man','#d7262b'],['Hulk','#2f9e44'],['Thor','#3b8fd9'],['Captain America','#2b4fb8'],['Avengers','#8a8a8a'],['Guardians','#e0861a'],['Ant-Man','#9b4dca']];
+const L=[
+ {f:'im',t:'im2',s:3,n:'Direct sequel, picking up right after Tony tells the world he is Iron Man.'},
+ {f:'im',t:'av',s:3,n:'Introduces Tony Stark, Pepper Potts and Agent Coulson. The post-credits scene is where Nick Fury first mentions the Avengers Initiative.'},
+ {f:'im',t:'hulk',s:1,k:'cameo',n:'Tony Stark turns up in the closing scene to talk about a team being put together.'},
+ {f:'im2',t:'av',s:2,n:'Introduces Natasha Romanoff and shows S.H.I.E.L.D. assessing Tony for the Avengers.'},
+ {f:'im2',t:'thor',s:1,k:'pc',n:'Post-credits scene: Coulson reports a find in the New Mexico desert.'},
+ {f:'hulk',t:'av',s:2,n:'Bruce Banner\'s story. The Avengers picks him up after his time on the run (with a different actor).'},
+ {f:'thor',t:'av',s:3,n:'Loki becomes the villain of The Avengers, and the post-credits scene sets up the Tesseract.'},
+ {f:'thor',t:'cap',s:1,n:'The Red Skull\'s hunt for the Tesseract references Asgard and Odin.'},
+ {f:'cap',t:'av',s:3,n:'Steve Rogers\'s origin, and where the Tesseract comes from.'},
+ {f:'av',t:'im3',s:3,n:'Tony is still reeling from the Battle of New York, and the whole film is about what it did to him.'},
+ {f:'im2',t:'im3',s:2,n:'Continues Tony and Pepper\'s story, and Rhodey\'s armour.'},
+ {f:'thor',t:'tdw',s:3,n:'Direct sequel: Jane Foster, Asgard and Thor\'s family pick up where Thor left them.'},
+ {f:'av',t:'tdw',s:3,n:'Loki is a prisoner in Asgard because of what he did in The Avengers.'},
+ {f:'cap',t:'tws',s:3,n:'Peggy Carter, Hydra and more of Steve\'s past come back from the first film.'},
+ {f:'av',t:'tws',s:3,n:'Steve is adjusting to modern life and working for S.H.I.E.L.D. with Natasha after New York.'},
+ {f:'tdw',t:'gotg',s:1,k:'pc',n:'Post-credits scene: the Collector is introduced and given something for safekeeping.'},
+ {f:'av',t:'gotg',s:1,k:'pc',n:'The figure from The Avengers\' post-credits scene is behind events here.'},
+ {f:'tws',t:'aou',s:3,n:'The fallout from S.H.I.E.L.D.\'s collapse, and the post-credits scene introduces two new characters.'},
+ {f:'av',t:'aou',s:3,n:'The team reunites, still chasing loose ends from the first film.'},
+ {f:'im3',t:'aou',s:2,n:'Where Tony and his suits stand going into the film.'},
+ {f:'tdw',t:'aou',s:1,n:'Selvig returns, and Thor\'s side-quest builds on what he has learned about the Infinity Stones.'},
+ {f:'aou',t:'antman',s:2,n:'Set just after Age of Ultron, with a visit to the new Avengers base.'},
+ {f:'tws',t:'antman',s:1,k:'cameo',n:'Falcon turns up briefly, and Hydra is still around in the background.'}
+];
+const C={
+ im:[['Tony Stark','Lead','Iron Man'],['Pepper Potts','Main'],['James Rhodes','Main'],['Obadiah Stane','Main','Iron Monger'],['Phil Coulson','Supporting'],['Happy Hogan','Supporting'],['J.A.R.V.I.S.','Supporting'],['Ho Yinsen','Supporting'],['Nick Fury','Post-credits']],
+ hulk:[['Bruce Banner','Lead','Hulk'],['Betty Ross','Main'],['Thaddeus Ross','Main'],['Emil Blonsky','Main','Abomination'],['Samuel Sterns','Supporting'],['Tony Stark','Cameo']],
+ im2:[['Tony Stark','Lead','Iron Man'],['Pepper Potts','Main'],['James Rhodes','Main','War Machine'],['Natasha Romanoff','Main','Black Widow'],['Ivan Vanko','Main','Whiplash'],['Justin Hammer','Main'],['Nick Fury','Supporting'],['Phil Coulson','Supporting'],['Happy Hogan','Supporting'],['Howard Stark','Supporting'],['J.A.R.V.I.S.','Supporting']],
+ thor:[['Thor','Lead'],['Loki','Main'],['Jane Foster','Main'],['Odin','Main'],['Erik Selvig','Supporting'],['Darcy Lewis','Supporting'],['Frigga','Supporting'],['Heimdall','Supporting'],['Sif','Supporting'],['Phil Coulson','Supporting'],['Clint Barton','Cameo'],['Nick Fury','Post-credits']],
+ cap:[['Steve Rogers','Lead','Captain America'],['Peggy Carter','Main'],['Bucky Barnes','Main'],['Johann Schmidt','Main','Red Skull'],['Howard Stark','Supporting'],['Chester Phillips','Supporting'],['Abraham Erskine','Supporting'],['Arnim Zola','Supporting'],['Dum Dum Dugan','Supporting'],['Nick Fury','Cameo']],
+ av:[['Tony Stark','Lead','Iron Man'],['Steve Rogers','Lead','Captain America'],['Thor','Lead'],['Bruce Banner','Lead','Hulk'],['Natasha Romanoff','Lead','Black Widow'],['Clint Barton','Main','Hawkeye'],['Loki','Main'],['Nick Fury','Main'],['Maria Hill','Supporting'],['Phil Coulson','Supporting'],['Erik Selvig','Supporting'],['Pepper Potts','Supporting'],['J.A.R.V.I.S.','Supporting'],['Thanos','Post-credits']],
+ im3:[['Tony Stark','Lead','Iron Man'],['Pepper Potts','Main'],['James Rhodes','Main','Iron Patriot'],['Aldrich Killian','Main'],['Trevor Slattery','Main','The Mandarin',1],['Maya Hansen','Supporting'],['Happy Hogan','Supporting'],['Harley Keener','Supporting'],['Eric Savin','Supporting'],['J.A.R.V.I.S.','Supporting'],['Bruce Banner','Post-credits']],
+ tdw:[['Thor','Lead'],['Jane Foster','Main'],['Loki','Main'],['Malekith','Main'],['Odin','Main'],['Frigga','Supporting'],['Heimdall','Supporting'],['Erik Selvig','Supporting'],['Darcy Lewis','Supporting'],['Sif','Supporting'],['Algrim','Supporting','Kurse'],['Taneleer Tivan','Post-credits','The Collector']],
+ tws:[['Steve Rogers','Lead','Captain America'],['Natasha Romanoff','Main','Black Widow'],['Sam Wilson','Main','Falcon'],['Bucky Barnes','Main','Winter Soldier',1],['Nick Fury','Main'],['Alexander Pierce','Main'],['Maria Hill','Supporting'],['Sharon Carter','Supporting','Agent 13'],['Brock Rumlow','Supporting'],['Jasper Sitwell','Supporting'],['Peggy Carter','Supporting'],['Arnim Zola','Supporting'],['Wolfgang von Strucker','Post-credits'],['Wanda Maximoff','Post-credits'],['Pietro Maximoff','Post-credits']],
+ gotg:[['Peter Quill','Lead','Star-Lord'],['Gamora','Main'],['Drax','Main'],['Rocket','Main'],['Groot','Main'],['Ronan','Main'],['Nebula','Supporting'],['Yondu Udonta','Supporting'],['Thanos','Supporting'],['Taneleer Tivan','Supporting','The Collector'],['Korath','Supporting'],['Rhomann Dey','Supporting'],['Howard the Duck','Post-credits']],
+ aou:[['Tony Stark','Lead','Iron Man'],['Steve Rogers','Lead','Captain America'],['Thor','Lead'],['Bruce Banner','Lead','Hulk'],['Natasha Romanoff','Lead','Black Widow'],['Clint Barton','Lead','Hawkeye'],['Ultron','Main'],['Wanda Maximoff','Main'],['Pietro Maximoff','Main'],['Vision','Main'],['Nick Fury','Supporting'],['Maria Hill','Supporting'],['James Rhodes','Supporting','War Machine'],['Sam Wilson','Supporting','Falcon'],['Erik Selvig','Supporting'],['Ulysses Klaue','Supporting'],['Wolfgang von Strucker','Supporting'],['Laura Barton','Supporting'],['J.A.R.V.I.S.','Supporting'],['Peggy Carter','Cameo'],['Heimdall','Cameo'],['Thanos','Post-credits']],
+ antman:[['Scott Lang','Lead','Ant-Man'],['Hope van Dyne','Main'],['Hank Pym','Main'],['Darren Cross','Main','Yellowjacket'],['Luis','Main'],['Cassie Lang','Supporting'],['Maggie Lang','Supporting'],['Jim Paxton','Supporting'],['Mitchell Carson','Supporting'],['Sam Wilson','Cameo','Falcon'],['Peggy Carter','Cameo'],['Howard Stark','Cameo'],['Steve Rogers','Post-credits'],['Bucky Barnes','Post-credits']]
+};
+const STR={3:'Essential',2:'Helpful',1:'Minor'};
+const byId=Object.fromEntries(E.map(e=>[e.id,e]));
+const KEY='mcu-watch-map-v1';
+const DEF=()=>({seen:{im:1,hulk:1},rev:{},crev:{},ctw:{},sel:'im2',order:'release',min:1,ch:'Tony Stark',ex:1});
+let S=null;
+try{S=JSON.parse(localStorage.getItem(KEY))}catch(e){}
+if(!S||!S.seen)S=DEF();
+S.ctw=S.ctw||{};S.crev=S.crev||{};S.rev=S.rev||{};
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const rv=(id,k)=>!!S.rev[id+':'+k];
+const open=(id,k)=>!!S.seen[id]||rv(id,k);
+const order=()=>[...E].sort((a,b)=>S.order==='story'?a.so-b.so:a.d.localeCompare(b.d));
+const linkOn=l=>l.s>=S.min&&!(l.k==='pc'&&S.pc===false)&&!(l.k==='cameo'&&S.cam===false);
+const minorRole=c=>c[1]==='Post-credits'?'pc':c[1]==='Cameo'?'cameo':'';
+const onMap=c=>{const m=minorRole(c);return !(m==='pc'&&S.pc===false)&&!(m==='cameo'&&S.cam===false)};
+const TAG={pc:'Credits',cameo:'Cameo'};
+const linkVis=l=>linkOn(l)&&(!!S.seen[l.t]||rv(l.t,'from')||rv(l.f,'into'));
+const knownE=id=>open(id,'cast');
+const fmt=d=>new Date(d+'T12:00').toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});
+const svg=document.getElementById('svg'),fig=document.getElementById('map');
+let prevVis=new Set();
+
+const bz=(p,t)=>{const u=1-t;return[u*u*u*p[0]+3*u*u*t*p[2]+3*u*t*t*p[4]+t*t*t*p[6],u*u*u*p[1]+3*u*u*t*p[3]+3*u*t*t*p[5]+t*t*t*p[7]]};
+const curve=(a,b)=>{const m=(a.cx+b.cx)/2;return[a.cx,a.cy,m,a.cy,m,b.cy,b.cx,b.cy]};
+
+const draw=()=>{
+  const W=fig.clientWidth,H=fig.clientHeight,top=50,lh=(H-top-6)/LANES.length,ord=order(),cw=(W-24)/ord.length,pos={};
+  ord.forEach((e,i)=>{
+    const adj=(ord[i-1]&&ord[i-1].lane===e.lane)||(ord[i+1]&&ord[i+1].lane===e.lane);
+    const w=Math.min(150,adj?cw-12:cw*1.6-12),h=e.n.length>1?56:44,cx=12+cw*i+cw/2,cy=top+lh*e.lane+lh/2+8;
+    pos[e.id]={cx,cy,w,h,x:cx-w/2,y:cy-h/2};
+  });
+  let o='';
+  LANES.forEach((ln,i)=>{const y=top+lh*i;
+    if(i%2===0)o+=`<rect x="0" y="${y}" width="${W}" height="${lh}" fill="var(--band)"/>`;
+    o+=`<rect x="14" y="${y+9}" width="9" height="9" fill="${ln[1]}"/><text x="29" y="${y+18}" font-family="Barlow Condensed" font-weight="600" font-size="14" fill="var(--mute)">${esc(ln[0])}</text>`;
+  });
+  ord.forEach((e,i)=>{if(i&&ord[i-1].p===e.p)return;const x=12+cw*i;
+    if(i)o+=`<line x1="${x}" y1="6" x2="${x}" y2="${H}" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="2 5" opacity=".5"/>`;
+    o+=`<text x="${x+8}" y="18" font-family="Barlow Condensed" font-weight="700" font-size="14" fill="var(--mute)">Phase ${e.p}</text>`});
+  ord.forEach((e,i)=>{o+=`<text x="${12+cw*i+cw/2}" y="40" text-anchor="middle" font-family="Barlow Condensed" font-weight="700" font-size="15" fill="var(--ink)">${S.order==='story'?esc(e.sy):e.d.slice(0,4)}</text>`});
+  const ch=S.ch&&knownChars().includes(S.ch)?S.ch:null;
+  const qs=[],tags=[];
+  const free=c=>{for(const t of [.5,.42,.58,.34,.66,.26,.74,.2,.8]){const p=bz(c,t);if(!ord.some(e=>{const r=pos[e.id];return Math.abs(p[0]-r.cx)<r.w/2+18&&Math.abs(p[1]-r.cy)<r.h/2+18}))return p}return bz(c,.5)};
+  const ka=ch?apps(ch).filter(a=>a.known&&onMap(a.c)):[];
+  const minor=Object.fromEntries(ka.map(a=>[a.e.id,minorRole(a.c)]));
+  if(ch){
+    const kn=ka.map(a=>a.e.id);
+    if(kn.length===1){const p=pos[kn[0]];o+=`<path d="M${p.cx} ${p.cy} l0.1 0" stroke="var(--hl)" stroke-width="14" stroke-linecap="round"/>`}
+    for(let i=1;i<kn.length;i++){
+      const c=curve(pos[kn[i-1]],pos[kn[i]]),d=`M${c[0]} ${c[1]} C${c[2]} ${c[3]} ${c[4]} ${c[5]} ${c[6]} ${c[7]}`;
+      if(!gapBetween(ch,kn[i-1],kn[i])){const thin=minor[kn[i-1]]||minor[kn[i]];o+=`<path d="${d}" fill="none" stroke="var(--hl)" stroke-width="${thin?7:14}" stroke-linecap="round" ${thin?'stroke-dasharray="12 10"':''}/>`;continue}
+      o+=`<path d="${d}" fill="none" stroke="var(--mute)" stroke-width="4" stroke-linecap="round" stroke-dasharray="0.1 10"/>`;
+      qs.push(free(c));
+    }
+  }
+  const vis=new Set();
+  L.filter(linkVis).forEach(l=>{
+    const k=l.f+'>'+l.t;vis.add(k);
+    const a=pos[l.f],b=pos[l.t],p=curve(a,b),hot=l.f===S.sel||l.t===S.sel;
+    let t=1;while(t>0.5){const q=bz(p,t);if(Math.abs(q[0]-b.cx)>b.w/2+3||Math.abs(q[1]-b.cy)>b.h/2+3)break;t-=0.01}
+    const tip=bz(p,t),bk=bz(p,t-0.03),ang=Math.atan2(tip[1]-bk[1],tip[0]-bk[0]),s=l.s===3?11:9;
+    const pt=da=>`${tip[0]-s*Math.cos(ang+da)},${tip[1]-s*Math.sin(ang+da)}`;
+    const col=hot?'var(--red)':'var(--ink)',op=hot?1:(S.sel?.35:.6);
+    o+=`<g class="${prevVis.has(k)?'':'grow'}" opacity="${op}"><path d="M${p[0]} ${p[1]} C${p[2]} ${p[3]} ${p[4]} ${p[5]} ${p[6]} ${p[7]}" fill="none" stroke="${col}" stroke-width="${l.s===3?3:l.s===2?2:1.5}" ${l.s===1?'stroke-dasharray="6 5"':''}/><polygon points="${tip[0]},${tip[1]} ${pt(.45)} ${pt(-.45)}" fill="${col}"/></g>`;
+    if(l.k)tags.push([free(p),TAG[l.k],op,col]);
+  });
+  prevVis=vis;
+  const mem=new Set(ka.map(a=>a.e.id));
+  ord.forEach(e=>{
+    const p=pos[e.id],sn=!!S.seen[e.id],sel=S.sel===e.id,isM=mem.has(e.id),dim=!!ch&&!isM;
+    const stroke=sel?'var(--red)':isM?'#141414':sn?'var(--ink)':'var(--mute)';
+    o+=`<rect x="${p.x-7}" y="${p.y-7}" width="${p.w+14}" height="${p.h+14}" rx="11" fill="var(--bg)"/>`;
+    o+=`<g class="node" data-id="${e.id}" tabindex="0" role="button" opacity="${dim?.45:1}" aria-label="${esc(e.t)}, ${sn?'seen':'not seen'}${isM?', '+esc(ch)+' appears':''}${sel?', selected':''}">`;
+    o+=`<rect class="box" x="${p.x}" y="${p.y}" width="${p.w}" height="${p.h}" rx="6" fill="${isM?(minor[e.id]?'#fff1b8':'#ffd23f'):sn?'var(--card)':'var(--bg)'}" stroke="${stroke}" stroke-width="${sel||isM?3:1.5}" ${(sn||sel||isM)&&!(isM&&minor[e.id]&&!sel)?'':'stroke-dasharray="5 4"'}/>`;
+    o+=`<rect x="${p.x+1.5}" y="${p.y+6}" width="5" height="${p.h-12}" rx="2" fill="${LANES[e.lane][1]}" opacity="${sn||isM?1:.45}"/>`;
+    e.n.forEach((ln,i)=>{o+=`<text x="${p.cx+3}" y="${p.cy+5+(i-(e.n.length-1)/2)*17}" text-anchor="middle" font-family="Barlow Condensed" font-weight="${sn||isM?700:600}" font-size="15" fill="${isM?'#141414':sn?'var(--ink)':'var(--mute)'}" stroke="none">${esc(ln)}</text>`});
+    if(sn)o+=`<circle cx="${p.x+p.w-3}" cy="${p.y+3}" r="9" fill="var(--blue)" stroke="var(--bg)" stroke-width="2"/><path d="M${p.x+p.w-7} ${p.y+3} l3 3 l5 -6" fill="none" stroke="var(--bg)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>`;
+    if(isM&&minor[e.id])o+=`<rect x="${p.cx-26}" y="${p.y+p.h-8}" width="52" height="17" rx="8.5" fill="#141414"/><text x="${p.cx}" y="${p.y+p.h+5}" text-anchor="middle" font-family="Barlow Condensed" font-weight="700" font-size="13" fill="#ffd23f" stroke="none">${TAG[minor[e.id]]}</text>`;
+    o+='</g>';
+  });
+  tags.forEach(([q,tx,op,col])=>{o+=`<g opacity="${op}"><rect x="${q[0]-27}" y="${q[1]-9}" width="54" height="18" rx="9" fill="var(--bg)" stroke="${col}" stroke-width="1.2"/><text x="${q[0]}" y="${q[1]+4.5}" text-anchor="middle" font-family="Barlow Condensed" font-weight="700" font-size="13" fill="${col}" stroke="none">${tx}</text></g>`});
+  qs.forEach(q=>{o+=`<g><title>Titles you haven't seen come between these appearances</title><circle cx="${q[0]}" cy="${q[1]}" r="12" fill="var(--bg)" stroke="var(--mute)" stroke-width="1.5"/><text x="${q[0]}" y="${q[1]+5.5}" text-anchor="middle" font-family="Anton" font-size="15" fill="var(--mute)" stroke="none">?</text></g>`});
+  svg.innerHTML=o;
+};
+
+const twOk=(ch,id)=>!!S.seen[id]||rv(id,'twist')||!!S.ctw[ch];
+const knownApp=(ch,id,c)=>!!S.seen[id]||((rv(id,'cast')||!!S.crev[ch])&&(!c[3]||twOk(ch,id)));
+const det=(ch,id)=>!!S.seen[id]||((rv(id,'cast')||!!S.crev[ch])&&twOk(ch,id));
+function knownChars(){const m=[];for(const e of E)for(const c of C[e.id])if(!m.includes(c[0])&&knownApp(c[0],e.id,c))m.push(c[0]);return m}
+function apps(ch){return order().flatMap(e=>{const c=C[e.id].find(x=>x[0]===ch);return c?[{e,c,known:knownApp(ch,e.id,c)}]:[]})}
+function label(ch){const al=[];for(const a of apps(ch).sort((x,y)=>x.e.so-y.e.so))if(a.known&&a.c[2]&&!al.includes(a.c[2]))al.push(a.c[2]);return al.length?`${ch} (${al.join(' / ')})`:ch}
+const anyUnknown=()=>E.some(e=>!knownE(e.id));
+function gapBetween(ch,a,b){const ord=order(),i=ord.findIndex(e=>e.id===a),j=ord.findIndex(e=>e.id===b);return ord.slice(i+1,j).some(e=>!det(ch,e.id))}
+
+const flap=(id,k,label)=>`<button class="flap" data-r="${id}:${k}"><b>Spoilers</b><span>${label}</span><i>Click to reveal</i></button>`;
+const hide=(id,k)=>rv(id,k)?`<button class="hide" data-h="${id}:${k}">Hide again</button>`:'';
+const linkLi=(other,l)=>`<li><button class="go" data-go="${other.id}">${esc(other.t)}</button><span class="chip s${l.s}">${STR[l.s]}</span>${l.k?`<span class="chip s1">${l.k==='pc'?'Post-credits only':'Cameo only'}</span>`:''}${S.seen[other.id]?'<span class="tick">Seen</span>':''}<p>${esc(l.n)}</p></li>`;
+function anc(id){const out=new Set,st=[id];while(st.length){const c=st.pop();for(const l of L)if(l.t===c&&linkOn(l)&&!out.has(l.f)){out.add(l.f);st.push(l.f)}}return E.filter(e=>out.has(e.id))}
+
+function panel(){
+  const e=byId[S.sel],el=document.getElementById('panel');
+  if(!e){el.innerHTML='<h2>Pick a title</h2><p class="muted">Select any title on the map to see what leads into it and what follows.</p>';return}
+  const sn=!!S.seen[e.id],id=e.id;
+  let h=`<h2>${esc(e.t)}</h2><p class="meta">Film, released ${fmt(e.d)}. ${e.rt} minutes. Phase ${e.p}, set in ${esc(e.sy)}.</p>`;
+  h+=`<button class="seen ${sn?'on':''}" id="seenBtn" aria-pressed="${sn}">${sn?'Seen: click to unmark':'Mark as seen'}</button>`;
+  const ordP=order(),before=ordP.slice(0,ordP.findIndex(x=>x.id===id));
+  if(before.some(x=>!S.seen[x.id]))h+=` <button class="hide" data-before="${id}" style="margin-left:10px">Mark everything before this as seen</button>`;
+  h+=`<div class="sec"><h3>Story</h3>${open(id,'syn')?`<p>${esc(e.syn)}</p>${hide(id,'syn')}`:flap(id,'syn','Plot summary')}</div>`;
+  let cs='';
+  if(open(id,'cast')){
+    const tw=sn||rv(id,'twist');
+    cs=`<ul class="cast">${C[id].filter(c=>!c[3]||tw).map(c=>`<li><span>${esc(c[0])}${c[2]?` <span class="muted">(${esc(c[2])})</span>`:''}${c[3]?' <span class="chip s3">Major twist</span>':''}</span><em class="${c[1]==='Post-credits'?'pc':''}">${esc(c[1])}</em></li>`).join('')}</ul>${hide(id,'cast')}`;
+    if(!sn)cs+=rv(id,'twist')?(C[id].some(c=>c[3])?'':'<p class="muted">No major twists in this cast.</p>')+hide(id,'twist'):`<div style="margin-top:10px">${flap(id,'twist','Major twists in the cast, if there are any')}</div>`;
+  }else cs=flap(id,'cast','Who appears in it');
+  h+=`<div class="sec"><h3>Characters</h3>${cs}</div>`;
+  const inc=L.filter(l=>l.t===id);
+  let fr='';
+  if(open(id,'from')){
+    const ch=anc(id),seenN=ch.filter(x=>S.seen[x.id]).length;
+    fr=inc.length?`<ul class="links">${inc.map(l=>linkLi(byId[l.f],l)).join('')}</ul>`:'<p class="muted">Nothing leads into this one. It is a starting point.</p>';
+    if(ch.length)fr+=`<p><b>Everything to watch first</b>, in release order (${seenN} of ${ch.length} seen, ${S.min===3?'essential links only':S.min===2?'helpful and essential links':'all links'}):</p><ol class="chain">${ch.map(x=>`<li><button class="go" data-go="${x.id}">${esc(x.t)}</button>${S.seen[x.id]?'<span class="tick">Seen</span>':'<span class="todo">Not seen</span>'}</li>`).join('')}</ol>`;
+    fr+=hide(id,'from');
+  }else fr=flap(id,'from','What leads into it');
+  h+=`<div class="sec"><h3>Watch first</h3>${fr}</div>`;
+  const out=L.filter(l=>l.f===id);
+  let fo='';
+  if(!sn&&!rv(id,'into'))fo=flap(id,'into','What it leads into');
+  else{
+    const shown=out.filter(l=>rv(id,'into')||S.seen[l.t]||rv(l.t,'from'));
+    fo=shown.length?`<ul class="links">${shown.map(l=>linkLi(byId[l.t],l)).join('')}</ul>`:'';
+    if(rv(id,'into'))fo+=(out.length?'':'<p class="muted">Nothing on the map follows on from this one yet.</p>')+hide(id,'into');
+    else if(E.some(x=>!S.seen[x.id]&&x.id!==id))fo+=flap(id,'into','Links to titles you haven\'t seen');
+    else if(!shown.length)fo+='<p class="muted">Nothing on the map follows on from this one yet.</p>';
+  }
+  h+=`<div class="sec"><h3>What follows</h3>${fo}</div>`;
+  el.innerHTML=h;
+}
+
+function tracer(){
+  const el=document.getElementById('tracer'),ks=knownChars();
+  let h='<h2>Trace a character</h2>';
+  if(!ks.length){el.innerHTML=h+'<p class="muted">Mark a title as seen, or reveal a cast list, and its characters show up here.</p>';return}
+  h+='<p class="muted">Only characters from titles you have seen or revealed are listed.</p>';
+  h+=`<div class="chips">${ks.map(c=>`<button data-ch="${esc(c)}" aria-pressed="${S.ch===c}">${esc(label(c))}</button>`).join('')}</div>`;
+  if(S.ch&&ks.includes(S.ch)){
+    const ap=apps(S.ch),kn=ap.filter(a=>a.known);
+    h+=`<h3>${esc(label(S.ch))}</h3><ul class="chain trace">${kn.map((a,i)=>(i&&gapBetween(S.ch,kn[i-1].e.id,a.e.id)?'<li class="gapli"><span>?</span>Titles you haven\'t seen come in between</li>':'')+`<li><button class="go" data-go="${a.e.id}">${esc(a.e.t)}</button> <span class="muted">${esc(a.c[1])}${a.c[2]?', as '+esc(a.c[2]):''}</span>${S.seen[a.e.id]?'':'<span class="todo">Not seen</span>'}${onMap(a.c)?'':'<span class="todo">Not on map</span>'}</li>`).join('')}</ul>`;
+    const q=esc(S.ch);
+    if(!S.crev[S.ch]){if(E.some(e=>!det(S.ch,e.id)))h+=`<div style="margin-top:12px">${flap('','c','Appearances in titles you haven\'t seen').replace('data-r=":c"',`data-rc="${q}"`)}</div>`}
+    else{
+      h+=`<button class="hide" data-hc="${q}">Hide again</button>`;
+      if(S.ctw[S.ch])h+=` <button class="hide" data-htw="${q}">Hide twists again</button>`;
+      else if(E.some(e=>!S.seen[e.id]&&!rv(e.id,'twist')))h+=`<div style="margin-top:12px">${flap('','c','Major twist appearances, if there are any').replace('data-r=":c"',`data-rtw="${q}"`)}</div>`;
+    }
+  }else h+='<p class="muted">Pick a name to highlight their path on the map.</p>';
+  el.innerHTML=h;
+}
+
+let warn=false,undo=null;
+function seenList(){
+  const n=E.filter(e=>S.seen[e.id]).length,all=n===E.length;
+  document.getElementById('listBtn').textContent=`Seen list (${n}/${E.length})`;
+  let h=`<p class="muted" style="margin:0 0 8px">${n} of ${E.length} seen. Tick everything you've watched; the map updates as you go.</p>`;
+  const ord=order();
+  h+=ord.map((e,i)=>`<div class="rowck"><label for="chk-${e.id}"><input type="checkbox" id="chk-${e.id}" data-seen="${e.id}" ${S.seen[e.id]?'checked':''}><i class="lane" style="background:${LANES[e.lane][1]}"></i><span>${esc(e.t)}</span><em>${S.order==='story'?esc(e.sy):e.d.slice(0,4)}</em></label>${i&&ord.slice(0,i).some(x=>!S.seen[x.id])?`<button class="mini" data-before="${e.id}" aria-label="Mark everything before ${esc(e.t)} as seen">All before</button>`:''}</div>`).join('');
+  if(warn)h+=`<div class="warn" role="alert"><b>Spoiler warning</b><p>This marks all ${E.length} titles as seen and unlocks every story summary, cast list and link on the map at once. Only do this if you've really watched them all.</p><div class="dacts" style="margin:0"><button class="btn go2" data-all="yes">Yes, mark all as seen</button><button class="btn" data-all="no">Cancel</button></div></div>`;
+  else h+=`<div class="dacts">${all?'':'<button class="btn" data-all="ask">Mark all as seen</button>'}${n?'<button class="btn" data-clear="1">Clear all</button>':''}${undo?'<button class="hide" data-undo="1">Undo last change</button>':''}</div><p class="muted" style="margin:12px 0 0">"All before" follows the map's current order (${S.order==='story'?'story':'release'} order).</p>`;
+  document.getElementById('dlgBody').innerHTML=h;
+}
+
+function render(){
+  document.getElementById('oRel').setAttribute('aria-pressed',S.order==='release');
+  document.getElementById('oSto').setAttribute('aria-pressed',S.order==='story');
+  document.getElementById('minSel').value=String(S.min);
+  document.getElementById('tPc').checked=S.pc!==false;
+  document.getElementById('tCam').checked=S.cam!==false;
+  document.getElementById('exNote').textContent=S.ex?'Example progress: Iron Man and The Incredible Hulk are marked as seen. Press Reset to start from nothing.':'';
+  draw();panel();tracer();seenList();save();
+}
+
+fig.addEventListener('click',ev=>{const g=ev.target.closest('.node');if(g){S.sel=g.dataset.id;render()}});
+fig.addEventListener('keydown',ev=>{const g=ev.target.closest('.node');if(g&&(ev.key==='Enter'||ev.key===' ')){ev.preventDefault();S.sel=g.dataset.id;render();const n=svg.querySelector(`.node[data-id="${S.sel}"]`);if(n)n.focus()}});
+document.addEventListener('click',ev=>{
+  const b=ev.target.closest('button');if(!b||fig.contains(b))return;
+  const d=b.dataset;
+  if(d.r){S.rev[d.r]=1}
+  else if(d.h){delete S.rev[d.h]}
+  else if(d.rc){S.crev[d.rc]=1}
+  else if(d.hc){delete S.crev[d.hc];delete S.ctw[d.hc]}
+  else if(d.rtw){S.ctw[d.rtw]=1}
+  else if(d.htw){delete S.ctw[d.htw]}
+  else if(d.go){S.sel=d.go;window.scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth'})}
+  else if(d.ch){S.ch=S.ch===d.ch?null:d.ch}
+  else if(d.o){S.order=d.o}
+  else if(b.id==='listBtn'){warn=false;undo=null;seenList();const g=document.getElementById('dlg');try{g.showModal()}catch(e){g.setAttribute('open','')}return}
+  else if(b.id==='closeList'){warn=false;document.getElementById('dlg').close();return}
+  else if(d.all==='ask'){warn=true;seenList();const y=document.querySelector('[data-all="yes"]');if(y)y.focus();return}
+  else if(d.all==='no'){warn=false;seenList();return}
+  else if(d.all==='yes'){warn=false;undo=null;E.forEach(e=>{S.seen[e.id]=1});S.ex=0}
+  else if(d.clear){undo={...S.seen};S.seen={};S.ex=0}
+  else if(d.undo){S.seen=undo||{};undo=null}
+  else if(d.before){const ord=order(),i=ord.findIndex(e=>e.id===d.before);undo={...S.seen};ord.slice(0,i).forEach(e=>{S.seen[e.id]=1});S.ex=0}
+  else if(b.id==='seenBtn'){if(S.seen[S.sel])delete S.seen[S.sel];else S.seen[S.sel]=1;S.ex=0}
+  else if(b.id==='reset'){
+    if(b.dataset.arm){S={...DEF(),seen:{},sel:null,ch:null,ex:0};b.textContent='Reset';delete b.dataset.arm}
+    else{b.dataset.arm=1;b.textContent='Click again to clear';setTimeout(()=>{b.textContent='Reset';delete b.dataset.arm},4000);return}
+  }else return;
+  render();
+});
+document.addEventListener('change',ev=>{
+  const id=ev.target.dataset&&ev.target.dataset.seen;if(!id)return;
+  if(ev.target.checked)S.seen[id]=1;else delete S.seen[id];
+  S.ex=0;undo=null;render();
+  const c=document.getElementById('chk-'+id);if(c)c.focus();
+});
+document.getElementById('tPc').addEventListener('change',ev=>{S.pc=ev.target.checked;render()});
+document.getElementById('tCam').addEventListener('change',ev=>{S.cam=ev.target.checked;render()});
+document.getElementById('minSel').addEventListener('change',ev=>{S.min=+ev.target.value;render()});
+fig.style.minWidth=Math.max(720,E.length*112+24)+'px';
+fig.style.height=(56+LANES.length*84)+'px';
+const ro=new ResizeObserver(draw);ro.observe(fig);
+render();
+}
+</script>
+</body>
+</html>
