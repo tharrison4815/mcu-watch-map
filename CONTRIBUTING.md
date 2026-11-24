@@ -111,6 +111,12 @@ its full entry.
 - Titles outside the MCU's numbered phases (for now, that includes the Netflix shows and
   X-Men '97).
 
+## Licences and wording
+
+By contributing, you agree that code changes are released under the [MIT licence](LICENSE) and
+data changes under [CC0](data/LICENSE). So please write synopses and notes **in your own words**:
+use Wikipedia and other sources to check facts, but don't copy their text.
+
 ## Code changes
 
 The page itself is [`src/index.html`](src/index.html): plain HTML, CSS and JavaScript, no

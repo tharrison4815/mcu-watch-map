@@ -1,6 +1,7 @@
 {
   "name": "mcu-watch-map",
   "private": true,
+  "license": "MIT",
   "type": "module",
   "description": "Builds the MCU Watch Map page from the TOML data in data/",
   "scripts": {

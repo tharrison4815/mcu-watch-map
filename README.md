@@ -42,4 +42,13 @@ npm run build   # write the site to dist/
 Requires Node.js 24 or later. The site is hosted on Cloudflare Pages and deploys on every push to
 `main`.
 
-Fonts: Anton and Barlow, under the SIL Open Font License (see `src/fonts/`).
+## Licences
+
+- Code: [MIT](LICENSE).
+- Data in `data/`: [CC0 1.0](data/LICENSE), so anyone can reuse it freely. Release dates, running
+  times, casts and similar facts are public information; the synopses, link notes and spoiler
+  choices were written for this project in its own words.
+- Fonts: Anton and Barlow, under the SIL Open Font License (see `src/fonts/`).
+
+Marvel, the MCU and all titles and character names belong to their owners. This project is not
+affiliated with or endorsed by Marvel Studios or Disney.
