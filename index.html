@@ -126,13 +126,14 @@ footer{font-size:14px;color:var(--mute);border-top:1px solid var(--line)}
 </head>
 <body>
 <header class="band">
-  <h1>MCU Watch Map<small>Phases 1 to 4: 30 films, 8 series and 2 specials, 2008 to 2022</small></h1>
+  <h1>MCU Watch Map<small>Phases 1 to 5: 36 films, 17 series and 2 specials, 2008 to 2025</small></h1>
   <div class="ctl">
     <div class="seg" role="group" aria-label="Phases shown on the map">
       <button data-ph="1">Phase 1</button>
       <button data-ph="2">Phase 2</button>
       <button data-ph="3">Phase 3</button>
       <button data-ph="4">Phase 4</button>
+      <button data-ph="5">Phase 5</button>
     </div>
     <div class="seg" role="group" aria-label="Column order">
       <button id="oRel" data-o="release">Release order</button>
@@ -223,11 +224,26 @@ const E=[
  {id:'sh',p:4,ty:'show',ep:9,t:'She-Hulk: Attorney at Law',n:['She-Hulk:','Attorney at Law'],d:'2022-08-18',lane:1,so:228,sy:'2025',syn:'Lawyer Jennifer Walters gets her cousin Bruce Banner\'s Hulk powers in an accident, and has to balance a new job in superhuman law with being a 6-foot-7 green superhero.'},
  {id:'wbn',p:4,ty:'special',t:'Werewolf by Night',n:['Werewolf','by Night'],d:'2022-10-07',rt:53,lane:20,so:230,sy:'Unclear',syn:'A secret group of monster hunters gathers at Bloodstone Temple after the death of their leader, to compete in a deadly hunt for a powerful relic.'},
  {id:'wf',p:4,t:'Black Panther: Wakanda Forever',n:['Black Panther:','Wakanda Forever'],d:'2022-11-11',rt:161,lane:9,so:232,sy:'2025',syn:'Wakanda mourns its king, and Queen Ramonda, Shuri and the Dora Milaje fight to protect the nation as other powers move against it and a hidden underwater kingdom led by Namor emerges.'},
- {id:'hs',p:4,ty:'special',t:'The Guardians of the Galaxy Holiday Special',n:['Guardians','Holiday Special'],d:'2022-11-25',rt:44,lane:5,so:234,sy:'2025',syn:'Mantis and Drax set out to give a down-hearted Peter Quill the perfect Christmas by kidnapping his childhood hero, Kevin Bacon.'}
+ {id:'hs',p:4,ty:'special',t:'The Guardians of the Galaxy Holiday Special',n:['Guardians','Holiday Special'],d:'2022-11-25',rt:44,lane:5,so:234,sy:'2025',syn:'Mantis and Drax set out to give a down-hearted Peter Quill the perfect Christmas by kidnapping his childhood hero, Kevin Bacon.'},
+ {id:'qm',p:5,t:'Ant-Man and the Wasp: Quantumania',n:['Ant-Man:','Quantumania'],d:'2023-02-17',rt:125,lane:6,so:236,sy:'2025',syn:'Scott Lang, Hope van Dyne and their family are pulled into the Quantum Realm, where they discover a hidden world and a powerful exile Janet never told them about.'},
+ {id:'gotg3',p:5,t:'Guardians of the Galaxy Vol. 3',n:['Guardians of the','Galaxy Vol. 3'],d:'2023-05-05',rt:150,lane:5,so:238,sy:'2026',syn:'Peter Quill rallies the Guardians on a dangerous mission to protect one of their own, which leads them deep into Rocket\'s mysterious past.'},
+ {id:'si',p:5,ty:'show',ep:6,t:'Secret Invasion',n:['Secret Invasion'],d:'2023-06-21',lane:23,so:240,sy:'2026',syn:'Nick Fury races to stop a rebel faction of shape-shifting Skrulls who have been quietly taking the places of people in power on Earth.'},
+ {id:'loki2',p:5,ty:'show',ep:6,t:'Loki (Season 2)',n:['Loki','Season 2'],d:'2023-10-05',lane:13,so:203,sy:'Outside time',syn:'Loki finds himself slipping uncontrollably between past, present and future, and has to work with Mobius and Sylvie to save the TVA and the timeline.'},
+ {id:'marvels',p:5,t:'The Marvels',n:['The Marvels'],d:'2023-11-10',rt:105,lane:10,so:242,sy:'2026',syn:'Carol Danvers, Kamala Khan and Monica Rambeau find their powers tangled, so that they swap places whenever they use them, and have to work together against a Kree revolutionary.'},
+ {id:'wi2',p:5,ty:'show',ep:9,t:'What If...? (Season 2)',n:['What If...?','Season 2'],d:'2023-12-22',lane:14,so:205,sy:'Multiverse',syn:'More animated stories from across the multiverse, each one asking what would happen if a single moment had gone differently.'},
+ {id:'echo',p:5,ty:'show',ep:5,t:'Echo',n:['Echo'],d:'2024-01-09',lane:24,so:233,sy:'2025',syn:'Maya Lopez returns to her hometown in Oklahoma, where she has to face her family and her heritage while a powerful enemy is on her trail.'},
+ {id:'dw',p:5,t:'Deadpool & Wolverine',n:['Deadpool &','Wolverine'],d:'2024-07-26',rt:128,lane:21,so:246,sy:'2024',syn:'A listless Deadpool is pulled into a mission by the Time Variance Authority, and has to team up with a reluctant and very different Wolverine to save his world.'},
+ {id:'aaa',p:5,ty:'show',ep:9,t:'Agatha All Along',n:['Agatha','All Along'],d:'2024-09-18',lane:25,so:244,sy:'2026',syn:'Agatha Harkness gathers a coven of misfit witches to walk the legendary Witches\' Road, a series of deadly trials, with a mysterious teenager in tow.'},
+ {id:'wi3',p:5,ty:'show',ep:8,t:'What If...? (Season 3)',n:['What If...?','Season 3'],d:'2024-12-22',lane:14,so:207,sy:'Multiverse',syn:'The final season of the animated anthology, with more alternate takes on familiar heroes.'},
+ {id:'yfnsm',p:5,ty:'show',ep:10,t:'Your Friendly Neighborhood Spider-Man (Season 1)',n:['Your Friendly','Neighborhood','Spider-Man S1'],d:'2025-01-29',lane:8,so:256,sy:'Another universe',syn:'An animated story set in another universe: Peter Parker\'s first year as Spider-Man, with Norman Osborn as his mentor.'},
+ {id:'bnw',p:5,t:'Captain America: Brave New World',n:['Captain America:','Brave New World'],d:'2025-02-14',rt:118,lane:3,so:250,sy:'2027',syn:'Sam Wilson is caught up in an international incident after meeting the newly elected US President, Thaddeus Ross, and has to uncover the plot behind it.'},
+ {id:'dd1',p:5,ty:'show',ep:9,t:'Daredevil: Born Again (Season 1)',n:['Daredevil:','Born Again','Season 1'],d:'2025-03-04',lane:26,so:248,sy:'2026',syn:'Matt Murdock, a blind lawyer who fights crime as Daredevil, crosses paths again with Wilson Fisk, who is running to become mayor of New York.'},
+ {id:'tb',p:5,t:'Thunderbolts*',n:['Thunderbolts*'],d:'2025-05-02',rt:127,lane:22,so:252,sy:'2027',syn:'Yelena Belova and a group of disillusioned antiheroes are caught in a deadly trap set by Valentina Allegra de Fontaine, and are forced to work together to get out of it.'},
+ {id:'ih',p:5,ty:'show',ep:6,t:'Ironheart',n:['Ironheart'],d:'2025-06-24',lane:27,so:249,sy:'2026',syn:'Young genius inventor Riri Williams returns home to Chicago with her own suit of armour, and gets mixed up with a mysterious criminal known as the Hood.'}
 ];
 E.forEach(e=>{e.p=e.p||1;e.ty=e.ty||'film'});
 const KIND={film:'Film',show:'Series',special:'Special'};
-const LANES=[['Iron Man','#d7262b'],['Hulk','#2f9e44'],['Thor','#3b8fd9'],['Captain America','#2b4fb8'],['Avengers','#8a8a8a'],['Guardians','#e0861a'],['Ant-Man','#9b4dca'],['Doctor Strange','#0f9d8a'],['Spider-Man','#e0457b'],['Black Panther','#8a6a3c'],['Captain Marvel','#c99a00'],['Black Widow','#6b7d8f'],['WandaVision','#a8327a'],['Loki','#6f9a1f'],['What If...?','#00a3c4'],['Shang-Chi','#e0582a'],['Eternals','#b5892e'],['Hawkeye','#7b3fa0'],['Moon Knight','#7c7c99'],['Ms. Marvel','#2b8fb8'],['Werewolf by Night','#4f6b3a']];
+const LANES=[['Iron Man','#d7262b'],['Hulk','#2f9e44'],['Thor','#3b8fd9'],['Captain America','#2b4fb8'],['Avengers','#8a8a8a'],['Guardians','#e0861a'],['Ant-Man','#9b4dca'],['Doctor Strange','#0f9d8a'],['Spider-Man','#e0457b'],['Black Panther','#8a6a3c'],['Captain Marvel','#c99a00'],['Black Widow','#6b7d8f'],['WandaVision','#a8327a'],['Loki','#6f9a1f'],['What If...?','#00a3c4'],['Shang-Chi','#e0582a'],['Eternals','#b5892e'],['Hawkeye','#7b3fa0'],['Moon Knight','#7c7c99'],['Ms. Marvel','#2b8fb8'],['Werewolf by Night','#4f6b3a'],['Deadpool','#b8243a'],['Thunderbolts*','#3f6e8c'],['Secret Invasion','#4c8c4a'],['Echo','#9a6fb0'],['Agatha','#6a3d9a'],['Daredevil','#8b1a1a'],['Ironheart','#d4553b']];
 const L=[
  {f:'im',t:'im2',s:3,n:'Direct sequel, picking up right after Tony tells the world he is Iron Man.'},
  {f:'im',t:'av',s:3,n:'Introduces Tony Stark, Pepper Potts and Agent Coulson. The post-credits scene is where Nick Fury first mentions the Avengers Initiative.'},
@@ -319,7 +335,34 @@ const L=[
  {f:'shang',t:'sh',s:1,n:'Picks up Emil Blonsky\'s story after his brief appearance in Shang-Chi.'},
  {f:'bp',t:'wf',s:3,n:'Sequel to Black Panther.'},
  {f:'gotg2',t:'hs',s:2,n:'The Guardians at Christmas, with Mantis, Drax and Kraglin.'},
- {f:'lt',t:'hs',s:1,n:'Set after the Guardians part ways with Thor in Love and Thunder.'}
+ {f:'lt',t:'hs',s:1,n:'Set after the Guardians part ways with Thor in Love and Thunder.'},
+ {f:'amw',t:'qm',s:3,n:'Direct sequel: Janet and the Quantum Realm are at the centre of it.'},
+ {f:'eg',t:'qm',s:2,n:'Shows Scott\'s life after Endgame.'},
+ {f:'loki1',t:'qm',s:2,n:'Builds on where Loki season 1 left the multiverse.'},
+ {f:'gotg2',t:'gotg3',s:3,n:'The final chapter of the Guardians trilogy.'},
+ {f:'eg',t:'gotg3',s:3,n:'Picks up where Endgame left the Guardians.'},
+ {f:'hs',t:'gotg3',s:1,n:'Set just before Vol. 3, with Knowhere as the Guardians\' new base.'},
+ {f:'cm',t:'si',s:2,n:'Nick Fury and Talos first meet in Captain Marvel.'},
+ {f:'ffh',t:'si',s:1,n:'Picks up threads from Far From Home.'},
+ {f:'loki1',t:'loki2',s:3,n:'Direct continuation of season 1.'},
+ {f:'qm',t:'loki2',s:1,k:'pc',n:'Quantumania\'s post-credits scene leads into season 2.'},
+ {f:'cm',t:'marvels',s:3,n:'Sequel to Captain Marvel.'},
+ {f:'msm',t:'marvels',s:3,n:'Kamala\'s story carries straight on from the end of Ms. Marvel.'},
+ {f:'wv',t:'marvels',s:2,n:'Monica Rambeau\'s story continues from WandaVision.'},
+ {f:'wi1',t:'wi2',s:2,n:'Continues the anthology from season 1.'},
+ {f:'wi2',t:'wi3',s:2,n:'Continues the anthology and wraps it up.'},
+ {f:'hk',t:'echo',s:3,n:'Maya Lopez is introduced in Hawkeye, and Echo picks up right after it.'},
+ {f:'loki1',t:'dw',s:1,n:'The Time Variance Authority plays a part.'},
+ {f:'wv',t:'aaa',s:3,n:'A spin-off of WandaVision.'},
+ {f:'fatws',t:'bnw',s:3,n:'Sam\'s story continues from The Falcon and the Winter Soldier.'},
+ {f:'hulk',t:'bnw',s:2,n:'Thaddeus Ross, Betty Ross and Samuel Sterns all come from The Incredible Hulk.'},
+ {f:'eter',t:'bnw',s:2,n:'A loose end from Eternals plays a big part.'},
+ {f:'sh',t:'dd1',s:1,n:'Matt Murdock\'s earlier appearance in the MCU.'},
+ {f:'echo',t:'dd1',s:2,n:'Wilson Fisk\'s story continues from Echo.'},
+ {f:'bw',t:'tb',s:3,n:'Yelena, Alexei, Melina and Valentina carry on from Black Widow.'},
+ {f:'fatws',t:'tb',s:2,n:'Bucky Barnes and John Walker come from The Falcon and the Winter Soldier.'},
+ {f:'amw',t:'tb',s:1,n:'Ghost returns from Ant-Man and the Wasp.'},
+ {f:'wf',t:'ih',s:3,n:'Riri Williams is introduced in Wakanda Forever.'}
 ];
 const C={
  im:[['Tony Stark','Lead','Iron Man'],['Pepper Potts','Main'],['James Rhodes','Main'],['Obadiah Stane','Main','Iron Monger'],['Phil Coulson','Supporting'],['Happy Hogan','Supporting'],['J.A.R.V.I.S.','Supporting'],['Ho Yinsen','Supporting'],['Nick Fury','Post-credits']],
@@ -361,7 +404,22 @@ const C={
  sh:[['Jennifer Walters','Lead','She-Hulk'],['Bruce Banner','Main','Hulk'],['Emil Blonsky','Main','Abomination'],['Nikki Ramos','Supporting'],['Pug Pugliese','Supporting'],['Mallory Book','Supporting'],['Todd Phelps','Supporting'],['Titania','Supporting'],['Wong','Supporting'],['Matt Murdock','Supporting','Daredevil'],['Skaar','Cameo',undefined,1]],
  wbn:[['Jack Russell','Lead'],['Elsa Bloodstone','Lead'],['Verussa Bloodstone','Main'],['Ted','Supporting','Man-Thing']],
  wf:[['Shuri','Lead'],['Ramonda','Main'],['Okoye','Main'],['Nakia','Main'],['M\'Baku','Main'],['Namor','Main'],['Riri Williams','Main'],['Everett Ross','Supporting'],['Valentina Allegra de Fontaine','Supporting'],['Aneka','Supporting'],['Toussaint','Post-credits',undefined,1]],
- hs:[['Mantis','Lead'],['Drax','Lead'],['Peter Quill','Main','Star-Lord'],['Kevin Bacon','Main'],['Nebula','Supporting'],['Rocket','Supporting'],['Groot','Supporting'],['Kraglin','Supporting'],['Cosmo','Supporting']]
+ hs:[['Mantis','Lead'],['Drax','Lead'],['Peter Quill','Main','Star-Lord'],['Kevin Bacon','Main'],['Nebula','Supporting'],['Rocket','Supporting'],['Groot','Supporting'],['Kraglin','Supporting'],['Cosmo','Supporting']],
+ qm:[['Scott Lang','Lead','Ant-Man'],['Hope van Dyne','Lead','Wasp'],['Janet van Dyne','Main'],['Hank Pym','Main'],['Cassie Lang','Main'],['Kang the Conqueror','Main'],['Jentorra','Supporting'],['Krylar','Supporting'],['Veb','Supporting'],['Darren Cross','Main','M.O.D.O.K.',1],['Victor Timely','Post-credits'],['Loki','Post-credits',undefined,1],['Mobius M. Mobius','Post-credits',undefined,1]],
+ gotg3:[['Peter Quill','Lead','Star-Lord'],['Rocket','Lead'],['Gamora','Main'],['Nebula','Main'],['Drax','Main'],['Mantis','Main'],['Groot','Main'],['High Evolutionary','Main'],['Adam Warlock','Main'],['Kraglin','Supporting'],['Cosmo','Supporting'],['Ayesha','Supporting'],['Lylla','Supporting'],['Stakar Ogord','Cameo'],['Jason Quill','Post-credits']],
+ si:[['Nick Fury','Lead'],['Talos','Main'],['Gravik','Main'],['G\'iah','Main'],['Sonya Falsworth','Main'],['Maria Hill','Supporting'],['Everett Ross','Supporting'],['James Rhodes','Supporting'],['Priscilla Davis','Supporting'],['Varra','Supporting']],
+ loki2:[['Loki','Lead'],['Mobius M. Mobius','Main'],['Sylvie','Main'],['Ouroboros','Main'],['Victor Timely','Main'],['Hunter B-15','Supporting'],['Ravonna Renslayer','Supporting'],['Miss Minutes','Supporting'],['Casey','Supporting'],['He Who Remains','Supporting',undefined,1]],
+ marvels:[['Carol Danvers','Lead','Captain Marvel'],['Kamala Khan','Lead','Ms. Marvel'],['Monica Rambeau','Lead'],['Dar-Benn','Main'],['Nick Fury','Supporting'],['Prince Yan','Supporting'],['Muneeba Khan','Supporting'],['Yusuf Khan','Supporting'],['Aamir Khan','Supporting'],['Goose','Supporting'],['Kate Bishop','Post-credits'],['Hank McCoy','Post-credits','Beast',1],['Maria Rambeau, another universe','Post-credits','Binary',1]],
+ wi2:[['The Watcher','Lead'],['Kahhori, What If...?','Main'],['Peggy Carter, What If...?','Main','Captain Carter'],['Nebula, What If...?','Supporting'],['Stephen Strange, What If...?','Supporting']],
+ echo:[['Maya Lopez','Lead','Echo'],['Wilson Fisk','Main','Kingpin'],['Chula','Main'],['Henry Lopez','Main'],['Bonnie','Supporting'],['William Lopez','Supporting'],['Skully','Supporting'],['Matt Murdock','Cameo','Daredevil']],
+ dw:[['Wade Wilson','Lead','Deadpool'],['Logan','Lead','Wolverine'],['Cassandra Nova','Main'],['Mr. Paradox','Main'],['Hunter B-15','Supporting'],['Vanessa','Supporting'],['Blind Al','Supporting'],['Happy Hogan','Cameo'],['Laura','Cameo','X-23',1],['Elektra Natchios','Cameo',undefined,1],['Eric Brooks','Cameo','Blade',1],['Remy LeBeau','Cameo','Gambit',1],['Johnny Storm, the Void','Cameo','Human Torch',1]],
+ aaa:[['Agatha Harkness','Lead'],['Billy Maximoff','Main',undefined,1],['Rio Vidal','Main'],['Lilia Calderu','Main'],['Jennifer Kale','Main'],['Alice Wu-Gulliver','Main'],['Ralph Bohner','Supporting']],
+ wi3:[['The Watcher','Lead'],['Peggy Carter, What If...?','Main','Captain Carter'],['Kahhori, What If...?','Main'],['Stephen Strange, What If...?','Supporting']],
+ yfnsm:[['Peter Parker, Friendly Neighborhood','Lead','Spider-Man'],['Norman Osborn, Friendly Neighborhood','Main'],['Harry Osborn','Main'],['Nico Minoru','Main'],['Lonnie Lincoln','Main'],['Pearl Pangan','Supporting'],['May Parker, Friendly Neighborhood','Supporting'],['Otto Octavius, Friendly Neighborhood','Supporting']],
+ bnw:[['Sam Wilson','Lead','Captain America'],['Thaddeus Ross','Main','Red Hulk'],['Joaquin Torres','Main','Falcon'],['Isaiah Bradley','Main'],['Samuel Sterns','Main','The Leader'],['Ruth Bat-Seraph','Main'],['Betty Ross','Supporting'],['Seth Voelker','Supporting','Sidewinder']],
+ dd1:[['Matt Murdock','Lead','Daredevil'],['Wilson Fisk','Lead','Kingpin'],['Vanessa Fisk','Main'],['Heather Glenn','Main'],['Karen Page','Supporting'],['Foggy Nelson','Supporting'],['Frank Castle','Supporting','Punisher'],['Benjamin Poindexter','Supporting','Bullseye'],['Hector Ayala','Supporting','White Tiger'],['Muse','Supporting'],['Daniel Blake','Supporting']],
+ tb:[['Yelena Belova','Lead'],['Bucky Barnes','Main'],['Alexei Shostakov','Main','Red Guardian'],['John Walker','Main'],['Ava Starr','Main','Ghost'],['Bob Reynolds','Main','Sentry'],['Valentina Allegra de Fontaine','Main'],['Antonia Dreykov','Supporting'],['Melina Vostokoff','Supporting'],['Mel','Supporting']],
+ ih:[['Riri Williams','Lead','Ironheart'],['Parker Robbins','Main','The Hood'],['Natalie Washington','Main'],['Xavier','Supporting'],['Joe McGillicuddy','Supporting'],['Zelma Stanton','Supporting'],['Mephisto','Supporting',undefined,1]]
 };
 const STR={3:'Essential',2:'Helpful',1:'Minor'};
 const byId=Object.fromEntries(E.map(e=>[e.id,e]));

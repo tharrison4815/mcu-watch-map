@@ -5,8 +5,10 @@ with inline CSS and JS and no build step. It is published as a private claude.ai
 progress is saved in the browser's localStorage under the key `mcu-watch-map-v1`. The README
 covers user-facing behaviour; this file records the rules and decisions behind it.
 
-Status (24 Nov 2026): Phases 1 to 4 done: 30 films, the 8 Phase 4 Disney+ series and the 2 specials
-(Werewolf by Night, the Holiday Special). The I Am Groot shorts were left out on purpose.
+Status (24 Nov 2026): Phases 1 to 5 done (Iron Man to Ironheart): 36 films, 17 series and 2 specials.
+Left out on purpose: the I Am Groot shorts (both seasons), and X-Men '97, which Marvel releases
+alongside the phases but not as part of them. The Phase 5 list follows Wikipedia's Phase Five
+article; Eyes of Wakanda and Marvel Zombies are not in it.
 
 ## Workflow
 
@@ -68,6 +70,12 @@ Status (24 Nov 2026): Phases 1 to 4 done: 30 films, the 8 Phase 4 Disney+ series
   John Walker ("Captain America" would give away Endgame), Xu Wenwu ("The Mandarin" touches the
   Iron Man 3 twist), Shuri in Wakanda Forever, Layla in Moon Knight. What If...? casts are
   alternate versions with their own ids (see Data), and only uncontroversial hero names are given.
+- Phase 5 choices: Sam is "Captain America" in Brave New World (the title's own premise, so
+  unavoidable). Agatha All Along has its own row, not WandaVision's, because Agatha is a WandaVision
+  twist. Teen in Agatha All Along is listed as Billy Maximoff, twist-flagged. Kang, Victor Timely
+  and He Who Remains are separate ids (different variants). No Hawkeye to Thunderbolts* link (Yelena).
+  Your Friendly Neighborhood Spider-Man is set in another universe, so its versions of existing
+  characters get their own ids.
 - No Black Widow to Hawkeye link, for the same reason as the one below (Yelena in Hawkeye is a
   twist).
 - No Captain Marvel to Far From Home link: any note on it would hint at Far From Home's
