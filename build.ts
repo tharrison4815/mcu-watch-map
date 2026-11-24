@@ -210,15 +210,62 @@ for (const [name, value] of Object.entries({ E, LANES, L, C })) {
   if (html.split(marker).length !== 2) { console.error(`src/index.html must contain ${marker} exactly once`); process.exit(1); }
   html = html.replace(marker, () => js(value));
 }
+// ---------- SEO extras ----------
+
+const SITE = 'https://mcu-watch-map-4ui.pages.dev/';
+const escHtml = (t: string) => t.replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]!));
+const KIND: Record<string, string> = { film: 'Film', show: 'Series', special: 'Special', shorts: 'Shorts' };
+const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+// A plain-HTML list of every title (titles and dates are always public), so search engines and
+// people without JavaScript see the whole line-up. Released titles open on the map when picked.
+let list = '';
+for (const p of [...new Set(E.map(e => e.p))].sort((a, b) => a - b)) {
+  list += `<h3>Phase ${p}</h3><ol>`;
+  for (const e of E.filter(x => x.p === p)) {
+    const kind = (e.an ? 'Animated ' + KIND[e.ty].toLowerCase() : KIND[e.ty]);
+    if (e.up) {
+      const [y, m] = e.d.split('-');
+      list += `<li>${escHtml(e.t)} <span>coming ${MONTHS[parseInt(m) - 1]} ${y}, ${kind.toLowerCase()}</span></li>`;
+    } else {
+      list += `<li><button class="go" data-go="${e.id}">${escHtml(e.t)}</button> <span>${e.d.slice(0, 4)}, ${kind.toLowerCase()}</span></li>`;
+    }
+  }
+  list += '</ol>';
+}
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  name: 'MCU Watch Map',
+  url: SITE,
+  description: 'An interactive, spoiler-free map of every Marvel Cinematic Universe film and series in release and story order, showing what to watch first and what is safe to watch next.',
+  applicationCategory: 'EntertainmentApplication',
+  operatingSystem: 'Any',
+  isAccessibleForFree: true,
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  inLanguage: 'en',
+  about: { '@type': 'CreativeWorkSeries', name: 'Marvel Cinematic Universe' },
+};
+for (const [marker, value] of [['<!--@LIST-->', list], ['%JSONLD%', js(jsonLd)]] as const) {
+  if (html.split(marker).length !== 2) { console.error(`src/index.html must contain ${marker} exactly once`); process.exit(1); }
+  html = html.replace(marker, () => value);
+}
+html = html.replaceAll('%SITE%', SITE);
+
 // Syntax-check every inline script, so a typo in the page can never be deployed.
 for (const [, code] of html.matchAll(/<script>([\s\S]*?)<\/script>/g)) {
   try { new Script(code); } catch (e) { console.error(`Script error in src/index.html: ${(e as Error).message}`); process.exit(1); }
 }
 console.log('Page scripts OK.');
 if (process.argv.includes('--check')) process.exit(0);
+
 rmSync('dist', { recursive: true, force: true });
 mkdirSync('dist');
 writeFileSync('dist/index.html', html);
 cpSync('src/fonts', 'dist/fonts', { recursive: true });
 cpSync('src/_headers', 'dist/_headers');
-console.log(`Built dist/index.html (${(html.length / 1024).toFixed(0)} KB) with fonts and _headers.`);
+cpSync('src/og.png', 'dist/og.png');
+writeFileSync('dist/robots.txt', `User-agent: *\nAllow: /\n\nSitemap: ${SITE}sitemap.xml\n`);
+const today = new Date().toISOString().slice(0, 10);
+writeFileSync('dist/sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url><loc>${SITE}</loc><lastmod>${today}</lastmod></url>\n</urlset>\n`);
+console.log(`Built dist/index.html (${(html.length / 1024).toFixed(0)} KB) with fonts, _headers, og.png, robots.txt and sitemap.xml.`);

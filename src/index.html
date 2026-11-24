@@ -3,8 +3,20 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>MCU Watch Map</title>
-<meta name="description" content="An unofficial, spoiler-safe map of the MCU: see what to watch first, what follows, and what is safe to watch next.">
+<title>MCU Watch Order &amp; Spoiler-Free Marvel Viewing Guide – MCU Watch Map</title>
+<meta name="description" content="Which Marvel films and series do you need to watch first? An interactive, spoiler-free map of every MCU title in release and story order, showing what's safe to watch next.">
+<link rel="canonical" href="%SITE%">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MCU Watch Map">
+<meta property="og:title" content="MCU Watch Map: a spoiler-free guide to what to watch next">
+<meta property="og:description" content="Which Marvel films and series do you need to watch first? An interactive, spoiler-free map of every MCU title in release and story order, showing what's safe to watch next.">
+<meta property="og:url" content="%SITE%">
+<meta property="og:image" content="%SITE%og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="MCU Watch Map: titles joined by lines on a dark map">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">%JSONLD%</script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%277%27 fill=%27%23d7262b%27/%3E%3Cpath d=%27M7 23 C12 23 12 9 17 9 S22 23 25 23%27 fill=%27none%27 stroke=%27%23fff%27 stroke-width=%273%27 stroke-linecap=%27round%27/%3E%3Ccircle cx=%277%27 cy=%2723%27 r=%273%27 fill=%27%23fff%27/%3E%3Ccircle cx=%2725%27 cy=%2723%27 r=%273%27 fill=%27%23fff%27/%3E%3C/svg%3E">
 <link rel="preload" href="fonts/anton-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/barlow-400.woff2" as="font" type="font/woff2" crossorigin>
@@ -129,6 +141,12 @@ dialog::backdrop{background:rgba(10,10,14,.55)}
 input[type=search]{font:16px Barlow,system-ui,sans-serif;min-height:44px;padding:0 12px;border:2px solid var(--ink);border-radius:8px;background:var(--bg);color:var(--ink);width:min(340px,100%)}
 .find .chips{margin:0;flex-basis:100%}
 .chips .lane{display:inline-block;margin-right:6px}
+.all summary{cursor:pointer;list-style:none}.all summary::-webkit-details-marker{display:none}
+.all summary h2{display:inline}.all summary::after{content:"Show";margin-left:12px;font:600 16px "Barlow Condensed",sans-serif;text-decoration:underline;text-underline-offset:3px;vertical-align:middle}
+.all details[open] summary::after{content:"Hide"}
+.all h3{font:700 20px "Barlow Condensed",sans-serif;margin:18px 0 4px}
+.all ol{columns:3 240px;column-gap:28px;margin:0;padding-left:28px}
+.all li{padding:2px 0;break-inside:avoid}.all li .go{font-size:17px;text-align:left}.all li span{color:var(--mute);font-size:15px}
 .chips.clip{-webkit-mask-image:linear-gradient(to bottom,#000 calc(100% - 100px),transparent 96%);mask-image:linear-gradient(to bottom,#000 calc(100% - 100px),transparent 96%)}
 .chmore{display:flex;justify-content:center;margin:0 0 16px}
 .chmore.over{position:relative;margin-top:-44px}
@@ -213,6 +231,12 @@ footer a{color:inherit;text-underline-offset:3px}
   </aside>
   </div>
 </main>
+<section class="band all" aria-labelledby="allH">
+<details><summary><h2 id="allH">Every MCU title in release order</h2></summary>
+<p class="muted">The full list, phase by phase. Titles and dates only, so nothing here is a spoiler. Pick one to open it on the map.</p>
+<!--@LIST-->
+</details>
+</section>
 <footer class="band">Unofficial fan project, not affiliated with Marvel Studios or Disney. Links between titles only appear once you have seen them or chosen to reveal them. Your marks are saved in this browser only.<br>Spotted a mistake or a spoiler? <a href="https://github.com/tharrison4815/mcu-watch-map/issues/new/choose">Report it on GitHub</a>, or <a href="https://github.com/tharrison4815/mcu-watch-map/blob/main/CONTRIBUTING.md">suggest a fix to the data</a>.</footer>
 <script>
 {

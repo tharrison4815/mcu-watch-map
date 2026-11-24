@@ -48,6 +48,13 @@ article; Eyes of Wakanda and Marvel Zombies are not in it.
   fall back to a system font). OFL licences sit beside them.
 - `src/_headers` (Cloudflare Pages / Netlify format) sets a CSP, security headers and a long cache
   for fonts.
+- SEO (24 Nov 2026): the page title and description target searches like "MCU watch order"; Open
+  Graph / Twitter tags and src/og.png (made by tools/og-image.py) give shared links a preview card;
+  JSON-LD marks it as a free WebApplication. The build adds a plain-HTML "Every MCU title in release
+  order" list (titles, years and types only, so spoiler-free) at the `<!--@LIST-->` marker, replaces
+  `%SITE%` with the site URL (const SITE in build.ts: change it if the domain changes), and writes
+  robots.txt and sitemap.xml. Still for the user: Google Search Console / Bing Webmaster
+  registration, and sharing the link somewhere relevant.
 
 ## Data
 
