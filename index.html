@@ -120,12 +120,13 @@ footer{font-size:14px;color:var(--mute);border-top:1px solid var(--line)}
 </head>
 <body>
 <header class="band">
-  <h1>MCU Watch Map<small>Phases 1 to 3: 23 films, 2008 to 2019</small></h1>
+  <h1>MCU Watch Map<small>Phases 1 to 4: 30 films, 8 series and 2 specials, 2008 to 2022</small></h1>
   <div class="ctl">
     <div class="seg" role="group" aria-label="Phases shown on the map">
       <button data-ph="1">Phase 1</button>
       <button data-ph="2">Phase 2</button>
       <button data-ph="3">Phase 3</button>
+      <button data-ph="4">Phase 4</button>
     </div>
     <div class="seg" role="group" aria-label="Column order">
       <button id="oRel" data-o="release">Release order</button>
@@ -138,6 +139,7 @@ footer{font-size:14px;color:var(--mute);border-top:1px solid var(--line)}
     </select>
     <label class="tog"><input type="checkbox" id="tPc"> Post-credits</label>
     <label class="tog"><input type="checkbox" id="tCam"> Cameos</label>
+    <button class="btn" id="rowsBtn">Rows</button>
     <button class="btn solid" id="listBtn">Seen list</button>
     <button class="btn" id="reset">Reset</button>
   </div>
@@ -151,6 +153,10 @@ footer{font-size:14px;color:var(--mute);border-top:1px solid var(--line)}
   <input type="search" id="tQ" placeholder="e.g. Ragnarok, Guardians 2, 2016" autocomplete="off">
   <div class="chips" id="tRes" aria-live="polite"></div>
 </div>
+<dialog id="rowDlg" aria-labelledby="rowT">
+  <div class="dhead"><h2 id="rowT">Map rows</h2><button class="btn" id="closeRows">Done</button></div>
+  <div id="rowBody" style="padding:12px 18px 18px"></div>
+</dialog>
 <p class="note" id="exNote"></p>
 <div class="mapwrap"><div class="fig" id="map"><svg id="svg" role="img" aria-label="Map of the titles in the phases you have chosen and the links you have unlocked"></svg></div></div>
 <div class="legend">
@@ -161,6 +167,7 @@ footer{font-size:14px;color:var(--mute);border-top:1px solid var(--line)}
   <span><svg viewBox="0 0 34 14"><rect x="2" y="1" width="30" height="12" rx="3" fill="#ffd23f" stroke="#141414" stroke-width="1.5"/></svg>Traced character appears</span>
   <span><svg viewBox="0 0 34 14"><line x1="2" y1="7" x2="32" y2="7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-dasharray="0.1 7"/></svg>Unseen titles in between</span>
   <span><svg viewBox="0 0 40 14"><rect x="1" y="1" width="38" height="12" rx="6" fill="none" stroke="currentColor"/></svg>Only a post-credits scene or cameo</span>
+  <span><svg viewBox="0 0 34 14"><rect x="6" y="0" width="22" height="14" rx="3" fill="currentColor"/><text x="17" y="11" text-anchor="middle" font-family="Barlow Condensed" font-weight="700" font-size="11" fill="var(--bg)" stroke="none">TV</text></svg>Series (one box per season) or special</span>
 </div>
 <main class="band cols">
   <section id="panel" aria-live="polite"></section>
@@ -195,10 +202,28 @@ const E=[
  {id:'amw',p:3,t:'Ant-Man and the Wasp',n:['Ant-Man and','the Wasp'],d:'2018-07-06',rt:118,lane:6,so:180,sy:'2018',syn:'Scott Lang is trying to keep a low profile when Hope van Dyne and Hank Pym pull him into a risky rescue mission, while a mysterious thief called Ghost hunts for their technology.'},
  {id:'cm',p:3,t:'Captain Marvel',n:['Captain Marvel'],d:'2019-03-08',rt:123,lane:10,so:15,sy:'1995',syn:'In 1995 Carol Danvers, a Kree warrior with no memory of her past, crash-lands on Earth in the middle of a war between the Kree and the shape-shifting Skrulls, and teams up with a young S.H.I.E.L.D. agent named Nick Fury to find out who she was.'},
  {id:'eg',p:3,t:'Avengers: Endgame',n:['Avengers:','Endgame'],d:'2019-04-26',rt:181,lane:4,so:200,sy:'2018',syn:'The direct continuation of Avengers: Infinity War, in which the Avengers and their allies face Thanos again in the final chapter of the Infinity Saga.'},
- {id:'ffh',p:3,t:'Spider-Man: Far From Home',n:['Spider-Man:','Far From Home'],d:'2019-07-02',rt:129,lane:8,so:210,sy:'2024',syn:'Peter Parker hopes a school trip to Europe will be a break from being Spider-Man, but Nick Fury tracks him down and pairs him with a new hero, Mysterio, to fight giant elemental creatures.'}
+ {id:'ffh',p:3,t:'Spider-Man: Far From Home',n:['Spider-Man:','Far From Home'],d:'2019-07-02',rt:129,lane:8,so:210,sy:'2024',syn:'Peter Parker hopes a school trip to Europe will be a break from being Spider-Man, but Nick Fury tracks him down and pairs him with a new hero, Mysterio, to fight giant elemental creatures.'},
+ {id:'wv',p:4,ty:'show',ep:9,t:'WandaVision',n:['WandaVision'],d:'2021-01-15',lane:12,so:206,sy:'2023',syn:'Wanda Maximoff and Vision settle into suburban life in the town of Westview, living out a different classic sitcom in each episode, until cracks start to show in their perfect world.'},
+ {id:'fatws',p:4,ty:'show',ep:6,t:'The Falcon and the Winter Soldier',n:['The Falcon and','the Winter Soldier'],d:'2021-03-19',lane:3,so:208,sy:'2024',syn:'Sam Wilson and Bucky Barnes reluctantly team up against the Flag Smashers, a group fighting for a world without borders, while each of them works out what comes next for him.'},
+ {id:'loki1',p:4,ty:'show',ep:6,t:'Loki (Season 1)',n:['Loki','Season 1'],d:'2021-06-09',lane:13,so:202,sy:'Outside time',syn:'A version of Loki is arrested by the Time Variance Authority, an organisation that polices the timeline, and is offered a deal: help them hunt down a dangerous fugitive.'},
+ {id:'bw',p:4,t:'Black Widow',n:['Black Widow'],d:'2021-07-09',rt:134,lane:11,so:135,sy:'2016',syn:'Natasha Romanoff is forced to confront her past when a conspiracy brings her back to the family she left behind and the Red Room programme that trained her.'},
+ {id:'wi1',p:4,ty:'show',ep:9,t:'What If...? (Season 1)',n:['What If...?','Season 1'],d:'2021-08-11',lane:14,so:204,sy:'Multiverse',syn:'An animated anthology. The Watcher observes alternate universes where a single moment went differently, such as Peggy Carter taking the super-soldier serum instead of Steve Rogers.'},
+ {id:'shang',p:4,t:'Shang-Chi and the Legend of the Ten Rings',n:['Shang-Chi and','the Ten Rings'],d:'2021-09-03',rt:132,lane:15,so:212,sy:'2024',syn:'Shang-Chi has spent years living quietly in San Francisco, but when his father, the leader of the secret Ten Rings organisation, comes after him, he has to face the past he ran from.'},
+ {id:'eter',p:4,t:'Eternals',n:['Eternals'],d:'2021-11-05',rt:156,lane:16,so:214,sy:'2024',syn:'The Eternals, immortal beings who have secretly lived on Earth for thousands of years, reunite to protect humanity from their ancient enemies, the Deviants.'},
+ {id:'hk',p:4,ty:'show',ep:6,t:'Hawkeye',n:['Hawkeye'],d:'2021-11-24',lane:17,so:218,sy:'2024',syn:'In New York at Christmas, Clint Barton just wants to get home to his family, until young archer Kate Bishop gets him tangled up with a dangerous criminal gang.'},
+ {id:'nwh',p:4,t:'Spider-Man: No Way Home',n:['Spider-Man:','No Way Home'],d:'2021-12-17',rt:148,lane:8,so:216,sy:'2024',syn:'Peter Parker asks Doctor Strange for help with a problem in his own life, and a spell gone wrong opens the door to visitors from other universes.'},
+ {id:'mk',p:4,ty:'show',ep:6,t:'Moon Knight',n:['Moon Knight'],d:'2022-03-30',lane:18,so:220,sy:'2025',syn:'Gift-shop worker Steven Grant suffers blackouts and memories of another life, and discovers he shares a body with mercenary Marc Spector, who serves the Egyptian moon god Khonshu.'},
+ {id:'mom',p:4,t:'Doctor Strange in the Multiverse of Madness',n:['Doctor Strange:','Multiverse','of Madness'],d:'2022-05-06',rt:126,lane:7,so:222,sy:'2024',syn:'Stephen Strange meets America Chavez, a teenager who can travel between universes, and is pulled across the multiverse protecting her from a powerful threat that wants her ability.'},
+ {id:'msm',p:4,ty:'show',ep:6,t:'Ms. Marvel',n:['Ms. Marvel'],d:'2022-06-08',lane:19,so:224,sy:'2025',syn:'Kamala Khan, a Pakistani-American teenager in Jersey City and an Avengers superfan, finds that a family heirloom gives her powers of her own.'},
+ {id:'lt',p:4,t:'Thor: Love and Thunder',n:['Thor: Love','and Thunder'],d:'2022-07-08',rt:119,lane:2,so:226,sy:'2025',syn:'Thor\'s search for inner peace is interrupted by Gorr the God Butcher, who is hunting down gods, and he teams up with Valkyrie, Korg and his ex-girlfriend Jane Foster, who now wields Mjolnir.'},
+ {id:'sh',p:4,ty:'show',ep:9,t:'She-Hulk: Attorney at Law',n:['She-Hulk:','Attorney at Law'],d:'2022-08-18',lane:1,so:228,sy:'2025',syn:'Lawyer Jennifer Walters gets her cousin Bruce Banner\'s Hulk powers in an accident, and has to balance a new job in superhuman law with being a 6-foot-7 green superhero.'},
+ {id:'wbn',p:4,ty:'special',t:'Werewolf by Night',n:['Werewolf','by Night'],d:'2022-10-07',rt:53,lane:20,so:230,sy:'Unclear',syn:'A secret group of monster hunters gathers at Bloodstone Temple after the death of their leader, to compete in a deadly hunt for a powerful relic.'},
+ {id:'wf',p:4,t:'Black Panther: Wakanda Forever',n:['Black Panther:','Wakanda Forever'],d:'2022-11-11',rt:161,lane:9,so:232,sy:'2025',syn:'Wakanda mourns its king, and Queen Ramonda, Shuri and the Dora Milaje fight to protect the nation as other powers move against it and a hidden underwater kingdom led by Namor emerges.'},
+ {id:'hs',p:4,ty:'special',t:'The Guardians of the Galaxy Holiday Special',n:['Guardians','Holiday Special'],d:'2022-11-25',rt:44,lane:5,so:234,sy:'2025',syn:'Mantis and Drax set out to give a down-hearted Peter Quill the perfect Christmas by kidnapping his childhood hero, Kevin Bacon.'}
 ];
-E.forEach(e=>{e.p=e.p||1});
-const LANES=[['Iron Man','#d7262b'],['Hulk','#2f9e44'],['Thor','#3b8fd9'],['Captain America','#2b4fb8'],['Avengers','#8a8a8a'],['Guardians','#e0861a'],['Ant-Man','#9b4dca'],['Doctor Strange','#0f9d8a'],['Spider-Man','#e0457b'],['Black Panther','#8a6a3c'],['Captain Marvel','#c99a00']];
+E.forEach(e=>{e.p=e.p||1;e.ty=e.ty||'film'});
+const KIND={film:'Film',show:'Series',special:'Special'};
+const LANES=[['Iron Man','#d7262b'],['Hulk','#2f9e44'],['Thor','#3b8fd9'],['Captain America','#2b4fb8'],['Avengers','#8a8a8a'],['Guardians','#e0861a'],['Ant-Man','#9b4dca'],['Doctor Strange','#0f9d8a'],['Spider-Man','#e0457b'],['Black Panther','#8a6a3c'],['Captain Marvel','#c99a00'],['Black Widow','#6b7d8f'],['WandaVision','#a8327a'],['Loki','#6f9a1f'],['What If...?','#00a3c4'],['Shang-Chi','#e0582a'],['Eternals','#b5892e'],['Hawkeye','#7b3fa0'],['Moon Knight','#7c7c99'],['Ms. Marvel','#2b8fb8'],['Werewolf by Night','#4f6b3a']];
 const L=[
  {f:'im',t:'im2',s:3,n:'Direct sequel, picking up right after Tony tells the world he is Iron Man.'},
  {f:'im',t:'av',s:3,n:'Introduces Tony Stark, Pepper Potts and Agent Coulson. The post-credits scene is where Nick Fury first mentions the Avengers Initiative.'},
@@ -255,7 +280,42 @@ const L=[
  {f:'amw',t:'eg',s:3,n:'The quantum realm, and where the mid-credits scene leaves Scott, matter a great deal in Endgame.'},
  {f:'cw',t:'eg',s:2,n:'The strained friendship between Tony and Steve carries on.'},
  {f:'hc',t:'ffh',s:3,n:'Direct sequel: Peter, his friends, Aunt May and Happy Hogan carry on from Homecoming.'},
- {f:'eg',t:'ffh',s:3,n:'Set shortly after Endgame, and a lot of it is about what Endgame left behind.'}
+ {f:'eg',t:'ffh',s:3,n:'Set shortly after Endgame, and a lot of it is about what Endgame left behind.'},
+ {f:'aou',t:'wv',s:2,n:'Wanda and Vision\'s story begins in Age of Ultron.'},
+ {f:'eg',t:'wv',s:3,n:'Set just after Endgame, and Wanda\'s state of mind comes out of the films before it.'},
+ {f:'cm',t:'wv',s:1,n:'Monica Rambeau, a child in Captain Marvel, is grown up.'},
+ {f:'thor',t:'wv',s:1,n:'Darcy Lewis returns.'},
+ {f:'amw',t:'wv',s:1,n:'Jimmy Woo returns.'},
+ {f:'eg',t:'fatws',s:3,n:'Picks up Sam and Bucky\'s story after Endgame.'},
+ {f:'tws',t:'fatws',s:2,n:'Characters and threads from The Winter Soldier come back.'},
+ {f:'cw',t:'fatws',s:2,n:'Helmut Zemo and Sharon Carter return from Civil War.'},
+ {f:'bp',t:'fatws',s:1,n:'Ayo and the Dora Milaje come from Wakanda.'},
+ {f:'eg',t:'loki1',s:3,n:'Starts from events in Endgame, so watch that first.'},
+ {f:'thor',t:'loki1',s:2,n:'Loki\'s history and family go back to Thor.'},
+ {f:'eg',t:'wi1',s:2,n:'Each episode retells a moment from the films with one change, so it works best once you know the originals.'},
+ {f:'loki1',t:'wi1',s:1,n:'Best watched after Loki\'s first season.'},
+ {f:'cw',t:'bw',s:3,n:'Set just after Civil War, so watch that first.'},
+ {f:'im3',t:'shang',s:1,n:'A loose end from Iron Man 3 is tied up.'},
+ {f:'hulk',t:'shang',s:1,k:'cameo',n:'Emil Blonsky turns up briefly.'},
+ {f:'ds',t:'shang',s:1,k:'cameo',n:'Wong turns up.'},
+ {f:'eg',t:'hk',s:2,n:'Set after Endgame, and Clint is still working through it.'},
+ {f:'av',t:'hk',s:1,n:'The Battle of New York is a big part of Kate Bishop\'s backstory.'},
+ {f:'ffh',t:'nwh',s:3,n:'Direct sequel, starting the moment Far From Home ends.'},
+ {f:'hc',t:'nwh',s:2,n:'Peter, MJ, Ned and Aunt May carry on from Homecoming.'},
+ {f:'ds',t:'nwh',s:2,n:'Stephen Strange and Wong play a big part.'},
+ {f:'wv',t:'mom',s:3,n:'Wanda\'s story continues directly from WandaVision.'},
+ {f:'ds',t:'mom',s:3,n:'Sequel to Doctor Strange.'},
+ {f:'nwh',t:'mom',s:1,n:'Set some time after No Way Home.'},
+ {f:'wi1',t:'mom',s:1,n:'Builds on the multiverse ideas in What If...?.'},
+ {f:'cm',t:'msm',s:1,n:'Kamala is a huge Captain Marvel fan.'},
+ {f:'tr',t:'lt',s:3,n:'Thor\'s next film after Ragnarok. Valkyrie and Korg return.'},
+ {f:'eg',t:'lt',s:2,n:'Picks up where Endgame left Thor.'},
+ {f:'tdw',t:'lt',s:2,n:'Jane Foster returns.'},
+ {f:'hulk',t:'sh',s:2,n:'Jennifer is Bruce Banner\'s cousin, and Emil Blonsky returns.'},
+ {f:'shang',t:'sh',s:1,n:'Picks up Emil Blonsky\'s story after his brief appearance in Shang-Chi.'},
+ {f:'bp',t:'wf',s:3,n:'Sequel to Black Panther.'},
+ {f:'gotg2',t:'hs',s:2,n:'The Guardians at Christmas, with Mantis, Drax and Kraglin.'},
+ {f:'lt',t:'hs',s:1,n:'Set after the Guardians part ways with Thor in Love and Thunder.'}
 ];
 const C={
  im:[['Tony Stark','Lead','Iron Man'],['Pepper Potts','Main'],['James Rhodes','Main'],['Obadiah Stane','Main','Iron Monger'],['Phil Coulson','Supporting'],['Happy Hogan','Supporting'],['J.A.R.V.I.S.','Supporting'],['Ho Yinsen','Supporting'],['Nick Fury','Post-credits']],
@@ -280,16 +340,33 @@ const C={
  amw:[['Scott Lang','Lead','Ant-Man'],['Hope van Dyne','Lead','Wasp'],['Hank Pym','Main'],['Janet van Dyne','Main'],['Ava Starr','Main','Ghost'],['Bill Foster','Supporting'],['Sonny Burch','Supporting'],['Luis','Supporting'],['Jimmy Woo','Supporting'],['Cassie Lang','Supporting'],['Maggie Lang','Supporting'],['Jim Paxton','Supporting']],
  cm:[['Carol Danvers','Lead','Captain Marvel'],['Nick Fury','Main'],['Talos','Main'],['Yon-Rogg','Main'],['Maria Rambeau','Main'],['Wendy Lawson','Main','Mar-Vell',1],['Monica Rambeau','Supporting'],['Phil Coulson','Supporting'],['Ronan','Supporting'],['Korath','Supporting'],['Goose','Supporting'],['Steve Rogers','Post-credits'],['Natasha Romanoff','Post-credits'],['Bruce Banner','Post-credits'],['James Rhodes','Post-credits']],
  eg:[['Tony Stark','Lead','Iron Man'],['Steve Rogers','Lead','Captain America'],['Thor','Lead'],['Natasha Romanoff','Lead','Black Widow'],['Bruce Banner','Lead','Hulk'],['Clint Barton','Lead','Hawkeye'],['Scott Lang','Main','Ant-Man'],['Rocket','Main'],['Nebula','Main'],['James Rhodes','Main','War Machine'],['Thanos','Main'],['Carol Danvers','Main','Captain Marvel'],['Pepper Potts','Supporting'],['Okoye','Supporting'],['Happy Hogan','Supporting'],['Laura Barton','Supporting'],['Valkyrie','Supporting'],['Korg','Supporting'],['Wong','Supporting'],['Morgan Stark','Supporting',undefined,1],['Peter Parker','Supporting','Spider-Man',1],['T\'Challa','Supporting','Black Panther',1],['Stephen Strange','Supporting','Doctor Strange',1],['Wanda Maximoff','Supporting',undefined,1],['Sam Wilson','Supporting','Falcon',1],['Bucky Barnes','Supporting',undefined,1],['Peter Quill','Supporting','Star-Lord',1],['Drax','Supporting',undefined,1],['Mantis','Supporting',undefined,1],['Groot','Supporting',undefined,1],['Shuri','Supporting',undefined,1],['Hope van Dyne','Supporting','Wasp',1],['Gamora','Supporting',undefined,1],['Loki','Supporting',undefined,1],['The Ancient One','Supporting',undefined,1],['Frigga','Supporting',undefined,1],['Howard Stark','Supporting',undefined,1],['Johann Schmidt','Supporting','Red Skull',1],['Peggy Carter','Cameo',undefined,1],['Edwin Jarvis','Cameo',undefined,1],['Jasper Sitwell','Cameo',undefined,1],['Brock Rumlow','Cameo',undefined,1],['Alexander Pierce','Cameo',undefined,1],['Nick Fury','Cameo',undefined,1],['Maria Hill','Cameo',undefined,1],['Thaddeus Ross','Cameo',undefined,1],['Harley Keener','Cameo',undefined,1]],
- ffh:[['Peter Parker','Lead','Spider-Man'],['Quentin Beck','Main','Mysterio'],['Nick Fury','Main'],['Happy Hogan','Main'],['Michelle Jones','Main'],['Ned Leeds','Main'],['May Parker','Supporting'],['Maria Hill','Supporting'],['Betty Brant','Supporting'],['Flash Thompson','Supporting'],['Brad Davis','Supporting'],['William Riva','Supporting'],['J. Jonah Jameson','Post-credits',undefined,1],['Talos','Post-credits',undefined,1],['Soren','Post-credits',undefined,1]]
+ ffh:[['Peter Parker','Lead','Spider-Man'],['Quentin Beck','Main','Mysterio'],['Nick Fury','Main'],['Happy Hogan','Main'],['Michelle Jones','Main'],['Ned Leeds','Main'],['May Parker','Supporting'],['Maria Hill','Supporting'],['Betty Brant','Supporting'],['Flash Thompson','Supporting'],['Brad Davis','Supporting'],['William Riva','Supporting'],['J. Jonah Jameson','Post-credits',undefined,1],['Talos','Post-credits',undefined,1],['Soren','Post-credits',undefined,1]],
+ wv:[['Wanda Maximoff','Lead'],['Vision','Lead'],['Monica Rambeau','Main'],['Agatha Harkness','Main',undefined,1],['Jimmy Woo','Supporting'],['Darcy Lewis','Supporting'],['Tyler Hayward','Supporting'],['Billy Maximoff','Supporting'],['Tommy Maximoff','Supporting'],['Ralph Bohner','Supporting',undefined,1]],
+ fatws:[['Sam Wilson','Lead','Falcon'],['Bucky Barnes','Lead'],['John Walker','Main'],['Helmut Zemo','Main'],['Karli Morgenthau','Main'],['Sharon Carter','Supporting','Agent 13'],['Isaiah Bradley','Supporting'],['Joaquin Torres','Supporting'],['Lemar Hoskins','Supporting','Battlestar'],['Sarah Wilson','Supporting'],['Ayo','Supporting'],['Valentina Allegra de Fontaine','Supporting']],
+ loki1:[['Loki','Lead'],['Mobius M. Mobius','Main'],['Sylvie','Main'],['Ravonna Renslayer','Main'],['Hunter B-15','Supporting'],['Miss Minutes','Supporting'],['He Who Remains','Supporting',undefined,1]],
+ bw:[['Natasha Romanoff','Lead','Black Widow'],['Yelena Belova','Main'],['Alexei Shostakov','Main','Red Guardian'],['Melina Vostokoff','Main'],['Dreykov','Main'],['Antonia Dreykov','Supporting','Taskmaster',1],['Rick Mason','Supporting'],['Thaddeus Ross','Supporting'],['Valentina Allegra de Fontaine','Post-credits']],
+ wi1:[['The Watcher','Lead'],['Peggy Carter','Main','Captain Carter'],['T\'Challa','Main'],['Stephen Strange','Main'],['Ultron','Main'],['Gamora','Supporting'],['Erik Stevens','Supporting','Killmonger'],['Nick Fury','Supporting']],
+ shang:[['Shang-Chi','Lead'],['Katy','Main'],['Xu Wenwu','Main'],['Xu Xialing','Main'],['Ying Nan','Supporting'],['Ying Li','Supporting'],['Trevor Slattery','Supporting'],['Razor Fist','Supporting'],['Death Dealer','Supporting'],['Morris','Supporting'],['Wong','Supporting'],['Emil Blonsky','Cameo','Abomination'],['Bruce Banner','Post-credits'],['Carol Danvers','Post-credits','Captain Marvel']],
+ eter:[['Sersi','Lead'],['Ikaris','Main'],['Thena','Main'],['Ajak','Main'],['Kingo','Main'],['Sprite','Main'],['Phastos','Main'],['Makkari','Main'],['Druig','Main'],['Gilgamesh','Main'],['Dane Whitman','Supporting'],['Kro','Supporting'],['Arishem','Supporting'],['Eros','Post-credits','Starfox'],['Pip the Troll','Post-credits']],
+ hk:[['Clint Barton','Lead','Hawkeye'],['Kate Bishop','Lead'],['Maya Lopez','Main','Echo'],['Eleanor Bishop','Main'],['Jack Duquesne','Supporting'],['Kazi','Supporting'],['Laura Barton','Supporting'],['Yelena Belova','Supporting',undefined,1],['Wilson Fisk','Supporting','Kingpin',1]],
+ nwh:[['Peter Parker','Lead','Spider-Man'],['Michelle Jones','Main'],['Ned Leeds','Main'],['May Parker','Main'],['Stephen Strange','Main','Doctor Strange'],['Happy Hogan','Supporting'],['Wong','Supporting'],['Otto Octavius','Main','Doctor Octopus'],['Norman Osborn','Main','Green Goblin'],['Max Dillon','Supporting','Electro'],['Flint Marko','Supporting','Sandman'],['Curt Connors','Supporting','Lizard'],['J. Jonah Jameson','Supporting'],['Flash Thompson','Supporting'],['Betty Brant','Supporting'],['Peter-Two','Main','Spider-Man',1],['Peter-Three','Main','Spider-Man',1],['Matt Murdock','Cameo',undefined,1],['Eddie Brock','Post-credits','Venom',1]],
+ mk:[['Steven Grant','Lead','Mr. Knight'],['Marc Spector','Lead','Moon Knight'],['Layla El-Faouly','Main'],['Arthur Harrow','Main'],['Khonshu','Main'],['Taweret','Supporting'],['Ammit','Supporting'],['Jake Lockley','Supporting',undefined,1]],
+ mom:[['Stephen Strange','Lead','Doctor Strange'],['Wanda Maximoff','Main','Scarlet Witch'],['America Chavez','Main'],['Wong','Main'],['Christine Palmer','Supporting'],['Karl Mordo','Supporting'],['Billy Maximoff','Supporting'],['Tommy Maximoff','Supporting'],['Charles Xavier','Supporting',undefined,1],['Reed Richards','Supporting',undefined,1],['Black Bolt','Supporting',undefined,1],['Maria Rambeau','Supporting','Captain Marvel',1],['Peggy Carter','Supporting','Captain Carter',1],['Clea','Post-credits']],
+ msm:[['Kamala Khan','Lead','Ms. Marvel'],['Bruno Carrelli','Main'],['Nakia Bahadir','Main'],['Kamran','Main'],['Muneeba Khan','Supporting'],['Yusuf Khan','Supporting'],['Aamir Khan','Supporting'],['Najma','Supporting'],['Sadia Dever','Supporting'],['Kleb','Supporting'],['Carol Danvers','Post-credits','Captain Marvel']],
+ lt:[['Thor','Lead'],['Jane Foster','Main','Mighty Thor'],['Gorr','Main','God Butcher'],['Valkyrie','Main'],['Korg','Main'],['Zeus','Supporting'],['Peter Quill','Supporting','Star-Lord'],['Drax','Supporting'],['Nebula','Supporting'],['Mantis','Supporting'],['Rocket','Supporting'],['Groot','Supporting'],['Kraglin','Supporting'],['Hercules','Post-credits'],['Heimdall','Post-credits',undefined,1]],
+ sh:[['Jennifer Walters','Lead','She-Hulk'],['Bruce Banner','Main','Hulk'],['Emil Blonsky','Main','Abomination'],['Nikki Ramos','Supporting'],['Pug Pugliese','Supporting'],['Mallory Book','Supporting'],['Todd Phelps','Supporting'],['Titania','Supporting'],['Wong','Supporting'],['Matt Murdock','Supporting','Daredevil'],['Skaar','Cameo',undefined,1]],
+ wbn:[['Jack Russell','Lead'],['Elsa Bloodstone','Lead'],['Verussa Bloodstone','Main'],['Ted','Supporting','Man-Thing']],
+ wf:[['Shuri','Lead'],['Ramonda','Main'],['Okoye','Main'],['Nakia','Main'],['M\'Baku','Main'],['Namor','Main'],['Riri Williams','Main'],['Everett Ross','Supporting'],['Valentina Allegra de Fontaine','Supporting'],['Aneka','Supporting'],['Toussaint','Post-credits',undefined,1]],
+ hs:[['Mantis','Lead'],['Drax','Lead'],['Peter Quill','Main','Star-Lord'],['Kevin Bacon','Main'],['Nebula','Supporting'],['Rocket','Supporting'],['Groot','Supporting'],['Kraglin','Supporting'],['Cosmo','Supporting']]
 };
 const STR={3:'Essential',2:'Helpful',1:'Minor'};
 const byId=Object.fromEntries(E.map(e=>[e.id,e]));
 const KEY='mcu-watch-map-v1';
-const DEF=()=>({seen:{im:1,hulk:1},rev:{},crev:{},ctw:{},hp:{},sel:'im2',order:'release',min:1,ch:'Tony Stark',ex:1});
+const DEF=()=>({seen:{im:1,hulk:1},rev:{},crev:{},ctw:{},hp:{},off:{},sel:'im2',order:'release',min:1,ch:'Tony Stark',ex:1});
 let S=null;
 try{S=JSON.parse(localStorage.getItem(KEY))}catch(e){}
 if(!S||!S.seen)S=DEF();
-S.ctw=S.ctw||{};S.crev=S.crev||{};S.rev=S.rev||{};S.hp=S.hp||{};
+S.ctw=S.ctw||{};S.crev=S.crev||{};S.rev=S.rev||{};S.hp=S.hp||{};S.off=S.off||{};
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const rv=(id,k)=>!!S.rev[id+':'+k];
@@ -297,7 +374,8 @@ const open=(id,k)=>!!S.seen[id]||rv(id,k);
 const order=()=>[...E].sort((a,b)=>S.order==='story'?a.so-b.so:a.d.localeCompare(b.d));
 const PHS=[...new Set(E.map(e=>e.p))];
 const shownE=()=>order().filter(e=>!S.hp[e.p]);
-const rows=()=>{const u=new Set(shownE().map(e=>e.lane));return LANES.map((l,i)=>i).filter(i=>u.has(i))};
+const rowKey=e=>S.off[LANES[e.lane][0]]?'x':e.lane;
+const rows=()=>{const u=new Set(shownE().map(rowKey)),r=LANES.map((l,i)=>i).filter(i=>u.has(i));if(u.has('x'))r.push('x');return r};
 const size=()=>{fig.style.minWidth=Math.max(720,shownE().length*112+24)+'px';fig.style.height=(56+rows().length*84)+'px'};
 const linkOn=l=>l.s>=S.min&&!(l.k==='pc'&&S.pc===false)&&!(l.k==='cameo'&&S.cam===false);
 const minorRole=c=>c[1]==='Post-credits'?'pc':c[1]==='Cameo'?'cameo':'';
@@ -317,13 +395,13 @@ const curve=(a,b)=>{const m=(a.cx+b.cx)/2;return[a.cx,a.cy,m,a.cy,m,b.cy,b.cx,b.
 const draw=()=>{
   const W=fig.clientWidth,H=fig.clientHeight,top=50,ord=shownE(),rw=rows(),lh=(H-top-6)/rw.length,cw=(W-24)/ord.length,pos={};
   ord.forEach((e,i)=>{
-    const adj=(ord[i-1]&&ord[i-1].lane===e.lane)||(ord[i+1]&&ord[i+1].lane===e.lane);
-    const w=Math.min(150,adj?cw-12:cw*1.6-12),h=e.n.length>1?56:44,cx=12+cw*i+cw/2,cy=top+lh*rw.indexOf(e.lane)+lh/2+8;
+    const rk=rowKey(e),adj=(ord[i-1]&&rowKey(ord[i-1])===rk)||(ord[i+1]&&rowKey(ord[i+1])===rk);
+    const w=Math.min(150,adj?cw-12:cw*1.6-12),h=e.n.length>2?70:e.n.length>1?56:44,cx=12+cw*i+cw/2,cy=top+lh*rw.indexOf(rk)+lh/2+8;
     pos[e.id]={cx,cy,w,h,x:cx-w/2,y:cy-h/2};
   });
   lastPos=pos;
   let o='';
-  rw.forEach((li,i)=>{const ln=LANES[li],y=top+lh*i;
+  rw.forEach((li,i)=>{const ln=li==='x'?['Other','var(--mute)']:LANES[li],y=top+lh*i;
     if(i%2===0)o+=`<rect x="0" y="${y}" width="${W}" height="${lh}" fill="var(--band)"/>`;
     o+=`<rect x="14" y="${y+9}" width="9" height="9" fill="${ln[1]}"/><text x="29" y="${y+18}" font-family="Barlow Condensed" font-weight="600" font-size="14" fill="var(--mute)">${esc(ln[0])}</text>`;
   });
@@ -363,10 +441,11 @@ const draw=()=>{
     const p=pos[e.id],sn=!!S.seen[e.id],sel=S.sel===e.id,isM=mem.has(e.id),dim=!!ch&&!isM;
     const stroke=sel?'var(--red)':isM?'#141414':sn?'var(--ink)':'var(--mute)';
     o+=`<rect x="${p.x-7}" y="${p.y-7}" width="${p.w+14}" height="${p.h+14}" rx="11" fill="var(--bg)"/>`;
-    o+=`<g class="node" data-id="${e.id}" tabindex="0" role="button" opacity="${dim?.45:1}" aria-label="${esc(e.t)}, ${sn?'seen':'not seen'}${isM?', '+esc(ch)+' appears':''}${sel?', selected':''}">`;
+    o+=`<g class="node" data-id="${e.id}" tabindex="0" role="button" opacity="${dim?.45:1}" aria-label="${esc(e.t)}, ${KIND[e.ty]}, ${sn?'seen':'not seen'}${isM?', '+esc(ch)+' appears':''}${sel?', selected':''}">`;
     o+=`<rect class="box" x="${p.x}" y="${p.y}" width="${p.w}" height="${p.h}" rx="6" fill="${isM?(minor[e.id]?'#fff1b8':'#ffd23f'):sn?'var(--card)':'var(--bg)'}" stroke="${stroke}" stroke-width="${sel||isM?3:1.5}" ${(sn||sel||isM)&&!(isM&&minor[e.id]&&!sel)?'':'stroke-dasharray="5 4"'}/>`;
     o+=`<rect x="${p.x+1.5}" y="${p.y+6}" width="5" height="${p.h-12}" rx="2" fill="${LANES[e.lane][1]}" opacity="${sn||isM?1:.45}"/>`;
     e.n.forEach((ln,i)=>{o+=`<text x="${p.cx+3}" y="${p.cy+5+(i-(e.n.length-1)/2)*17}" text-anchor="middle" font-family="Barlow Condensed" font-weight="${sn||isM?700:600}" font-size="15" fill="${isM?'#141414':sn?'var(--ink)':'var(--mute)'}" stroke="none">${esc(ln)}</text>`});
+    if(e.ty!=='film'){const tw=e.ty==='show'?26:50;o+=`<rect x="${p.x+4}" y="${p.y-8}" width="${tw}" height="16" rx="4" fill="var(--ink)"/><text x="${p.x+4+tw/2}" y="${p.y+4}" text-anchor="middle" font-family="Barlow Condensed" font-weight="700" font-size="13" fill="var(--bg)" stroke="none">${e.ty==='show'?'TV':'Special'}</text>`}
     if(sn)o+=`<circle cx="${p.x+p.w-3}" cy="${p.y+3}" r="9" fill="var(--blue)" stroke="var(--bg)" stroke-width="2"/><path d="M${p.x+p.w-7} ${p.y+3} l3 3 l5 -6" fill="none" stroke="var(--bg)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>`;
     if(isM&&minor[e.id])o+=`<rect x="${p.cx-26}" y="${p.y+p.h-8}" width="52" height="17" rx="8.5" fill="#141414"/><text x="${p.cx}" y="${p.y+p.h+5}" text-anchor="middle" font-family="Barlow Condensed" font-weight="700" font-size="13" fill="#ffd23f" stroke="none">${TAG[minor[e.id]]}</text>`;
     o+='</g>';
@@ -394,7 +473,7 @@ function panel(){
   const e=byId[S.sel],el=document.getElementById('panel');
   if(!e){el.innerHTML='<h2>Pick a title</h2><p class="muted">Select any title on the map to see what leads into it and what follows.</p>';return}
   const sn=!!S.seen[e.id],id=e.id;
-  let h=`<h2>${esc(e.t)}</h2><p class="meta">Film, released ${fmt(e.d)}. ${e.rt} minutes. Phase ${e.p}, set in ${esc(e.sy)}.</p>`;
+  let h=`<h2>${esc(e.t)}</h2><p class="meta">${KIND[e.ty]}, ${e.ty==='show'?'first episode released':'released'} ${fmt(e.d)}. ${e.ep?e.ep+' episodes':e.rt+' minutes'}. Phase ${e.p}, set in ${esc(e.sy)}.</p>`;
   h+=`<button class="seen ${sn?'on':''}" id="seenBtn" aria-pressed="${sn}">${sn?'Seen: click to unmark':'Mark as seen'}</button>`;
   const ordP=order(),before=ordP.slice(0,ordP.findIndex(x=>x.id===id));
   if(before.some(x=>!S.seen[x.id]))h+=` <button class="hide" data-before="${id}" style="margin-left:10px">Mark everything before this as seen</button>`;
@@ -452,7 +531,7 @@ function tracer(){
 }
 const cQ=document.getElementById('cQ'),tQ=document.getElementById('tQ'),tRes=document.getElementById('tRes');
 function applyCh(){const q=cQ.value.trim();let n=0;document.querySelectorAll('#trBody .chips [data-ch]').forEach(b=>{const ok=!q||hit(q,b.textContent);b.hidden=!ok;if(ok)n++});const nm=document.getElementById('chNone');if(nm)nm.hidden=!(q&&!n)}
-function findT(){const q=tQ.value.trim(),m=q?E.filter(e=>hit(q,e.t+' '+e.d.slice(0,4))):[];
+function findT(){const q=tQ.value.trim(),m=q?E.filter(e=>hit(q,e.t+' '+e.d.slice(0,4)+' '+KIND[e.ty]+(e.ty==='show'?' tv':''))):[];
   tRes.innerHTML=!q?'':m.length?m.map(e=>`<button data-pick="${e.id}"><i class="lane" style="background:${LANES[e.lane][1]}"></i>${esc(e.t)} <span class="muted">${e.d.slice(0,4)}</span></button>`).join(''):'<span class="muted">No titles match that.</span>'}
 
 let warn=false,undo=null;
@@ -461,10 +540,18 @@ function seenList(){
   document.getElementById('listBtn').textContent=`Seen list (${n}/${E.length})`;
   let h=`<p class="muted" style="margin:0 0 8px">${n} of ${E.length} seen. Tick everything you've watched; the map updates as you go.</p>`;
   const ord=order();
-  h+=ord.map((e,i)=>`<div class="rowck"><label for="chk-${e.id}"><input type="checkbox" id="chk-${e.id}" data-seen="${e.id}" ${S.seen[e.id]?'checked':''}><i class="lane" style="background:${LANES[e.lane][1]}"></i><span>${esc(e.t)}</span><em>${S.order==='story'?esc(e.sy):e.d.slice(0,4)}</em></label>${i&&ord.slice(0,i).some(x=>!S.seen[x.id])?`<button class="mini" data-before="${e.id}" aria-label="Mark everything before ${esc(e.t)} as seen">All before</button>`:''}</div>`).join('');
+  h+=ord.map((e,i)=>`<div class="rowck"><label for="chk-${e.id}"><input type="checkbox" id="chk-${e.id}" data-seen="${e.id}" ${S.seen[e.id]?'checked':''}><i class="lane" style="background:${LANES[e.lane][1]}"></i><span>${esc(e.t)}</span><em>${e.ty==='film'?'':KIND[e.ty]+', '}${S.order==='story'?esc(e.sy):e.d.slice(0,4)}</em></label>${i&&ord.slice(0,i).some(x=>!S.seen[x.id])?`<button class="mini" data-before="${e.id}" aria-label="Mark everything before ${esc(e.t)} as seen">All before</button>`:''}</div>`).join('');
   if(warn)h+=`<div class="warn" role="alert"><b>Spoiler warning</b><p>This marks all ${E.length} titles as seen and unlocks every story summary, cast list and link on the map at once. Only do this if you've really watched them all.</p><div class="dacts" style="margin:0"><button class="btn go2" data-all="yes">Yes, mark all as seen</button><button class="btn" data-all="no">Cancel</button></div></div>`;
   else h+=`<div class="dacts">${all?'':'<button class="btn" data-all="ask">Mark all as seen</button>'}${n?'<button class="btn" data-clear="1">Clear all</button>':''}${undo?'<button class="hide" data-undo="1">Undo last change</button>':''}</div><p class="muted" style="margin:12px 0 0">"All before" follows the map's current order (${S.order==='story'?'story':'release'} order).</p>`;
   document.getElementById('dlgBody').innerHTML=h;
+}
+
+function rowList(){
+  const off=Object.keys(S.off).length;
+  let h=`<p class="muted" style="margin:0 0 8px">Ticked franchises get a row of their own. Unticked ones share an "Other" row at the bottom, and their boxes keep their colour stripe.</p>`;
+  h+=LANES.map(l=>{const n=E.filter(e=>LANES[e.lane]===l).length;return `<div class="rowck"><label><input type="checkbox" data-lane="${esc(l[0])}" ${S.off[l[0]]?'':'checked'}><i class="lane" style="background:${l[1]}"></i><span>${esc(l[0])}</span><em>${n} title${n>1?'s':''}</em></label></div>`}).join('');
+  h+=`<div class="dacts">${off?'<button class="btn" data-lanes="all">Tick all</button>':''}${off<LANES.length?'<button class="btn" data-lanes="none">Untick all</button>':''}<button class="btn" data-lanes="one">Untick one-title franchises</button></div>`;
+  document.getElementById('rowBody').innerHTML=h;
 }
 
 function render(){
@@ -475,7 +562,7 @@ function render(){
   document.getElementById('tPc').checked=S.pc!==false;
   document.getElementById('tCam').checked=S.cam!==false;
   document.getElementById('exNote').textContent=S.ex?'Example progress: Iron Man and The Incredible Hulk are marked as seen. Press Reset to start from nothing.':'';
-  size();draw();panel();tracer();seenList();save();
+  size();draw();panel();tracer();seenList();rowList();save();
   if(jump){const p=lastPos[S.sel],w=document.querySelector('.mapwrap');if(p)w.scrollLeft=p.cx-w.clientWidth/2;if(jump===2){const n=svg.querySelector(`.node[data-id="${S.sel}"]`);if(n)n.focus({preventScroll:true})}jump=0}
 }
 
@@ -496,6 +583,9 @@ document.addEventListener('click',ev=>{
   else if(d.ch){S.ch=S.ch===d.ch?null:d.ch}
   else if(d.o){S.order=d.o}
   else if(b.id==='listBtn'){warn=false;undo=null;seenList();const g=document.getElementById('dlg');try{g.showModal()}catch(e){g.setAttribute('open','')}return}
+  else if(b.id==='rowsBtn'){const g=document.getElementById('rowDlg');try{g.showModal()}catch(e){g.setAttribute('open','')}return}
+  else if(b.id==='closeRows'){document.getElementById('rowDlg').close();return}
+  else if(d.lanes){S.off={};if(d.lanes!=='all')LANES.forEach(l=>{if(d.lanes==='none'||E.filter(e=>LANES[e.lane]===l).length<2)S.off[l[0]]=1})}
   else if(b.id==='closeList'){warn=false;document.getElementById('dlg').close();return}
   else if(d.all==='ask'){warn=true;seenList();const y=document.querySelector('[data-all="yes"]');if(y)y.focus();return}
   else if(d.all==='no'){warn=false;seenList();return}
@@ -511,6 +601,8 @@ document.addEventListener('click',ev=>{
   render();
 });
 document.addEventListener('change',ev=>{
+  const ln=ev.target.dataset&&ev.target.dataset.lane;
+  if(ln){if(ev.target.checked)delete S.off[ln];else S.off[ln]=1;render();const c=document.querySelector(`[data-lane="${CSS.escape(ln)}"]`);if(c)c.focus();return}
   const id=ev.target.dataset&&ev.target.dataset.seen;if(!id)return;
   if(ev.target.checked)S.seen[id]=1;else delete S.seen[id];
   S.ex=0;undo=null;render();
