@@ -116,6 +116,10 @@ article; Eyes of Wakanda and Marvel Zombies are not in it.
 - Header controls are grouped: "Titles shown" (phases, Animated) decides which titles are on the
   map; "Paths shown" (Helpful, Minor, Post-credits, Cameos) decides which lines are drawn. Keep new
   controls in the right group.
+- "Linked to selected only" (`S.rel`, in Titles shown) narrows the map to the selected title and
+  the titles joined to it by a drawn line (`linkVis`), direct links only, so it never shows more than
+  the map would. While it is on the phase filter is ignored (buttons dimmed); Animated and the path
+  checkboxes still apply. Titles linked to the selection get a red ring.
 - Helpful and minor links can be turned off with header checkboxes (`S.hlp`, `S.mnr`; essential
   links always show). These replaced an All / Helpful / Essential dropdown.
 - Post-credits and cameo appearances or links can be turned off (header checkboxes). When on, they
