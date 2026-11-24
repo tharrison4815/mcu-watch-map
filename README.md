@@ -19,7 +19,8 @@ browser. Progress is stored in the browser's localStorage.
   list is revealed. Every unseen film shows that flap, so its presence gives nothing away.
 - Character paths show a "?" gap wherever an unseen title sits between two known appearances.
 - Hero names are attached to each appearance and only show once that appearance is known.
-- Post-credits scenes and cameos can be left off the map with the header checkboxes.
+- Helpful links, minor links, post-credits scenes and cameos can each be left off the map with
+  the header checkboxes. Essential links always show.
 
 ## Data
 

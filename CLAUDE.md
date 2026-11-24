@@ -82,6 +82,8 @@ Status (24 Nov 2026): Phases 1 to 4 done: 30 films, the 8 Phase 4 Disney+ series
 
 - Names are shown as "Real Name (Hero Name)": not everyone has a hero name, and hero names change.
 - No rule that treats lead roles in a character's own title as public. The user found it messy.
+- Helpful and minor links can be turned off with header checkboxes (`S.hlp`, `S.mnr`; essential
+  links always show). These replaced an All / Helpful / Essential dropdown.
 - Post-credits and cameo appearances or links can be turned off (header checkboxes). When on, they
   are marked with "Credits" or "Cameo" labels, pale dashed member boxes and thin dashed highlighter.
 - Boxes have a background-coloured halo so lines visibly pass behind boxes they don't belong to.

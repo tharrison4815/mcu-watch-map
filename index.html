@@ -27,7 +27,6 @@ h1 small{display:block;font:600 18px/1.3 "Barlow Condensed",sans-serif;color:var
 .seg{display:inline-flex;border:2px solid var(--ink);border-radius:8px;overflow:hidden}
 .seg button{border:0;background:none;padding:0 14px;min-height:40px;cursor:pointer;font:600 16px "Barlow Condensed",sans-serif}
 .seg button[aria-pressed=true]{background:var(--ink);color:var(--bg)}
-select{font:600 16px "Barlow Condensed",sans-serif;min-height:44px;padding:0 10px;border:2px solid var(--ink);border-radius:8px;background:var(--bg);color:var(--ink)}
 .btn{min-height:44px;padding:0 14px;border:2px solid var(--ink);border-radius:8px;background:none;cursor:pointer;font:600 16px "Barlow Condensed",sans-serif}
 .btn:hover,.seg button:hover{background:color-mix(in srgb,var(--ink) 10%,transparent)}
 :focus-visible{outline:3px solid var(--red);outline-offset:2px}
@@ -139,11 +138,8 @@ footer{font-size:14px;color:var(--mute);border-top:1px solid var(--line)}
       <button id="oRel" data-o="release">Release order</button>
       <button id="oSto" data-o="story">Story order</button>
     </div>
-    <select id="minSel" aria-label="Which links to draw">
-      <option value="1">All links</option>
-      <option value="2">Helpful and essential</option>
-      <option value="3">Essential only</option>
-    </select>
+    <label class="tog"><input type="checkbox" id="tHlp"> Helpful links</label>
+    <label class="tog"><input type="checkbox" id="tMnr"> Minor links</label>
     <label class="tog"><input type="checkbox" id="tPc"> Post-credits</label>
     <label class="tog"><input type="checkbox" id="tCam"> Cameos</label>
     <button class="btn" id="rowsBtn">Rows</button>
@@ -370,11 +366,11 @@ const C={
 const STR={3:'Essential',2:'Helpful',1:'Minor'};
 const byId=Object.fromEntries(E.map(e=>[e.id,e]));
 const KEY='mcu-watch-map-v1';
-const DEF=()=>({seen:{im:1,hulk:1},rev:{},crev:{},ctw:{},hp:{},off:{},sel:'im2',order:'release',min:1,ch:'Tony Stark',ex:1});
+const DEF=()=>({seen:{im:1,hulk:1},rev:{},crev:{},ctw:{},hp:{},off:{},sel:'im2',order:'release',ch:'Tony Stark',ex:1});
 let S=null;
 try{S=JSON.parse(localStorage.getItem(KEY))}catch(e){}
 if(!S||!S.seen)S=DEF();
-S.ctw=S.ctw||{};S.crev=S.crev||{};S.rev=S.rev||{};S.hp=S.hp||{};S.off=S.off||{};
+S.ctw=S.ctw||{};S.crev=S.crev||{};S.rev=S.rev||{};S.hp=S.hp||{};if(S.min>=2){S.mnr=false;if(S.min===3)S.hlp=false}delete S.min;S.off=S.off||{};
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const rv=(id,k)=>!!S.rev[id+':'+k];
@@ -385,7 +381,7 @@ const shownE=()=>order().filter(e=>!S.hp[e.p]);
 const rowKey=e=>S.off[LANES[e.lane][0]]?'x':e.lane;
 const rows=()=>{const u=new Set(shownE().map(rowKey)),r=LANES.map((l,i)=>i).filter(i=>u.has(i));if(u.has('x'))r.push('x');return r};
 const size=()=>{fig.style.minWidth=Math.max(720,shownE().length*112+24)+'px';fig.style.height=(56+rows().length*84)+'px'};
-const linkOn=l=>l.s>=S.min&&!(l.k==='pc'&&S.pc===false)&&!(l.k==='cameo'&&S.cam===false);
+const linkOn=l=>(l.s===3||(l.s===2&&S.hlp!==false)||(l.s===1&&S.mnr!==false))&&!(l.k==='pc'&&S.pc===false)&&!(l.k==='cameo'&&S.cam===false);
 const minorRole=c=>c[1]==='Post-credits'?'pc':c[1]==='Cameo'?'cameo':'';
 const onMap=c=>{const m=minorRole(c);return !(m==='pc'&&S.pc===false)&&!(m==='cameo'&&S.cam===false)};
 const TAG={pc:'Credits',cameo:'Cameo'};
@@ -499,7 +495,7 @@ function panel(){
   if(open(id,'from')){
     const ch=anc(id),seenN=ch.filter(x=>S.seen[x.id]).length;
     fr=inc.length?`<ul class="links">${inc.map(l=>linkLi(byId[l.f],l)).join('')}</ul>`:'<p class="muted">Nothing leads into this one. It is a starting point.</p>';
-    if(ch.length)fr+=`<p><b>Everything to watch first</b>, in release order (${seenN} of ${ch.length} seen, ${S.min===3?'essential links only':S.min===2?'helpful and essential links':'all links'}):</p><ol class="chain">${ch.map(x=>`<li><button class="go" data-go="${x.id}">${esc(x.t)}</button>${S.seen[x.id]?'<span class="tick">Seen</span>':'<span class="todo">Not seen</span>'}</li>`).join('')}</ol>`;
+    if(ch.length)fr+=`<p><b>Everything to watch first</b>, in release order (${seenN} of ${ch.length} seen, ${S.hlp!==false&&S.mnr!==false?'all links':['essential',S.hlp!==false&&'helpful',S.mnr!==false&&'minor'].filter(Boolean).join(' and ')+' links'+(S.hlp===false&&S.mnr===false?' only':'')}):</p><ol class="chain">${ch.map(x=>`<li><button class="go" data-go="${x.id}">${esc(x.t)}</button>${S.seen[x.id]?'<span class="tick">Seen</span>':'<span class="todo">Not seen</span>'}</li>`).join('')}</ol>`;
     fr+=hide(id,'from');
   }else fr=flap(id,'from','What leads into it');
   h+=`<div class="sec"><h3>Watch first</h3>${fr}</div>`;
@@ -567,7 +563,8 @@ function render(){
   document.getElementById('oRel').setAttribute('aria-pressed',S.order==='release');
   document.getElementById('oSto').setAttribute('aria-pressed',S.order==='story');
   document.querySelectorAll('[data-ph]').forEach(b=>b.setAttribute('aria-pressed',!S.hp[b.dataset.ph]));
-  document.getElementById('minSel').value=String(S.min);
+  document.getElementById('tHlp').checked=S.hlp!==false;
+  document.getElementById('tMnr').checked=S.mnr!==false;
   document.getElementById('tPc').checked=S.pc!==false;
   document.getElementById('tCam').checked=S.cam!==false;
   document.getElementById('exNote').textContent=S.ex?'Example progress: Iron Man and The Incredible Hulk are marked as seen. Press Reset to start from nothing.':'';
@@ -629,7 +626,8 @@ cQ.addEventListener('input',applyCh);
 cQ.addEventListener('keydown',ev=>{if(ev.key==='Enter'){const b=[...document.querySelectorAll('#trBody .chips [data-ch]')].find(x=>!x.hidden);if(b){ev.preventDefault();S.ch=b.dataset.ch;render()}}else if(ev.key==='Escape'){cQ.value='';applyCh()}});
 document.getElementById('tPc').addEventListener('change',ev=>{S.pc=ev.target.checked;render()});
 document.getElementById('tCam').addEventListener('change',ev=>{S.cam=ev.target.checked;render()});
-document.getElementById('minSel').addEventListener('change',ev=>{S.min=+ev.target.value;render()});
+document.getElementById('tHlp').addEventListener('change',ev=>{S.hlp=ev.target.checked;render()});
+document.getElementById('tMnr').addEventListener('change',ev=>{S.mnr=ev.target.checked;render()});
 const ro=new ResizeObserver(()=>{draw();bar()});ro.observe(fig);ro.observe(wrap);
 render();
 }
