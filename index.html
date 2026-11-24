@@ -589,10 +589,11 @@ const draw=()=>{
 const twOk=(ch,id)=>!!S.seen[id]||rv(id,'twist')||!!S.ctw[ch];
 const knownApp=(ch,id,c)=>!!S.seen[id]||((rv(id,'cast')||!!S.crev[ch])&&(!c[3]||twOk(ch,id)));
 const det=(ch,id)=>!!S.seen[id]||((rv(id,'cast')||!!S.crev[ch])&&twOk(ch,id));
-function knownChars(){const m=[];for(const e of E)if(real(e))for(const c of C[e.id])if(!m.includes(c[0])&&knownApp(c[0],e.id,c))m.push(c[0]);return m}
-function apps(ch){return ordS().flatMap(e=>{const c=C[e.id].find(x=>x[0]===ch);return c?[{e,c,known:knownApp(ch,e.id,c)}]:[]})}
-function label(ch){const al=[];for(const a of apps(ch).sort((x,y)=>x.e.so-y.e.so))if(a.known&&a.c[2]&&!al.includes(a.c[2]))al.push(a.c[2]);return al.length?`${ch} (${al.join(' / ')})`:ch}
-function gapBetween(ch,a,b){const ord=ordS(),i=ord.findIndex(e=>e.id===a),j=ord.findIndex(e=>e.id===b);return ord.slice(i+1,j).some(e=>!det(ch,e.id))}
+const allS=()=>order().filter(e=>!e.up);
+function knownChars(){const m=[];for(const e of E)if(!e.up)for(const c of C[e.id])if(!m.includes(c[0])&&knownApp(c[0],e.id,c))m.push(c[0]);return m}
+function apps(ch,all){return (all?allS():ordS()).flatMap(e=>{const c=C[e.id].find(x=>x[0]===ch);return c?[{e,c,known:knownApp(ch,e.id,c)}]:[]})}
+function label(ch){const al=[];for(const a of apps(ch,1).sort((x,y)=>x.e.so-y.e.so))if(a.known&&a.c[2]&&!al.includes(a.c[2]))al.push(a.c[2]);return al.length?`${ch} (${al.join(' / ')})`:ch}
+function gapBetween(ch,a,b,all){const ord=all?allS():ordS(),i=ord.findIndex(e=>e.id===a),j=ord.findIndex(e=>e.id===b);return ord.slice(i+1,j).some(e=>!det(ch,e.id))}
 
 const flap=(id,k,label)=>`<button class="flap" data-r="${id}:${k}"><b>Spoilers</b><span>${label}</span><i>Click to reveal</i></button>`;
 const hide=(id,k)=>rv(id,k)?`<button class="hide" data-h="${id}:${k}">Hide again</button>`:'';
@@ -646,10 +647,10 @@ function tracer(){
   h+='<p class="muted">Only characters from titles you have seen or revealed are listed, and only they can be found.</p>';
   h+=`<div class="chips">${ks.map(c=>`<button data-ch="${esc(c)}" aria-pressed="${S.ch===c}">${esc(label(c))}</button>`).join('')}</div><p class="muted" id="chNone" hidden>None of the characters you know match that.</p>`;
   if(S.ch&&ks.includes(S.ch)){
-    const ap=apps(S.ch),kn=ap.filter(a=>a.known);
-    h+=`<h3>${esc(label(S.ch))}</h3><ul class="chain trace">${kn.map((a,i)=>(i&&gapBetween(S.ch,kn[i-1].e.id,a.e.id)?'<li class="gapli"><span>?</span>Titles you haven\'t seen come in between</li>':'')+`<li><button class="go" data-go="${a.e.id}">${esc(a.e.t)}</button> <span class="muted">${esc(a.c[1])}${a.c[2]?', as '+esc(a.c[2]):''}</span>${S.seen[a.e.id]?'':'<span class="todo">Not seen</span>'}${onMap(a.c)?'':'<span class="todo">Not on map</span>'}${!relSet()&&S.hp[a.e.p]?'<span class="todo">Phase hidden</span>':''}</li>`).join('')}</ul>`;
+    const ap=apps(S.ch,1),kn=ap.filter(a=>a.known),sh=new Set(shownE().map(e=>e.id));
+    h+=`<h3>${esc(label(S.ch))}</h3><ul class="chain trace">${kn.map((a,i)=>(i&&gapBetween(S.ch,kn[i-1].e.id,a.e.id,1)?'<li class="gapli"><span>?</span>Titles you haven\'t seen come in between</li>':'')+`<li><button class="go" data-go="${a.e.id}">${esc(a.e.t)}</button> <span class="muted">${esc(a.c[1])}${a.c[2]?', as '+esc(a.c[2]):''}</span>${S.seen[a.e.id]?'':'<span class="todo">Not seen</span>'}${!onMap(a.c)?'<span class="todo">Not on map</span>':sh.has(a.e.id)?'':`<span class="todo">${a.e.an&&!S.anim?'Animated hidden':!relSet()&&S.hp[a.e.p]?'Phase hidden':'Hidden on map'}</span>`}</li>`).join('')}</ul>`;
     const q=esc(S.ch);
-    if(!S.crev[S.ch]){if(E.some(e=>real(e)&&!det(S.ch,e.id)))h+=`<div style="margin-top:12px">${flap('','c','Appearances in titles you haven\'t seen').replace('data-r=":c"',`data-rc="${q}"`)}</div>`}
+    if(!S.crev[S.ch]){if(E.some(e=>!e.up&&!det(S.ch,e.id)))h+=`<div style="margin-top:12px">${flap('','c','Appearances in titles you haven\'t seen').replace('data-r=":c"',`data-rc="${q}"`)}</div>`}
     else{
       h+=`<button class="hide" data-hc="${q}">Hide again</button>`;
       if(S.ctw[S.ch])h+=` <button class="hide" data-htw="${q}">Hide twists again</button>`;
@@ -705,8 +706,8 @@ wrap.addEventListener('pointerdown',ev=>{if(ev.pointerType!=='mouse'||ev.button!
 window.addEventListener('pointermove',ev=>{if(!drag)return;if(!(ev.buttons&1)){drag=null;wrap.classList.remove('dragging');return}const dx=ev.clientX-drag.x,dy=ev.clientY-drag.y;if(!moved){if(Math.hypot(dx,dy)<6)return;moved=true;wrap.classList.add('dragging')}wrap.scrollLeft=drag.sl-dx;window.scrollTo(window.scrollX,drag.sy-dy)});
 window.addEventListener('pointerup',()=>{if(!drag)return;drag=null;wrap.classList.remove('dragging')});
 wrap.addEventListener('scroll',bar,{passive:true});
-fig.addEventListener('click',ev=>{if(moved){moved=false;return}const g=ev.target.closest('.node');if(g){S.sel=g.dataset.id;render()}});
-fig.addEventListener('keydown',ev=>{const g=ev.target.closest('.node');if(g&&(ev.key==='Enter'||ev.key===' ')){ev.preventDefault();S.sel=g.dataset.id;render();const n=svg.querySelector(`.node[data-id="${S.sel}"]`);if(n)n.focus()}});
+fig.addEventListener('click',ev=>{if(moved){moved=false;return}const g=ev.target.closest('.node');if(g){S.sel=S.sel===g.dataset.id?null:g.dataset.id;render()}});
+fig.addEventListener('keydown',ev=>{const g=ev.target.closest('.node');if(g&&(ev.key==='Enter'||ev.key===' ')){ev.preventDefault();const id=g.dataset.id;S.sel=S.sel===id?null:id;render();const n=svg.querySelector(`.node[data-id="${id}"]`);if(n)n.focus()}});
 document.addEventListener('click',ev=>{
   const b=ev.target.closest('button');if(!b||fig.contains(b))return;
   const d=b.dataset;

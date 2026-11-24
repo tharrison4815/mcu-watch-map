@@ -110,9 +110,15 @@ article; Eyes of Wakanda and Marvel Zombies are not in it.
 - No rule that treats lead roles in a character's own title as public. The user found it messy.
 - Animated titles (What If...?, Your Friendly Neighborhood Spider-Man, I Am Groot) are hidden unless
   the Animated checkbox is ticked (`S.anim`, off by default). Most viewers treat them as skippable.
-  Off means out of scope everywhere (`inS`, `ordS`): map, links and watch-first chains, tracer
-  appearances and "?" gaps, seen list, mark-all and mark-before. Opening one from search or a
+  Off means out of scope for the map, links and watch-first chains, the map's character path and
+  "?" gaps, seen list, mark-all and mark-before (`inS`, `ordS`). Opening one from search or a
   panel link turns the setting on.
+- Search ignores the map filters (user's choice): title search covers every released title, and
+  the tracer's character list and appearance list cover all released titles (`allS`, `apps(ch,1)`)
+  whatever the phase, Animated or linked-only settings. Appearances not on the map get a tag
+  ("Animated hidden", "Phase hidden", "Hidden on map"). The spoiler rules still decide which
+  characters are listed.
+- Selecting the selected title again deselects it.
 - Header controls are grouped: "Titles shown" (phases, Animated) decides which titles are on the
   map; "Paths shown" (Helpful, Minor, Post-credits, Cameos) decides which lines are drawn. Keep new
   controls in the right group.
