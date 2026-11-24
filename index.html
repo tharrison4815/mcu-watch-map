@@ -179,6 +179,7 @@ footer{font-size:14px;color:var(--mute);border-top:1px solid var(--line)}
   <span><svg viewBox="0 0 34 14"><line x1="2" y1="7" x2="32" y2="7" stroke="currentColor" stroke-width="2"/></svg>Helpful</span>
   <span><svg viewBox="0 0 34 14"><line x1="2" y1="7" x2="32" y2="7" stroke="currentColor" stroke-width="1.5" stroke-dasharray="5 4"/></svg>Minor reference</span>
   <span><svg viewBox="0 0 34 14"><rect x="2" y="1" width="30" height="12" rx="3" fill="none" stroke="currentColor" stroke-dasharray="4 3"/></svg>Not seen yet</span>
+  <span><svg viewBox="0 0 34 14"><rect x="5" y="3.5" width="24" height="7" rx="2" fill="none" stroke="currentColor" stroke-width="1.2"/><rect x="2" y="1" width="30" height="12" rx="4" fill="none" stroke="var(--red)" stroke-width="2"/></svg>Linked to the selected title</span>
   <span><svg viewBox="0 0 34 14"><rect x="2" y="1" width="30" height="12" rx="3" fill="#ffd23f" stroke="#141414" stroke-width="1.5"/></svg>Traced character appears</span>
   <span><svg viewBox="0 0 34 14"><line x1="2" y1="7" x2="32" y2="7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-dasharray="0.1 7"/></svg>Unseen titles in between</span>
   <span><svg viewBox="0 0 40 14"><rect x="1" y="1" width="38" height="12" rx="6" fill="none" stroke="currentColor"/></svg>Only a post-credits scene or cameo</span>
@@ -544,7 +545,7 @@ const draw=()=>{
       qs.push(free(c));
     }
   }
-  const vis=new Set();
+  const vis=new Set(),lk=new Set();
   L.filter(l=>linkVis(l)&&pos[l.f]&&pos[l.t]).forEach(l=>{
     const k=l.f+'>'+l.t;vis.add(k);
     const a=pos[l.f],b=pos[l.t],p=curve(a,b),hot=l.f===S.sel||l.t===S.sel;
@@ -552,6 +553,7 @@ const draw=()=>{
     const tip=bz(p,t),bk=bz(p,t-0.03),ang=Math.atan2(tip[1]-bk[1],tip[0]-bk[0]),s=l.s===3?11:9;
     const pt=da=>`${tip[0]-s*Math.cos(ang+da)},${tip[1]-s*Math.sin(ang+da)}`;
     const col=hot?'var(--red)':'var(--ink)',op=hot?1:(S.sel?.35:.6);
+    if(hot)lk.add(l.f===S.sel?l.t:l.f);
     o+=`<g class="${prevVis.has(k)?'':'grow'}" opacity="${op}"><path d="M${p[0]} ${p[1]} C${p[2]} ${p[3]} ${p[4]} ${p[5]} ${p[6]} ${p[7]}" fill="none" stroke="${col}" stroke-width="${l.s===3?3:l.s===2?2:1.5}" ${l.s===1?'stroke-dasharray="6 5"':''}/><polygon points="${tip[0]},${tip[1]} ${pt(.45)} ${pt(-.45)}" fill="${col}"/></g>`;
     if(l.k)tags.push([free(p),TAG[l.k],op,col]);
   });
@@ -567,7 +569,8 @@ const draw=()=>{
     const sn=!!S.seen[e.id],sel=S.sel===e.id,isM=mem.has(e.id),dim=!!ch&&!isM;
     const stroke=sel?'var(--red)':isM?'#141414':sn?'var(--ink)':'var(--mute)';
     o+=`<rect x="${p.x-7}" y="${p.y-7}" width="${p.w+14}" height="${p.h+14}" rx="11" fill="var(--bg)"/>`;
-    o+=`<g class="node" data-id="${e.id}" tabindex="0" role="button" opacity="${dim?.45:1}" aria-label="${esc(e.t)}, ${kindOf(e)}, ${sn?'seen':'not seen'}${isM?', '+esc(ch)+' appears':''}${sel?', selected':''}">`;
+    if(lk.has(e.id))o+=`<rect x="${p.x-4.5}" y="${p.y-4.5}" width="${p.w+9}" height="${p.h+9}" rx="9" fill="none" stroke="var(--red)" stroke-width="2.5" opacity="${dim?.45:.9}"/>`;
+    o+=`<g class="node" data-id="${e.id}" tabindex="0" role="button" opacity="${dim?.45:1}" aria-label="${esc(e.t)}, ${kindOf(e)}, ${sn?'seen':'not seen'}${isM?', '+esc(ch)+' appears':''}${sel?', selected':''}${lk.has(e.id)?', linked to the selected title':''}">`;
     o+=`<rect class="box" x="${p.x}" y="${p.y}" width="${p.w}" height="${p.h}" rx="6" fill="${isM?(minor[e.id]?'#fff1b8':'#ffd23f'):sn?'var(--card)':'var(--bg)'}" stroke="${stroke}" stroke-width="${sel||isM?3:1.5}" ${(sn||sel||isM)&&!(isM&&minor[e.id]&&!sel)?'':'stroke-dasharray="5 4"'}/>`;
     o+=`<rect x="${p.x+1.5}" y="${p.y+6}" width="5" height="${p.h-12}" rx="2" fill="${LANES[e.lane][1]}" opacity="${sn||isM?1:.45}"/>`;
     e.n.forEach((ln,i)=>{o+=`<text x="${p.cx+3}" y="${p.cy+5+(i-(e.n.length-1)/2)*17}" text-anchor="middle" font-family="Barlow Condensed" font-weight="${sn||isM?700:600}" font-size="15" fill="${isM?'#141414':sn?'var(--ink)':'var(--mute)'}" stroke="none">${esc(ln)}</text>`});
