@@ -5,8 +5,10 @@ with inline CSS and JS and no build step. It is published as a private claude.ai
 progress is saved in the browser's localStorage under the key `mcu-watch-map-v1`. The README
 covers user-facing behaviour; this file records the rules and decisions behind it.
 
-Status (24 Nov 2026): Phases 1 to 5 done (Iron Man to Ironheart): 36 films, 17 series, 2 specials and
-the 2 seasons of I Am Groot shorts. Left out on purpose: X-Men '97, which Marvel releases
+Status (24 Nov 2026): Phases 1 to 6 done up to VisionQuest: 38 films, 22 series, 3 specials and the
+2 seasons of I Am Groot shorts, plus 5 upcoming Phase 6 titles (Avengers: Doomsday, Your Friendly
+Neighborhood Spider-Man S2, Daredevil: Born Again S3, Marvel Zombies: The Winter Soldier, Avengers:
+Secret Wars). Left out on purpose: X-Men '97, which Marvel releases
 alongside the phases but not as part of them. The Phase 5 list follows Wikipedia's Phase Five
 article; Eyes of Wakanda and Marvel Zombies are not in it.
 
@@ -21,7 +23,7 @@ article; Eyes of Wakanda and Marvel Zombies are not in it.
 
 ## Data (arrays at the top of the script)
 
-- `E` titles: `id`, `an` (1 = animated), `p` (phase, defaults to 1), `ty` ('film' default, 'show',
+- `E` titles: `id`, `up` (1 = upcoming), `dm` (1 = only the release month is known), `an` (1 = animated), `p` (phase, defaults to 1), `ty` ('film' default, 'show',
   'special', 'shorts'), `ep` (episode or short count, for shows and shorts, which have no `rt`), `t` (title), `n` (title split into node lines; keep
   lines short so they fit ~110-150px at 15px Barlow Condensed), `d` (release date), `rt` (minutes),
   `lane` (index into `LANES`), `so` (story-order position), `sy` (in-story year label), `syn`.
@@ -70,6 +72,22 @@ article; Eyes of Wakanda and Marvel Zombies are not in it.
   John Walker ("Captain America" would give away Endgame), Xu Wenwu ("The Mandarin" touches the
   Iron Man 3 twist), Shuri in Wakanda Forever, Layla in Moon Knight. What If...? casts are
   alternate versions with their own ids (see Data), and only uncontroversial hero names are given.
+- Upcoming titles (`up:1`) show only title, phase, type and expected date: no synopsis, cast, links
+  or story position (they sort last, `so` 9001+, `sy` 'Upcoming'). This was the user's choice: no
+  details from news or trailers. They are drawn as faint dotted boxes with a "Coming" tag, cannot be
+  selected, and are left out of the seen list, search, tracer and spoiler flaps (`real()`). Once the
+  date passes, the tag says "Out now" until the title is filled in: then remove `up`, give it a
+  proper `so`, `sy`, synopsis, cast and links, and add it to `C`.
+- Phase 6 data comes from the post-release Wikipedia articles (plot and cast sections), except
+  Fantastic Four: First Steps (from memory). Marvel Zombies' plot past episode 1 was only seen in a
+  summary, so its entry describes only the setup and flags no twists.
+- Phase 6 choices: Jean Grey in Brand New Day is twist-flagged (her identity is the film's
+  mystery). Jocasta, Virgil Horton and the credits scenes (Wanda, Doom) in VisionQuest are flagged,
+  as are Doom in Fantastic Four's credits, Luke Cage in Born Again S2, and the last Black Panther and
+  Killmonger in Eyes of Wakanda. Wonder Man's Trevor link comes from Shang-Chi, not Iron Man 3, since
+  Trevor in Iron Man 3 is a twist. Eyes of Wakanda is in the Black Panther row, VisionQuest in the
+  WandaVision row. Fantastic Four characters are the Earth-828 ones (no other versions on the map
+  except Johnny Storm, the Void).
 - Phase 5 choices: Sam is "Captain America" in Brave New World (the title's own premise, so
   unavoidable). Agatha All Along has its own row, not WandaVision's, because Agatha is a WandaVision
   twist. Teen in Agatha All Along is listed as Billy Maximoff, twist-flagged. Kang, Victor Timely

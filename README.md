@@ -4,7 +4,9 @@ An unofficial, spoiler-safe map of the Marvel Cinematic Universe. Pick a film to
 into it and what follows, mark what you've seen, and trace a character's path through the
 films. Not affiliated with Marvel Studios or Disney.
 
-Currently covers Phases 1 to 5: 36 films, 17 Disney+ series (one entry per season), 2 specials and the I Am Groot shorts. Animated titles
+Currently covers Phases 1 to 6 up to VisionQuest (autumn 2026): 38 films, 22 Disney+ series (one
+entry per season), 3 specials and the I Am Groot shorts. Announced titles that aren't out yet are
+shown as greyed-out "Coming" boxes with no details. Animated titles
 are hidden unless you tick Animated in the header. The Phase buttons in the header choose which phases the map shows, and the Rows dialog
 chooses which franchises get their own row. It is a single static page: open `index.html` in a
 browser. Progress is stored in the browser's localStorage.
