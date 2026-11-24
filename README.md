@@ -4,7 +4,8 @@ An unofficial, spoiler-safe map of the Marvel Cinematic Universe. Pick a film to
 into it and what follows, mark what you've seen, and trace a character's path through the
 films. Not affiliated with Marvel Studios or Disney.
 
-Currently covers Phases 1 and 2 (12 films). It is a single static page: open `index.html` in a
+Currently covers Phases 1 to 3 (23 films, Iron Man to Spider-Man: Far From Home). The Phase
+buttons in the header choose which phases the map shows. It is a single static page: open `index.html` in a
 browser. Progress is stored in the browser's localStorage.
 
 ## How spoilers are handled
