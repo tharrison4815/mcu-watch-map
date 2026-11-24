@@ -124,6 +124,11 @@ article; Eyes of Wakanda and Marvel Zombies are not in it.
   is seen, in the map's order. First one is tagged "Next"; it shows 6 until "Show all" (`S.rx`), and
   each has a "Seen it" button. Phase filter is ignored (tag "Hidden on map"). Known, accepted leak:
   a title missing from the list tells you some link into it comes from a title you haven't seen.
+  Opt-in "Put titles that nothing follows yet last" (`S.de`, off by default) splits the list into
+  titles with a "What follows" link (by `linkOn`) and a "Nothing follows yet" group, so people can
+  prioritise what leads somewhere as of current releases. It is a spoiler hint (says whether a
+  story continues), hence opt-in with a note. Not called "skippable": many recent titles only look
+  like dead ends because upcoming titles have no links; revisit after Secret Wars.
 - Watch-status filter in Titles shown: "Seen", "Safe to watch", "Not safe yet" (`S.st` holds the
   hidden ones, keys s / r / n; at least one stays ticked). Each title is in exactly one group
   (`stOf`); upcoming titles count as "Not safe yet". "Not seen" was avoided as a label because safe

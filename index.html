@@ -689,10 +689,19 @@ function seenList(){
 }
 
 function ready(){
-  const el=document.getElementById('rdBody'),rd=ordS().filter(e=>RD.has(e.id)),sh=new Set(shownE().map(e=>e.id)),max=S.rx?rd.length:6;
+  const el=document.getElementById('rdBody'),rd=ordS().filter(e=>RD.has(e.id)),sh=new Set(shownE().map(e=>e.id)),max=S.rx?99:6;
+  const dead=e=>!L.some(l=>l.f===e.id&&linkOn(l)),lead=S.de?rd.filter(e=>!dead(e)):rd,de=S.de?rd.filter(dead):[];
+  const li=(e,nx)=>`<li><i class="lane" style="background:${LANES[e.lane][1]}"></i><span><button class="go" data-go="${e.id}">${esc(e.t)}</button> <span class="muted">${e.ty==='film'?'':kindOf(e)+', '}${S.order==='story'?esc(e.sy):e.d.slice(0,4)}</span>${nx?'<span class="tick">Next</span>':''}${sh.has(e.id)?'':'<span class="todo">Hidden on map</span>'}</span><button class="mini" data-mk="${e.id}" aria-label="Mark ${esc(e.t)} as seen">Seen it</button></li>`;
   let h=`<p class="muted" style="margin:0">Titles you haven't seen whose whole "watch first" chain is on your seen list, in ${S.order==='story'?'story':'release'} order. It follows the Paths shown checkboxes${S.anim?'':', and leaves out animated titles'}.</p>`;
+  h+=`<label class="tog"><input type="checkbox" id="deTog" ${S.de?'checked':''}> Put titles that nothing follows yet last</label>`;
+  if(S.de)h+=`<p class="muted" style="margin:0">Spoiler hint: this shows whether anything that is out so far continues from a title, so you can watch the ones that lead somewhere first. Titles coming up may still follow on from the others.</p>`;
   if(!rd.length)h+='<p class="muted">Nothing left: you have seen everything that is out.</p>';
-  else h+=`<ul class="rdl">${rd.slice(0,max).map((e,i)=>`<li><i class="lane" style="background:${LANES[e.lane][1]}"></i><span><button class="go" data-go="${e.id}">${esc(e.t)}</button> <span class="muted">${e.ty==='film'?'':kindOf(e)+', '}${S.order==='story'?esc(e.sy):e.d.slice(0,4)}</span>${i?'':'<span class="tick">Next</span>'}${sh.has(e.id)?'':'<span class="todo">Hidden on map</span>'}</span><button class="mini" data-mk="${e.id}" aria-label="Mark ${esc(e.t)} as seen">Seen it</button></li>`).join('')}</ul>${rd.length>6?`<button class="hide" data-rx="1">${S.rx?'Show fewer':'Show all '+rd.length}</button>`:''}`;
+  else{
+    if(lead.length)h+=`<ul class="rdl">${lead.slice(0,max).map((e,i)=>li(e,!i)).join('')}</ul>`;
+    else if(S.de)h+='<p class="muted">None of these lead anywhere yet.</p>';
+    if(de.length)h+=`<h3 style="margin:14px 0 0">Nothing follows yet</h3><ul class="rdl">${de.slice(0,max).map((e,i)=>li(e,!lead.length&&!i)).join('')}</ul>`;
+    if(lead.length>6||de.length>6)h+=`<button class="hide" data-rx="1">${S.rx?'Show fewer':'Show all'}</button>`;
+  }
   el.innerHTML=h;
 }
 
@@ -767,6 +776,7 @@ document.addEventListener('click',ev=>{
 document.addEventListener('change',ev=>{
   const ln=ev.target.dataset&&ev.target.dataset.lane;
   if(ln){if(ev.target.checked)delete S.off[ln];else S.off[ln]=1;render();const c=document.querySelector(`[data-lane="${CSS.escape(ln)}"]`);if(c)c.focus();return}
+  if(ev.target.id==='deTog'){S.de=ev.target.checked;render();const c=document.getElementById('deTog');if(c)c.focus();return}
   const id=ev.target.dataset&&ev.target.dataset.seen;if(!id)return;
   if(ev.target.checked)S.seen[id]=1;else delete S.seen[id];
   S.ex=0;undo=null;render();
