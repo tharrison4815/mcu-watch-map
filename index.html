@@ -32,7 +32,14 @@ select{font:600 16px "Barlow Condensed",sans-serif;min-height:44px;padding:0 10p
 .btn:hover,.seg button:hover{background:color-mix(in srgb,var(--ink) 10%,transparent)}
 :focus-visible{outline:3px solid var(--red);outline-offset:2px}
 .note{margin:0 max(4vw,16px) 12px;font-size:14px;color:var(--mute)}
-.mapwrap{overflow-x:auto;border-block:2px solid var(--ink)}
+.mapwrap{overflow-x:auto;border-block:2px solid var(--ink);cursor:grab}
+.mapwrap.dragging{cursor:grabbing}
+.fig{user-select:none;-webkit-user-select:none}
+.mapbar{display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-end;gap:8px 10px;padding:0 max(4vw,16px) 10px}
+.mapbar .hint{flex:1;font-size:14px;color:var(--mute)}
+.mapbar .btn{min-width:56px;font-size:20px;line-height:1}
+.mapbar .btn:disabled{opacity:.35;cursor:default}
+@media(hover:none){.mapbar .hint{display:none}}
 .fig{position:relative;min-width:720px;height:470px}
 .fig>svg{position:absolute;inset:0;width:100%;height:100%}
 svg text{paint-order:stroke;stroke:var(--bg);stroke-width:4px}
@@ -158,6 +165,7 @@ footer{font-size:14px;color:var(--mute);border-top:1px solid var(--line)}
   <div id="rowBody" style="padding:12px 18px 18px"></div>
 </dialog>
 <p class="note" id="exNote"></p>
+<div class="mapbar" id="mapbar" hidden><span class="hint">Drag the map with your mouse, or hold Shift and use the wheel, to scroll sideways.</span><button class="btn" id="scrL" aria-label="Scroll the map left">&larr;</button><button class="btn" id="scrR" aria-label="Scroll the map right">&rarr;</button></div>
 <div class="mapwrap"><div class="fig" id="map"><svg id="svg" role="img" aria-label="Map of the titles in the phases you have chosen and the links you have unlocked"></svg></div></div>
 <div class="legend">
   <span><svg viewBox="0 0 34 14"><line x1="2" y1="7" x2="32" y2="7" stroke="currentColor" stroke-width="3"/></svg>Essential</span>
@@ -384,7 +392,8 @@ const TAG={pc:'Credits',cameo:'Cameo'};
 const linkVis=l=>linkOn(l)&&(!!S.seen[l.t]||rv(l.t,'from')||rv(l.f,'into'));
 const knownE=id=>open(id,'cast');
 const fmt=d=>new Date(d+'T12:00').toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});
-const svg=document.getElementById('svg'),fig=document.getElementById('map');
+const svg=document.getElementById('svg'),fig=document.getElementById('map'),wrap=document.querySelector('.mapwrap');
+const bar=()=>{const over=wrap.scrollWidth>wrap.clientWidth+1;document.getElementById('mapbar').hidden=!over;document.getElementById('scrL').disabled=wrap.scrollLeft<=1;document.getElementById('scrR').disabled=wrap.scrollLeft+wrap.clientWidth>=wrap.scrollWidth-1};
 let prevVis=new Set(),lastPos={},jump=0;
 const norm=s=>String(s).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
 const hit=(q,txt)=>{const h=norm(txt).replace(/[^a-z0-9]/g,''),t=norm(q).split(/\s+/).map(x=>x.replace(/[^a-z0-9]/g,'')).filter(Boolean);return t.length>0&&t.every(x=>h.includes(x))};
@@ -562,11 +571,16 @@ function render(){
   document.getElementById('tPc').checked=S.pc!==false;
   document.getElementById('tCam').checked=S.cam!==false;
   document.getElementById('exNote').textContent=S.ex?'Example progress: Iron Man and The Incredible Hulk are marked as seen. Press Reset to start from nothing.':'';
-  size();draw();panel();tracer();seenList();rowList();save();
-  if(jump){const p=lastPos[S.sel],w=document.querySelector('.mapwrap');if(p)w.scrollLeft=p.cx-w.clientWidth/2;if(jump===2){const n=svg.querySelector(`.node[data-id="${S.sel}"]`);if(n)n.focus({preventScroll:true})}jump=0}
+  size();draw();bar();panel();tracer();seenList();rowList();save();
+  if(jump){const p=lastPos[S.sel],w=wrap;if(p)w.scrollLeft=p.cx-w.clientWidth/2;if(jump===2){const n=svg.querySelector(`.node[data-id="${S.sel}"]`);if(n)n.focus({preventScroll:true})}jump=0}
 }
 
-fig.addEventListener('click',ev=>{const g=ev.target.closest('.node');if(g){S.sel=g.dataset.id;render()}});
+let drag=null,moved=false;
+wrap.addEventListener('pointerdown',ev=>{if(ev.pointerType!=='mouse'||ev.button!==0||!fig.contains(ev.target))return;drag={x:ev.clientX,y:ev.clientY,sl:wrap.scrollLeft,sy:window.scrollY};moved=false});
+window.addEventListener('pointermove',ev=>{if(!drag)return;if(!(ev.buttons&1)){drag=null;wrap.classList.remove('dragging');return}const dx=ev.clientX-drag.x,dy=ev.clientY-drag.y;if(!moved){if(Math.hypot(dx,dy)<6)return;moved=true;wrap.classList.add('dragging')}wrap.scrollLeft=drag.sl-dx;window.scrollTo(window.scrollX,drag.sy-dy)});
+window.addEventListener('pointerup',()=>{if(!drag)return;drag=null;wrap.classList.remove('dragging')});
+wrap.addEventListener('scroll',bar,{passive:true});
+fig.addEventListener('click',ev=>{if(moved){moved=false;return}const g=ev.target.closest('.node');if(g){S.sel=g.dataset.id;render()}});
 fig.addEventListener('keydown',ev=>{const g=ev.target.closest('.node');if(g&&(ev.key==='Enter'||ev.key===' ')){ev.preventDefault();S.sel=g.dataset.id;render();const n=svg.querySelector(`.node[data-id="${S.sel}"]`);if(n)n.focus()}});
 document.addEventListener('click',ev=>{
   const b=ev.target.closest('button');if(!b||fig.contains(b))return;
@@ -583,6 +597,7 @@ document.addEventListener('click',ev=>{
   else if(d.ch){S.ch=S.ch===d.ch?null:d.ch}
   else if(d.o){S.order=d.o}
   else if(b.id==='listBtn'){warn=false;undo=null;seenList();const g=document.getElementById('dlg');try{g.showModal()}catch(e){g.setAttribute('open','')}return}
+  else if(b.id==='scrL'||b.id==='scrR'){wrap.scrollBy({left:(b.id==='scrL'?-.8:.8)*wrap.clientWidth,behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth'});return}
   else if(b.id==='rowsBtn'){const g=document.getElementById('rowDlg');try{g.showModal()}catch(e){g.setAttribute('open','')}return}
   else if(b.id==='closeRows'){document.getElementById('rowDlg').close();return}
   else if(d.lanes){S.off={};if(d.lanes!=='all')LANES.forEach(l=>{if(d.lanes==='none'||E.filter(e=>LANES[e.lane]===l).length<2)S.off[l[0]]=1})}
@@ -615,7 +630,7 @@ cQ.addEventListener('keydown',ev=>{if(ev.key==='Enter'){const b=[...document.que
 document.getElementById('tPc').addEventListener('change',ev=>{S.pc=ev.target.checked;render()});
 document.getElementById('tCam').addEventListener('change',ev=>{S.cam=ev.target.checked;render()});
 document.getElementById('minSel').addEventListener('change',ev=>{S.min=+ev.target.value;render()});
-const ro=new ResizeObserver(draw);ro.observe(fig);
+const ro=new ResizeObserver(()=>{draw();bar()});ro.observe(fig);ro.observe(wrap);
 render();
 }
 </script>
