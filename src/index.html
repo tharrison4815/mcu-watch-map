@@ -129,6 +129,10 @@ dialog::backdrop{background:rgba(10,10,14,.55)}
 input[type=search]{font:16px Barlow,system-ui,sans-serif;min-height:44px;padding:0 12px;border:2px solid var(--ink);border-radius:8px;background:var(--bg);color:var(--ink);width:min(340px,100%)}
 .find .chips{margin:0;flex-basis:100%}
 .chips .lane{display:inline-block;margin-right:6px}
+.chips.clip{-webkit-mask-image:linear-gradient(to bottom,#000 calc(100% - 100px),transparent 96%);mask-image:linear-gradient(to bottom,#000 calc(100% - 100px),transparent 96%)}
+.chmore{display:flex;justify-content:center;margin:0 0 16px}
+.chmore.over{position:relative;margin-top:-44px}
+.chmore .btn{background:var(--band);color:var(--ink)}
 #chFind{display:grid;gap:4px;margin:8px 0 0}
 #chFind input{width:100%}
 footer{font-size:14px;color:var(--mute);border-top:1px solid var(--line)}
@@ -393,7 +397,7 @@ function tracer(){
   let h='';
   if(!ks.length){el.innerHTML='<p class="muted">Mark a title as seen, or reveal a cast list, and its characters show up here.</p>';return}
   h+='<p class="muted">Only characters from titles you have seen or revealed are listed, and only they can be found.</p>';
-  h+=`<div class="chips">${ks.map(c=>`<button data-ch="${esc(c)}" aria-pressed="${S.ch===c}">${esc(label(c))}</button>`).join('')}</div>${ks.length>CHL?`<button class="hide" id="chMore" data-cx="1">${S.cx?'Show fewer':'Show all characters'}</button>`:''}<p class="muted" id="chNone" hidden>None of the characters you know match that.</p>`;
+  h+=`<div class="chips">${ks.map(c=>`<button data-ch="${esc(c)}" aria-pressed="${S.ch===c}">${esc(label(c))}</button>`).join('')}</div>${ks.length>CHL?`<div class="chmore" id="chMore"><button class="btn" data-cx="1">${S.cx?'Show fewer':'Show all characters'}</button></div>`:''}<p class="muted" id="chNone" hidden>None of the characters you know match that.</p>`;
   if(S.ch&&ks.includes(S.ch)){
     const ap=apps(S.ch,1),kn=ap.filter(a=>a.known),sh=new Set(shownE().map(e=>e.id));
     h+=`<h3>${esc(label(S.ch))}</h3><ul class="chain trace">${kn.map((a,i)=>(i&&gapBetween(S.ch,kn[i-1].e.id,a.e.id,1)?'<li class="gapli"><span>?</span>Titles you haven\'t seen come in between</li>':'')+`<li><button class="go" data-go="${a.e.id}">${esc(a.e.t)}</button> <span class="muted">${esc(a.c[1])}${a.c[2]?', as '+esc(a.c[2]):''}</span>${S.seen[a.e.id]?'':'<span class="todo">Not seen</span>'}${!onMap(a.c)?'<span class="todo">Not on map</span>':sh.has(a.e.id)?'':`<span class="todo">${a.e.an&&!S.anim?'Animated hidden':!relSet()&&S.hp[a.e.p]?'Phase hidden':'Hidden on map'}</span>`}</li>`).join('')}</ul>`;
@@ -409,8 +413,8 @@ function tracer(){
   applyCh();
 }
 const cQ=document.getElementById('cQ'),tQ=document.getElementById('tQ'),tRes=document.getElementById('tRes');
-const CHL=24;
-function applyCh(){const q=cQ.value.trim();let n=0;document.querySelectorAll('#trBody .chips [data-ch]').forEach((b,i)=>{const ok=q?hit(q,b.textContent):(S.cx||i<CHL||b.dataset.ch===S.ch);b.hidden=!ok;if(ok)n++});const mo=document.getElementById('chMore');if(mo)mo.hidden=!!q;const nm=document.getElementById('chNone');if(nm)nm.hidden=!(q&&!n)}
+const CHL=30;
+function applyCh(){const q=cQ.value.trim();let n=0;document.querySelectorAll('#trBody .chips [data-ch]').forEach((b,i)=>{const ok=q?hit(q,b.textContent):(S.cx||i<CHL||b.dataset.ch===S.ch);b.hidden=!ok;if(ok)n++});const mo=document.getElementById('chMore'),cl=!!mo&&!q&&!S.cx;if(mo){mo.hidden=!!q;mo.classList.toggle('over',cl)}const cc=document.querySelector('#trBody .chips');if(cc)cc.classList.toggle('clip',cl);const nm=document.getElementById('chNone');if(nm)nm.hidden=!(q&&!n)}
 function findT(){const q=tQ.value.trim(),m=q?E.filter(e=>!e.up&&hit(q,e.t+' '+e.d.slice(0,4)+' '+kindOf(e)+(e.ty==='show'?' tv':''))):[];
   tRes.innerHTML=!q?'':m.length?m.map(e=>`<button data-pick="${e.id}"><i class="lane" style="background:${LANES[e.lane][1]}"></i>${esc(e.t)} <span class="muted">${e.d.slice(0,4)}</span></button>`).join(''):'<span class="muted">No titles match that.</span>'}
 
