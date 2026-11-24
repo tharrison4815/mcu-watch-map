@@ -45,6 +45,8 @@ cast = [
   { name = "J.A.R.V.I.S.", role = "Supporting" },
   { name = "Ho Yinsen", role = "Supporting" },
   { name = "Nick Fury", role = "Post-credits" },
+  { name = "Raza", role = "Supporting" },
+  { name = "Christine Everhart", role = "Supporting" },
 ]
 
 [[title]]
@@ -67,6 +69,7 @@ cast = [
   { name = "Emil Blonsky", role = "Main", hero = "Abomination" },
   { name = "Samuel Sterns", role = "Supporting" },
   { name = "Tony Stark", role = "Cameo" },
+  { name = "Leonard Samson", role = "Supporting" },
 ]
 
 [[title]]
@@ -75,14 +78,14 @@ title = "Iron Man 2"
 map_lines = ["Iron Man 2"]
 type = "film"
 released = 2010-05-07
-runtime = 124
+runtime = 125
 row = "Iron Man"
 story_order = 30
 story_year = "2010"
 synopsis = """
-Having told the world he is Iron Man, Tony faces government pressure to hand over the suit, \
-a power source that is slowly poisoning him, and a rival with a grudge against the Stark \
-family."""
+Six months on, the government wants Tony's suit handed over, the arc reactor keeping him \
+alive is slowly killing him, and a Russian physicist with a family grudge has built a weapon \
+of his own."""
 cast = [
   { name = "Tony Stark", role = "Lead", hero = "Iron Man" },
   { name = "Pepper Potts", role = "Main" },
@@ -103,13 +106,14 @@ title = "Thor"
 map_lines = ["Thor"]
 type = "film"
 released = 2011-05-06
-runtime = 115
+runtime = 114
 row = "Thor"
 story_order = 50
 story_year = "2010"
 synopsis = """
-Stripped of his powers and banished to Earth by his father Odin, the arrogant Thor has to \
-prove himself worthy while his brother Loki schemes in Asgard."""
+After his reckless pride reignites an old war, Thor is cast out of Asgard by Odin and lands \
+in New Mexico without his hammer, where a team of scientists finds him while his brother \
+Loki eyes the throne."""
 cast = [
   { name = "Thor", role = "Lead" },
   { name = "Loki", role = "Main" },
@@ -123,6 +127,10 @@ cast = [
   { name = "Phil Coulson", role = "Supporting" },
   { name = "Clint Barton", role = "Cameo" },
   { name = "Nick Fury", role = "Post-credits" },
+  { name = "Laufey", role = "Supporting" },
+  { name = "Volstagg", role = "Supporting" },
+  { name = "Fandral", role = "Supporting" },
+  { name = "Hogun", role = "Supporting" },
 ]
 
 [[title]]
@@ -136,8 +144,9 @@ row = "Captain America"
 story_order = 10
 story_year = "1940s"
 synopsis = """
-In 1942 frail volunteer Steve Rogers is transformed by an experimental serum into a \
-super-soldier and sent against Hydra, a rogue science division led by the Red Skull."""
+In 1942 Steve Rogers, a scrawny Brooklyn kid too sickly to enlist, volunteers for a secret \
+army experiment that makes him the peak of human strength, then takes the fight to Hydra and \
+its leader, the Red Skull."""
 cast = [
   { name = "Steve Rogers", role = "Lead", hero = "Captain America" },
   { name = "Peggy Carter", role = "Main" },
@@ -149,6 +158,7 @@ cast = [
   { name = "Arnim Zola", role = "Supporting" },
   { name = "Dum Dum Dugan", role = "Supporting" },
   { name = "Nick Fury", role = "Cameo" },
+  { name = "Gabe Jones", role = "Supporting" },
 ]
 
 [[title]]

@@ -27,13 +27,14 @@ title = "Ant-Man and the Wasp: Quantumania"
 map_lines = ["Ant-Man:", "Quantumania"]
 type = "film"
 released = 2023-02-17
-runtime = 125
+runtime = 124
 row = "Ant-Man"
 story_order = 236
 story_year = "2025"
 synopsis = """
-Scott Lang, Hope van Dyne and their family are pulled into the Quantum Realm, where they \
-discover a hidden world and a powerful exile Janet never told them about."""
+An experiment of Cassie's goes wrong and sucks the Langs, the van Dynes and Hank Pym down \
+into the Quantum Realm, a whole hidden world with a powerful exile in it that Janet has \
+never mentioned."""
 cast = [
   { name = "Scott Lang", role = "Lead", hero = "Ant-Man" },
   { name = "Hope van Dyne", role = "Lead", hero = "Wasp" },
@@ -48,6 +49,7 @@ cast = [
   { name = "Victor Timely", role = "Post-credits" },
   { name = "Loki", role = "Post-credits", twist = true },
   { name = "Mobius M. Mobius", role = "Post-credits", twist = true },
+  { name = "Quaz", role = "Supporting" },
 ]
 
 [[title]]
@@ -78,7 +80,8 @@ cast = [
   { name = "Ayesha", role = "Supporting" },
   { name = "Lylla", role = "Supporting" },
   { name = "Stakar Ogord", role = "Cameo" },
-  { name = "Jason Quill", role = "Post-credits" },
+  { name = "Jason Quill", role = "Cameo" },
+  { name = "Phyla", role = "Supporting" },
 ]
 
 [[title]]
@@ -104,7 +107,8 @@ cast = [
   { name = "Everett Ross", role = "Supporting" },
   { name = "James Rhodes", role = "Supporting" },
   { name = "Priscilla Davis", role = "Supporting" },
-  { name = "Varra", role = "Supporting" },
+  { name = "Pagon", role = "Supporting" },
+  { name = "Ritson", role = "Supporting" },
 ]
 
 [[title]]
@@ -121,6 +125,7 @@ story_year = "2014"
 synopsis = "Five more animated shorts with Baby Groot, each a few minutes long."
 cast = [
   { name = "Groot", role = "Lead" },
+  { name = "Rocket", role = "Supporting" },
 ]
 
 [[title]]
@@ -147,6 +152,8 @@ cast = [
   { name = "Miss Minutes", role = "Supporting" },
   { name = "Casey", role = "Supporting" },
   { name = "He Who Remains", role = "Supporting", twist = true },
+  { name = "Brad Wolfe", role = "Supporting", hero = "Hunter X-5" },
+  { name = "General Dox", role = "Supporting" },
 ]
 
 [[title]]
@@ -160,8 +167,9 @@ row = "Captain Marvel"
 story_order = 242
 story_year = "2026"
 synopsis = """
-Carol Danvers, Kamala Khan and Monica Rambeau find their powers tangled, so that they swap \
-places whenever they use them, and have to work together against a Kree revolutionary."""
+Carol Danvers, Kamala Khan and Monica Rambeau get their light-based powers knotted together: \
+each time one of them uses hers, she trades places with one of the others. They have to \
+learn to fight as a team against a Kree revolutionary."""
 cast = [
   { name = "Carol Danvers", role = "Lead", hero = "Captain Marvel" },
   { name = "Kamala Khan", role = "Lead", hero = "Ms. Marvel" },
@@ -173,9 +181,10 @@ cast = [
   { name = "Yusuf Khan", role = "Supporting" },
   { name = "Aamir Khan", role = "Supporting" },
   { name = "Goose", role = "Supporting" },
-  { name = "Kate Bishop", role = "Post-credits" },
+  { name = "Kate Bishop", role = "Cameo" },
   { name = "Hank McCoy", role = "Post-credits", hero = "Beast", twist = true },
   { name = "Maria Rambeau, another universe", role = "Post-credits", hero = "Binary", twist = true },
+  { name = "Valkyrie", role = "Supporting" },
 ]
 
 [[title]]
@@ -190,14 +199,17 @@ row = "What If...?"
 story_order = 205
 story_year = "Multiverse"
 synopsis = """
-More animated stories from across the multiverse, each one asking what would happen if a \
-single moment had gone differently."""
+A second run of animated tales from alternate universes, each built on one familiar story \
+taking a different turn."""
 cast = [
   { name = "The Watcher", role = "Lead" },
   { name = "Kahhori, What If...?", role = "Main" },
   { name = "Peggy Carter, What If...?", role = "Main", hero = "Captain Carter" },
   { name = "Nebula, What If...?", role = "Supporting" },
   { name = "Stephen Strange, What If...?", role = "Supporting" },
+  { name = "Hela, What If...?", role = "Main" },
+  { name = "Happy Hogan, What If...?", role = "Supporting" },
+  { name = "Xu Wenwu, What If...?", role = "Supporting" },
 ]
 
 [[title]]
@@ -211,8 +223,8 @@ row = "Echo"
 story_order = 233
 story_year = "2025"
 synopsis = """
-Maya Lopez returns to her hometown in Oklahoma, where she has to face her family and her \
-heritage while a powerful enemy is on her trail."""
+With Wilson Fisk's people after her, Maya Lopez heads back to the small Oklahoma town she \
+grew up in, and has to reckon with the relatives and Choctaw heritage she walked away from."""
 cast = [
   { name = "Maya Lopez", role = "Lead", hero = "Echo" },
   { name = "Wilson Fisk", role = "Main", hero = "Kingpin" },
@@ -222,6 +234,8 @@ cast = [
   { name = "William Lopez", role = "Supporting" },
   { name = "Skully", role = "Supporting" },
   { name = "Matt Murdock", role = "Cameo", hero = "Daredevil" },
+  { name = "Biscuits", role = "Supporting" },
+  { name = "Taloa", role = "Supporting" },
 ]
 
 [[title]]
@@ -235,22 +249,25 @@ row = "Deadpool"
 story_order = 246
 story_year = "2024"
 synopsis = """
-A listless Deadpool is pulled into a mission by the Time Variance Authority, and has to team \
-up with a reluctant and very different Wolverine to save his world."""
+A washed-up Deadpool is told by the Time Variance Authority that his whole world is about to \
+be erased, and goes looking for a Wolverine, any Wolverine, to help him save it, ending up \
+with a very reluctant one."""
 cast = [
   { name = "Wade Wilson", role = "Lead", hero = "Deadpool" },
   { name = "Logan", role = "Lead", hero = "Wolverine" },
   { name = "Cassandra Nova", role = "Main" },
   { name = "Mr. Paradox", role = "Main" },
-  { name = "Hunter B-15", role = "Supporting" },
-  { name = "Vanessa", role = "Supporting" },
+  { name = "Hunter B-15", role = "Cameo", twist = true },
+  { name = "Vanessa Carlysle", role = "Supporting" },
   { name = "Blind Al", role = "Supporting" },
   { name = "Happy Hogan", role = "Cameo" },
-  { name = "Laura", role = "Cameo", hero = "X-23", twist = true },
-  { name = "Elektra Natchios", role = "Cameo", twist = true },
-  { name = "Eric Brooks", role = "Cameo", hero = "Blade", twist = true },
-  { name = "Remy LeBeau", role = "Cameo", hero = "Gambit", twist = true },
+  { name = "Laura Kinney, the Void", role = "Cameo", hero = "X-23", twist = true },
+  { name = "Elektra Natchios, the Void", role = "Cameo", twist = true },
+  { name = "Eric Brooks, the Void", role = "Cameo", hero = "Blade", twist = true },
+  { name = "Remy LeBeau, the Void", role = "Cameo", hero = "Gambit", twist = true },
   { name = "Johnny Storm, the Void", role = "Cameo", hero = "Human Torch", twist = true },
+  { name = "John Allerdyce", role = "Supporting", hero = "Pyro", twist = true },
+  { name = "Peter Wisdom", role = "Supporting" },
 ]
 
 [[title]]
@@ -264,8 +281,8 @@ row = "Agatha"
 story_order = 244
 story_year = "2026"
 synopsis = """
-Agatha Harkness gathers a coven of misfit witches to walk the legendary Witches' Road, a \
-series of deadly trials, with a mysterious teenager in tow."""
+Agatha Harkness pulls together a coven of unlikely witches, and a strange teenage boy who \
+insists on coming, to brave the Witches' Road, a path of deadly tests."""
 cast = [
   { name = "Agatha Harkness", role = "Lead" },
   { name = "Billy Maximoff", role = "Main", twist = true },
@@ -293,7 +310,8 @@ cast = [
   { name = "The Watcher", role = "Lead" },
   { name = "Peggy Carter, What If...?", role = "Main", hero = "Captain Carter" },
   { name = "Kahhori, What If...?", role = "Main" },
-  { name = "Stephen Strange, What If...?", role = "Supporting" },
+  { name = "The Eminence", role = "Main" },
+  { name = "Ororo Munroe, What If...?", role = "Supporting", hero = "Storm" },
 ]
 
 [[title]]
@@ -313,12 +331,13 @@ Norman Osborn as his mentor."""
 cast = [
   { name = "Peter Parker, Friendly Neighborhood", role = "Lead", hero = "Spider-Man" },
   { name = "Norman Osborn, Friendly Neighborhood", role = "Main" },
-  { name = "Harry Osborn", role = "Main" },
-  { name = "Nico Minoru", role = "Main" },
-  { name = "Lonnie Lincoln", role = "Main" },
-  { name = "Pearl Pangan", role = "Supporting" },
+  { name = "Harry Osborn, Friendly Neighborhood", role = "Main" },
+  { name = "Nico Minoru, Friendly Neighborhood", role = "Main" },
+  { name = "Lonnie Lincoln, Friendly Neighborhood", role = "Main" },
+  { name = "Pearl Pangan, Friendly Neighborhood", role = "Supporting" },
   { name = "May Parker, Friendly Neighborhood", role = "Supporting" },
   { name = "Otto Octavius, Friendly Neighborhood", role = "Supporting" },
+  { name = "Matt Murdock, Friendly Neighborhood", role = "Supporting", hero = "Daredevil" },
 ]
 
 [[title]]
@@ -343,6 +362,7 @@ cast = [
   { name = "Ruth Bat-Seraph", role = "Main" },
   { name = "Betty Ross", role = "Supporting" },
   { name = "Seth Voelker", role = "Supporting", hero = "Sidewinder" },
+  { name = "Bucky Barnes", role = "Cameo", twist = true },
 ]
 
 [[title]]
@@ -368,8 +388,10 @@ cast = [
   { name = "Frank Castle", role = "Supporting", hero = "Punisher" },
   { name = "Benjamin Poindexter", role = "Supporting", hero = "Bullseye" },
   { name = "Hector Ayala", role = "Supporting", hero = "White Tiger" },
-  { name = "Muse", role = "Supporting" },
+  { name = "Bastian Cooper", role = "Supporting", hero = "Muse", twist = true },
   { name = "Daniel Blake", role = "Supporting" },
+  { name = "Buck Cashman", role = "Supporting" },
+  { name = "BB Urich", role = "Supporting" },
 ]
 
 [[title]]
@@ -383,8 +405,9 @@ row = "Thunderbolts*"
 story_order = 252
 story_year = "2027"
 synopsis = """
-Yelena Belova and a group of disillusioned antiheroes are caught in a deadly trap set by \
-Valentina Allegra de Fontaine, and are forced to work together to get out of it."""
+Sent by Valentina Allegra de Fontaine to wipe each other out, Yelena Belova and a handful of \
+burnt-out ex-agents and hired guns realise they have all been set up, and grudgingly join \
+forces to survive."""
 cast = [
   { name = "Yelena Belova", role = "Lead" },
   { name = "Bucky Barnes", role = "Main" },
@@ -415,8 +438,9 @@ cast = [
   { name = "Riri Williams", role = "Lead", hero = "Ironheart" },
   { name = "Parker Robbins", role = "Main", hero = "The Hood" },
   { name = "Natalie Washington", role = "Main" },
-  { name = "Xavier", role = "Supporting" },
+  { name = "Xavier Washington", role = "Supporting" },
   { name = "Joe McGillicuddy", role = "Supporting" },
   { name = "Zelma Stanton", role = "Supporting" },
   { name = "Mephisto", role = "Supporting", twist = true },
+  { name = "Ronnie Williams", role = "Supporting" },
 ]

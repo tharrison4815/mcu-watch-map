@@ -57,6 +57,7 @@ cast = [
   { name = "May Parker", role = "Supporting" },
   { name = "Howard Stark", role = "Supporting" },
   { name = "Maria Stark", role = "Supporting" },
+  { name = "Ayo", role = "Supporting" },
 ]
 
 [[title]]
@@ -81,6 +82,7 @@ cast = [
   { name = "Wong", role = "Supporting" },
   { name = "Dormammu", role = "Supporting" },
   { name = "Thor", role = "Post-credits" },
+  { name = "Jonathan Pangborn", role = "Supporting" },
 ]
 
 [[title]]
@@ -94,8 +96,8 @@ row = "Guardians"
 story_order = 105
 story_year = "2014"
 synopsis = """
-Now famous across the galaxy, the Guardians are on the run after Rocket offends a powerful \
-people, and Peter Quill finally meets a man who says he is his long-lost father."""
+Now famous across the galaxy, the Guardians are on the run after Rocket steals from a \
+powerful people, and Peter Quill finally meets a man who says he is his long-lost father."""
 cast = [
   { name = "Peter Quill", role = "Lead", hero = "Star-Lord" },
   { name = "Gamora", role = "Main" },
@@ -112,6 +114,8 @@ cast = [
   { name = "Taserface", role = "Supporting" },
   { name = "Meredith Quill", role = "Supporting" },
   { name = "Howard the Duck", role = "Cameo" },
+  { name = "Jason Quill", role = "Cameo" },
+  { name = "Adam Warlock", role = "Post-credits" },
 ]
 
 [[title]]
@@ -143,7 +147,9 @@ cast = [
   { name = "Aaron Davis", role = "Supporting" },
   { name = "Pepper Potts", role = "Cameo" },
   { name = "Steve Rogers", role = "Cameo", hero = "Captain America" },
-  { name = "Mac Gargan", role = "Post-credits" },
+  { name = "Mac Gargan", role = "Supporting" },
+  { name = "Jackson Brice", role = "Supporting" },
+  { name = "Roger Harrington", role = "Supporting" },
 ]
 
 [[title]]
@@ -173,6 +179,11 @@ cast = [
   { name = "Miek", role = "Supporting" },
   { name = "Odin", role = "Supporting" },
   { name = "Stephen Strange", role = "Cameo", hero = "Doctor Strange" },
+  { name = "Surtur", role = "Supporting" },
+  { name = "Topaz", role = "Supporting" },
+  { name = "Volstagg", role = "Cameo" },
+  { name = "Fandral", role = "Cameo" },
+  { name = "Hogun", role = "Cameo" },
 ]
 
 [[title]]
@@ -204,6 +215,7 @@ cast = [
   { name = "T'Chaka", role = "Supporting" },
   { name = "N'Jobu", role = "Supporting" },
   { name = "Bucky Barnes", role = "Post-credits", hero = "White Wolf" },
+  { name = "Ayo", role = "Supporting" },
 ]
 
 [[title]]
@@ -287,6 +299,8 @@ cast = [
   { name = "Cassie Lang", role = "Supporting" },
   { name = "Maggie Lang", role = "Supporting" },
   { name = "Jim Paxton", role = "Supporting" },
+  { name = "Kurt", role = "Supporting" },
+  { name = "Dave", role = "Supporting" },
 ]
 
 [[title]]
@@ -295,7 +309,7 @@ title = "Captain Marvel"
 map_lines = ["Captain Marvel"]
 type = "film"
 released = 2019-03-08
-runtime = 123
+runtime = 124
 row = "Captain Marvel"
 story_order = 15
 story_year = "1995"
@@ -319,6 +333,9 @@ cast = [
   { name = "Natasha Romanoff", role = "Post-credits" },
   { name = "Bruce Banner", role = "Post-credits" },
   { name = "James Rhodes", role = "Post-credits" },
+  { name = "Soren", role = "Supporting" },
+  { name = "Supreme Intelligence", role = "Supporting" },
+  { name = "Minn-Erva", role = "Supporting" },
 ]
 
 [[title]]
@@ -382,6 +399,17 @@ cast = [
   { name = "Maria Hill", role = "Cameo", twist = true },
   { name = "Thaddeus Ross", role = "Cameo", twist = true },
   { name = "Harley Keener", role = "Cameo", twist = true },
+  { name = "Hank Pym", role = "Supporting", twist = true },
+  { name = "Janet van Dyne", role = "Supporting", twist = true },
+  { name = "M'Baku", role = "Supporting", twist = true },
+  { name = "Ramonda", role = "Cameo", twist = true },
+  { name = "May Parker", role = "Cameo", twist = true },
+  { name = "Ned Leeds", role = "Cameo", twist = true },
+  { name = "Ebony Maw", role = "Cameo", twist = true },
+  { name = "Corvus Glaive", role = "Cameo", twist = true },
+  { name = "Cull Obsidian", role = "Cameo", twist = true },
+  { name = "Proxima Midnight", role = "Cameo", twist = true },
+  { name = "Cassie Lang", role = "Supporting", twist = true },
 ]
 
 [[title]]
@@ -414,4 +442,7 @@ cast = [
   { name = "J. Jonah Jameson", role = "Post-credits", twist = true },
   { name = "Talos", role = "Post-credits", twist = true },
   { name = "Soren", role = "Post-credits", twist = true },
+  { name = "Roger Harrington", role = "Supporting" },
+  { name = "Julius Dell", role = "Supporting" },
+  { name = "Dimitri Smerdyakov", role = "Supporting" },
 ]

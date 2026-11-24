@@ -32,8 +32,9 @@ row = "WandaVision"
 story_order = 206
 story_year = "2023"
 synopsis = """
-Wanda Maximoff and Vision settle into suburban life in the town of Westview, living out a \
-different classic sitcom in each episode, until cracks start to show in their perfect world."""
+Wanda Maximoff and Vision are newlyweds in a quiet New Jersey suburb called Westview, each \
+episode styled after a different era of classic TV sitcom, until cracks start to show in \
+their perfect world."""
 cast = [
   { name = "Wanda Maximoff", role = "Lead" },
   { name = "Vision", role = "Lead" },
@@ -73,6 +74,8 @@ cast = [
   { name = "Sarah Wilson", role = "Supporting" },
   { name = "Ayo", role = "Supporting" },
   { name = "Valentina Allegra de Fontaine", role = "Supporting" },
+  { name = "Georges Batroc", role = "Supporting" },
+  { name = "James Rhodes", role = "Cameo" },
 ]
 
 [[title]]
@@ -96,6 +99,12 @@ cast = [
   { name = "Hunter B-15", role = "Supporting" },
   { name = "Miss Minutes", role = "Supporting" },
   { name = "He Who Remains", role = "Supporting", twist = true },
+  { name = "Casey", role = "Supporting" },
+  { name = "Hunter C-20", role = "Supporting" },
+  { name = "Sif", role = "Cameo" },
+  { name = "Classic Loki", role = "Supporting", twist = true },
+  { name = "Kid Loki", role = "Supporting", twist = true },
+  { name = "Boastful Loki", role = "Supporting", twist = true },
 ]
 
 [[title]]
@@ -109,8 +118,9 @@ row = "Black Widow"
 story_order = 135
 story_year = "2016"
 synopsis = """
-Natasha Romanoff is forced to confront her past when a conspiracy brings her back to the \
-family she left behind and the Red Room programme that trained her."""
+On the run and alone, Natasha Romanoff is pulled back towards the family she left behind and \
+the Red Room programme that trained her, when a conspiracy from her years as a spy catches \
+up with her."""
 cast = [
   { name = "Natasha Romanoff", role = "Lead", hero = "Black Widow" },
   { name = "Yelena Belova", role = "Main" },
@@ -159,8 +169,9 @@ row = "Shang-Chi"
 story_order = 212
 story_year = "2024"
 synopsis = """
-Shang-Chi has spent years living quietly in San Francisco, but when his father, the leader \
-of the secret Ten Rings organisation, comes after him, he has to face the past he ran from."""
+Shang-Chi has spent years as a hotel valet in San Francisco, hiding who he is, until the Ten \
+Rings, the secret organisation his father leads, come after him and drag him back towards \
+the life he ran from."""
 cast = [
   { name = "Shang-Chi", role = "Lead" },
   { name = "Katy", role = "Main" },
@@ -172,7 +183,7 @@ cast = [
   { name = "Razor Fist", role = "Supporting" },
   { name = "Death Dealer", role = "Supporting" },
   { name = "Morris", role = "Supporting" },
-  { name = "Wong", role = "Supporting" },
+  { name = "Wong", role = "Cameo" },
   { name = "Emil Blonsky", role = "Cameo", hero = "Abomination" },
   { name = "Bruce Banner", role = "Post-credits" },
   { name = "Carol Danvers", role = "Post-credits", hero = "Captain Marvel" },
@@ -189,8 +200,9 @@ row = "Eternals"
 story_order = 214
 story_year = "2024"
 synopsis = """
-The Eternals, immortal beings who have secretly lived on Earth for thousands of years, \
-reunite to protect humanity from their ancient enemies, the Deviants."""
+For thousands of years a hidden band of immortals has quietly watched over humanity. When \
+their old enemies, the monstrous Deviants, resurface, the scattered Eternals have to find \
+each other again."""
 cast = [
   { name = "Sersi", role = "Lead" },
   { name = "Ikaris", role = "Main" },
@@ -205,8 +217,9 @@ cast = [
   { name = "Dane Whitman", role = "Supporting" },
   { name = "Kro", role = "Supporting" },
   { name = "Arishem", role = "Supporting" },
-  { name = "Eros", role = "Post-credits", hero = "Starfox" },
+  { name = "Eros", role = "Post-credits", hero = "Starfox", twist = true },
   { name = "Pip the Troll", role = "Post-credits" },
+  { name = "Eric Brooks", role = "Post-credits", twist = true },
 ]
 
 [[title]]
@@ -225,13 +238,14 @@ archer Kate Bishop gets him tangled up with a dangerous criminal gang."""
 cast = [
   { name = "Clint Barton", role = "Lead", hero = "Hawkeye" },
   { name = "Kate Bishop", role = "Lead" },
-  { name = "Maya Lopez", role = "Main", hero = "Echo" },
+  { name = "Maya Lopez", role = "Main" },
   { name = "Eleanor Bishop", role = "Main" },
   { name = "Jack Duquesne", role = "Supporting" },
   { name = "Kazi", role = "Supporting" },
   { name = "Laura Barton", role = "Supporting" },
   { name = "Yelena Belova", role = "Supporting", twist = true },
   { name = "Wilson Fisk", role = "Supporting", hero = "Kingpin", twist = true },
+  { name = "William Lopez", role = "Supporting" },
 ]
 
 [[title]]
@@ -245,8 +259,8 @@ row = "Spider-Man"
 story_order = 216
 story_year = "2024"
 synopsis = """
-Peter Parker asks Doctor Strange for help with a problem in his own life, and a spell gone \
-wrong opens the door to visitors from other universes."""
+When his secret identity becomes public, Peter Parker turns to Doctor Strange for a magical \
+fix, and the botched spell starts pulling in visitors from other universes."""
 cast = [
   { name = "Peter Parker", role = "Lead", hero = "Spider-Man" },
   { name = "Michelle Jones", role = "Main" },
@@ -280,8 +294,9 @@ row = "Moon Knight"
 story_order = 220
 story_year = "2025"
 synopsis = """
-Gift-shop worker Steven Grant suffers blackouts and memories of another life, and discovers \
-he shares a body with mercenary Marc Spector, who serves the Egyptian moon god Khonshu."""
+Steven Grant sells souvenirs at a London museum and keeps losing hours, then whole days, \
+until he finds he is sharing his body with Marc Spector, an American mercenary working for \
+the Egyptian moon god Khonshu."""
 cast = [
   { name = "Steven Grant", role = "Lead", hero = "Mr. Knight" },
   { name = "Marc Spector", role = "Lead", hero = "Moon Knight" },
@@ -290,7 +305,7 @@ cast = [
   { name = "Khonshu", role = "Main" },
   { name = "Taweret", role = "Supporting" },
   { name = "Ammit", role = "Supporting" },
-  { name = "Jake Lockley", role = "Supporting", twist = true },
+  { name = "Jake Lockley", role = "Post-credits", twist = true },
 ]
 
 [[title]]
@@ -304,23 +319,25 @@ row = "Doctor Strange"
 story_order = 222
 story_year = "2024"
 synopsis = """
-Stephen Strange meets America Chavez, a teenager who can travel between universes, and is \
-pulled across the multiverse protecting her from a powerful threat that wants her ability."""
+Stephen Strange crosses paths with America Chavez, a teenager who can punch holes between \
+universes, and finds himself dragged across the multiverse to protect her from a powerful \
+force that wants her gift."""
 cast = [
   { name = "Stephen Strange", role = "Lead", hero = "Doctor Strange" },
   { name = "Wanda Maximoff", role = "Main", hero = "Scarlet Witch" },
   { name = "America Chavez", role = "Main" },
   { name = "Wong", role = "Main" },
-  { name = "Christine Palmer", role = "Supporting" },
+  { name = "Christine Palmer", role = "Cameo" },
   { name = "Karl Mordo, Earth-838", role = "Supporting" },
   { name = "Billy Maximoff, Earth-838", role = "Supporting" },
   { name = "Tommy Maximoff, Earth-838", role = "Supporting" },
-  { name = "Charles Xavier", role = "Supporting", twist = true },
-  { name = "Reed Richards", role = "Supporting", twist = true },
-  { name = "Black Bolt", role = "Supporting", twist = true },
+  { name = "Charles Xavier, Earth-838", role = "Supporting", twist = true },
+  { name = "Reed Richards, Earth-838", role = "Supporting", twist = true },
+  { name = "Black Bolt, Earth-838", role = "Supporting", twist = true },
   { name = "Maria Rambeau, Earth-838", role = "Supporting", hero = "Captain Marvel", twist = true },
   { name = "Peggy Carter, Earth-838", role = "Supporting", hero = "Captain Carter", twist = true },
   { name = "Clea", role = "Post-credits" },
+  { name = "Christine Palmer, Earth-838", role = "Supporting" },
 ]
 
 [[title]]
@@ -334,8 +351,8 @@ row = "Ms. Marvel"
 story_order = 224
 story_year = "2025"
 synopsis = """
-Kamala Khan, a Pakistani-American teenager in Jersey City and an Avengers superfan, finds \
-that a family heirloom gives her powers of her own."""
+Jersey City teenager Kamala Khan lives and breathes the Avengers, and an old bangle from her \
+family turns her superhero daydreams into real powers."""
 cast = [
   { name = "Kamala Khan", role = "Lead", hero = "Ms. Marvel" },
   { name = "Bruno Carrelli", role = "Main" },
@@ -345,9 +362,12 @@ cast = [
   { name = "Yusuf Khan", role = "Supporting" },
   { name = "Aamir Khan", role = "Supporting" },
   { name = "Najma", role = "Supporting" },
-  { name = "Sadia Dever", role = "Supporting" },
-  { name = "Kleb", role = "Supporting" },
-  { name = "Carol Danvers", role = "Post-credits", hero = "Captain Marvel" },
+  { name = "Sadie Deever", role = "Supporting" },
+  { name = "Carol Danvers", role = "Post-credits", hero = "Captain Marvel", twist = true },
+  { name = "P. Cleary", role = "Supporting" },
+  { name = "Aisha", role = "Supporting" },
+  { name = "Kareem", role = "Supporting", hero = "Red Dagger" },
+  { name = "Zoe Zimmer", role = "Supporting" },
 ]
 
 [[title]]
@@ -361,8 +381,8 @@ row = "Thor"
 story_order = 226
 story_year = "2025"
 synopsis = """
-Thor's search for inner peace is interrupted by Gorr the God Butcher, who is hunting down \
-gods, and he teams up with Valkyrie, Korg and his ex-girlfriend Jane Foster, who now wields \
+Thor is trying to find himself again when Gorr the God Butcher starts murdering gods, so he \
+gathers Valkyrie and Korg and runs into his former love Jane Foster, now carrying a rebuilt \
 Mjolnir."""
 cast = [
   { name = "Thor", role = "Lead" },
@@ -378,8 +398,11 @@ cast = [
   { name = "Rocket", role = "Supporting" },
   { name = "Groot", role = "Supporting" },
   { name = "Kraglin", role = "Supporting" },
-  { name = "Hercules", role = "Post-credits" },
+  { name = "Hercules", role = "Post-credits", twist = true },
   { name = "Heimdall", role = "Post-credits", twist = true },
+  { name = "Sif", role = "Supporting" },
+  { name = "Love", role = "Supporting" },
+  { name = "Axl", role = "Supporting" },
 ]
 
 [[title]]
@@ -397,6 +420,7 @@ synopsis = """
 Five animated shorts following Baby Groot's misadventures, each a few minutes long."""
 cast = [
   { name = "Groot", role = "Lead" },
+  { name = "Rocket", role = "Cameo" },
 ]
 
 [[title]]
@@ -410,8 +434,9 @@ row = "Hulk"
 story_order = 228
 story_year = "2025"
 synopsis = """
-Lawyer Jennifer Walters gets her cousin Bruce Banner's Hulk powers in an accident, and has \
-to balance a new job in superhuman law with being a 6-foot-7 green superhero."""
+Lawyer Jennifer Walters picks up her cousin Bruce Banner's Hulk powers in a freak accident, \
+then has to run a new superhuman law department while the internet decides who She-Hulk \
+should be."""
 cast = [
   { name = "Jennifer Walters", role = "Lead", hero = "She-Hulk" },
   { name = "Bruce Banner", role = "Main", hero = "Hulk" },
@@ -420,7 +445,7 @@ cast = [
   { name = "Pug Pugliese", role = "Supporting" },
   { name = "Mallory Book", role = "Supporting" },
   { name = "Todd Phelps", role = "Supporting" },
-  { name = "Titania", role = "Supporting" },
+  { name = "Mary MacPherran", role = "Supporting", hero = "Titania" },
   { name = "Wong", role = "Supporting" },
   { name = "Matt Murdock", role = "Supporting", hero = "Daredevil" },
   { name = "Skaar", role = "Cameo", twist = true },
@@ -437,13 +462,15 @@ row = "Werewolf by Night"
 story_order = 230
 story_year = "Unclear"
 synopsis = """
-A secret group of monster hunters gathers at Bloodstone Temple after the death of their \
-leader, to compete in a deadly hunt for a powerful relic."""
+After the death of their leader, a secretive circle of monster hunters is summoned to \
+Bloodstone Manor, where they must hunt one another, and a captured creature, to claim a \
+powerful relic."""
 cast = [
   { name = "Jack Russell", role = "Lead" },
   { name = "Elsa Bloodstone", role = "Lead" },
   { name = "Verussa Bloodstone", role = "Main" },
   { name = "Ted", role = "Supporting", hero = "Man-Thing" },
+  { name = "Ulysses Bloodstone", role = "Supporting" },
 ]
 
 [[title]]
@@ -457,8 +484,9 @@ row = "Black Panther"
 story_order = 232
 story_year = "2025"
 synopsis = """
-Wakanda mourns its king, and Queen Ramonda, Shuri and the Dora Milaje fight to protect the \
-nation as other powers move against it and a hidden underwater kingdom led by Namor emerges."""
+Wakanda mourns its king. With the world eyeing its vibranium, Queen Ramonda, Shuri and the \
+Dora Milaje have to defend the nation, and the search for the metal wakes a hidden undersea \
+kingdom ruled by Namor."""
 cast = [
   { name = "Shuri", role = "Lead" },
   { name = "Ramonda", role = "Main" },
@@ -471,6 +499,10 @@ cast = [
   { name = "Valentina Allegra de Fontaine", role = "Supporting" },
   { name = "Aneka", role = "Supporting" },
   { name = "Toussaint", role = "Post-credits", twist = true },
+  { name = "Erik Stevens", role = "Cameo", twist = true },
+  { name = "Namora", role = "Supporting" },
+  { name = "Attuma", role = "Supporting" },
+  { name = "Ayo", role = "Supporting" },
 ]
 
 [[title]]
@@ -479,13 +511,13 @@ title = "The Guardians of the Galaxy Holiday Special"
 map_lines = ["Guardians", "Holiday Special"]
 type = "special"
 released = 2022-11-25
-runtime = 44
+runtime = 42
 row = "Guardians"
 story_order = 234
 story_year = "2025"
 synopsis = """
-Mantis and Drax set out to give a down-hearted Peter Quill the perfect Christmas by \
-kidnapping his childhood hero, Kevin Bacon."""
+To cheer up a gloomy Peter Quill, Mantis and Drax fly to Earth to find him the best \
+Christmas present they can think of: the actor Kevin Bacon, whether he likes it or not."""
 cast = [
   { name = "Mantis", role = "Lead" },
   { name = "Drax", role = "Lead" },
@@ -496,4 +528,5 @@ cast = [
   { name = "Groot", role = "Supporting" },
   { name = "Kraglin", role = "Supporting" },
   { name = "Cosmo", role = "Supporting" },
+  { name = "Yondu Udonta", role = "Supporting" },
 ]

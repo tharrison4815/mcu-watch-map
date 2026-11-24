@@ -47,6 +47,7 @@ cast = [
   { name = "Rachel Rozman", role = "Supporting" },
   { name = "Franklin Richards", role = "Supporting" },
   { name = "Victor von Doom", role = "Post-credits", hero = "Doctor Doom", twist = true },
+  { name = "Lynne Nichols", role = "Supporting" },
 ]
 
 [[title]]
@@ -61,7 +62,7 @@ row = "Black Panther"
 story_order = 5
 story_year = "1260 BC to 1896"
 synopsis = """
-An animated anthology following the Hatut Zeraze, Wakanda's secret War Dogs, on missions \
+An animated anthology following the Hatut Zaraze, Wakanda's secret War Dogs, on missions \
 across history to recover stolen vibranium, from the Bronze Age to the 1890s."""
 cast = [
   { name = "Noni", role = "Lead" },
@@ -109,6 +110,7 @@ cast = [
   { name = "Okoye, Marvel Zombies", role = "Supporting" },
   { name = "Jimmy Woo, Marvel Zombies", role = "Supporting" },
   { name = "Xu Wenwu, Marvel Zombies", role = "Supporting" },
+  { name = "F.R.I.D.A.Y., Marvel Zombies", role = "Main" },
 ]
 
 [[title]]
@@ -122,11 +124,11 @@ row = "Wonder Man"
 story_order = 254
 story_year = "Unclear"
 synopsis = """
-Struggling actor Simon Williams, who is hiding powers of his own, chases the lead in a \
-remake of the superhero film Wonder Man, and finds an unlikely friend in a fellow actor, \
-Trevor Slattery."""
+Simon Williams, an out-of-work actor with powers he keeps to himself, goes after the title \
+role in a remake of the old superhero film Wonder Man, and finds an unexpected ally in \
+fellow actor Trevor Slattery."""
 cast = [
-  { name = "Simon Williams", role = "Lead", hero = "Wonder Man" },
+  { name = "Simon Williams", role = "Lead" },
   { name = "Trevor Slattery", role = "Lead" },
   { name = "Von Kovak", role = "Main" },
   { name = "P. Cleary", role = "Main" },
@@ -150,8 +152,7 @@ row = "Daredevil"
 story_order = 260
 story_year = "2027"
 synopsis = """
-With Wilson Fisk tightening his grip on New York and vigilantes outlawed, Matt Murdock takes \
-the fight to him and his Anti-Vigilante Task Force."""
+Matt Murdock leads a fight-back against Mayor Wilson Fisk and his Anti-Vigilante Task Force."""
 cast = [
   { name = "Matt Murdock", role = "Lead", hero = "Daredevil" },
   { name = "Wilson Fisk", role = "Lead", hero = "Kingpin" },
@@ -167,11 +168,12 @@ cast = [
   { name = "Benjamin Poindexter", role = "Main", hero = "Bullseye" },
   { name = "Jessica Jones", role = "Main" },
   { name = "Cherry", role = "Supporting" },
-  { name = "Sheila Rivera", role = "Supporting" },
-  { name = "Marge McCaffrey", role = "Supporting" },
+  { name = "Sheila Rivera", role = "Main" },
+  { name = "Marge McCaffrey", role = "Main" },
   { name = "Angela del Toro", role = "Supporting", hero = "White Tiger" },
   { name = "Foggy Nelson", role = "Supporting" },
   { name = "Luke Cage", role = "Cameo", twist = true },
+  { name = "Connor Powell", role = "Supporting" },
 ]
 
 [[title]]
@@ -185,8 +187,8 @@ row = "Punisher"
 story_order = 261
 story_year = "2027"
 synopsis = """
-Haunted by his past, Frank Castle is pulled back into the fight when a crime boss puts a \
-bounty on his head and his neighbourhood comes under attack."""
+Frank Castle has tried to put the Punisher behind him, but when a crime boss offers a reward \
+for his head, the whole neighbourhood turns into a battleground."""
 cast = [
   { name = "Frank Castle", role = "Lead", hero = "Punisher" },
   { name = "Ma Gnucci", role = "Main" },
@@ -221,7 +223,7 @@ cast = [
   { name = "Bruce Banner", role = "Supporting", hero = "Hulk" },
   { name = "Mac Gargan", role = "Supporting" },
   { name = "Jean DeWolff", role = "Supporting" },
-  { name = "Yelena Belova", role = "Cameo" },
+  { name = "Yelena Belova", role = "Supporting" },
   { name = "May Parker", role = "Cameo" },
 ]
 
@@ -236,13 +238,13 @@ row = "WandaVision"
 story_order = 264
 story_year = "2028"
 synopsis = """
-Vision, living quietly in Scotland, is hunted by a bounty hunter working for a mysterious \
-client, and is drawn into the past of the people who made him."""
+Vision, living quietly in Scotland, finds himself hunted by a bounty hunter working for a \
+mysterious client."""
 cast = [
   { name = "Vision", role = "Lead" },
   { name = "Ultron", role = "Lead" },
   { name = "Tommy Maximoff", role = "Lead" },
-  { name = "Paladin", role = "Main" },
+  { name = "Paul Denning", role = "Main", hero = "Paladin" },
   { name = "Lisa Molinari", role = "Main" },
   { name = "Jocasta", role = "Main", twist = true },
   { name = "F.R.I.D.A.Y.", role = "Supporting" },
@@ -250,7 +252,7 @@ cast = [
   { name = "J.A.R.V.I.S.", role = "Supporting" },
   { name = "Raza al-Wazar", role = "Supporting" },
   { name = "Virgil Horton", role = "Supporting", twist = true },
-  { name = "Billy Maximoff", role = "Cameo" },
+  { name = "Billy Maximoff", role = "Cameo", twist = true },
   { name = "The Watcher", role = "Cameo" },
   { name = "Wanda Maximoff", role = "Post-credits", twist = true },
   { name = "Victor von Doom", role = "Post-credits", hero = "Doctor Doom", twist = true },

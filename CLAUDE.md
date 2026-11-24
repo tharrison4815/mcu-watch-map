@@ -77,8 +77,20 @@ compact shapes the page's code uses, inserted at the `/*@E*/null`-style markers:
   take an unused number between its neighbours without renumbering. Only the order matters.
 - story_year for Endgame is '2018' (where it opens), not '2023', so the always-visible year doesn't
   give away its time jump. Far From Home shows '2024'.
-- All synopses, casts, roles and link notes were written from memory and still need checking
-  against reliable sources.
+- Data check (24 Nov 2026): every released title was checked against its English Wikipedia
+  article by subagents (reports were in the gitignored .check/ folder) and the fixes applied:
+  runtimes, roles, missing characters, twist flags, link notes that leaked twists, and synopses
+  reworded where they followed Wikipedia's or Marvel's wording too closely. The data is CC0, so all
+  text must be our own words: use sources for facts only.
+- Id decisions from that check: Earth-838 versions in Multiverse of Madness (Reed Richards, Charles
+  Xavier, Black Bolt, Christine Palmer) and the Void versions in Deadpool & Wolverine (Laura Kinney,
+  Elektra Natchios, Eric Brooks, Remy LeBeau, Johnny Storm) have their own ids; the bare
+  "Eric Brooks" is the MCU Blade (Eternals post-credits voice). Your Friendly Neighborhood
+  Spider-Man's characters all take ", Friendly Neighborhood". Ironheart's "Joe McGillicuddy" stays
+  under his alias, because his real identity is that show's twist. Muse in Born Again S1 is
+  "Bastian Cooper" (hero Muse), twist-flagged. Sheila Rivera is deliberately not in Brand New Day's
+  cast (her being mayor would spoil Born Again S2). No-Way-Home's other-universe villains keep bare
+  ids for now: rename them if main-universe versions ever appear.
 
 ## Spoiler rules (do not weaken these)
 

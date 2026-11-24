@@ -10,7 +10,7 @@
 from = "im"
 to = "im2"
 strength = "essential"
-note = "Direct sequel, picking up right after Tony tells the world he is Iron Man."
+note = "Direct sequel, set six months after the first film."
 
 [[link]]
 from = "im"
@@ -100,7 +100,7 @@ note = "Loki is a prisoner in Asgard because of what he did in The Avengers."
 from = "cap"
 to = "tws"
 strength = "essential"
-note = "Peggy Carter, Hydra and more of Steve's past come back from the first film."
+note = "Peggy Carter and more of Steve's past come back from the first film."
 
 [[link]]
 from = "av"
@@ -129,7 +129,7 @@ from = "tws"
 to = "aou"
 strength = "essential"
 note = """
-The fallout from S.H.I.E.L.D.'s collapse, and the post-credits scene introduces two new \
+Picks up threads from The Winter Soldier, whose mid-credits scene introduces two new \
 characters."""
 
 [[link]]
@@ -156,22 +156,21 @@ Stones."""
 from = "aou"
 to = "antman"
 strength = "helpful"
-note = "Set just after Age of Ultron, with a visit to the new Avengers base."
+note = "Set just after Age of Ultron, with a visit to the Avengers."
 
 [[link]]
 from = "tws"
 to = "antman"
 strength = "minor"
 only = "cameo"
-note = "Falcon turns up briefly, and Hydra is still around in the background."
+note = "Falcon turns up briefly."
 
 [[link]]
 from = "tws"
 to = "cw"
 strength = "essential"
 note = """
-Picks up Steve's story after S.H.I.E.L.D., including the loose end he set out to chase at \
-the end of The Winter Soldier."""
+Picks up Steve's story after The Winter Soldier, including a loose end he set out to chase."""
 
 [[link]]
 from = "aou"
@@ -210,7 +209,7 @@ from = "cw"
 to = "hc"
 strength = "essential"
 note = """
-Peter Parker is introduced in Civil War, and Homecoming opens with his side of it."""
+Peter Parker is introduced in Civil War, and early in Homecoming we see his side of it."""
 
 [[link]]
 from = "av"
@@ -360,8 +359,7 @@ from = "amw"
 to = "eg"
 strength = "essential"
 note = """
-The quantum realm, and where the mid-credits scene leaves Scott, matter a great deal in \
-Endgame."""
+Where Ant-Man and the Wasp's mid-credits scene leaves Scott matters a great deal in Endgame."""
 
 [[link]]
 from = "cw"
@@ -553,7 +551,7 @@ note = "Kamala is a huge Captain Marvel fan."
 from = "tr"
 to = "lt"
 strength = "essential"
-note = "Thor's next film after Ragnarok. Valkyrie and Korg return."
+note = "Thor's next solo film after Ragnarok. Valkyrie and Korg return."
 
 [[link]]
 from = "eg"
@@ -655,6 +653,7 @@ note = "Nick Fury and Talos first meet in Captain Marvel."
 from = "ffh"
 to = "si"
 strength = "minor"
+only = "post-credits"
 note = "Picks up threads from Far From Home."
 
 [[link]]
@@ -668,7 +667,7 @@ from = "qm"
 to = "loki2"
 strength = "minor"
 only = "post-credits"
-note = "Quantumania's post-credits scene leads into season 2."
+note = "A credits scene sets up a character met in season 2."
 
 [[link]]
 from = "cm"
@@ -704,7 +703,7 @@ note = "Continues the anthology and wraps it up."
 from = "hk"
 to = "echo"
 strength = "essential"
-note = "Maya Lopez is introduced in Hawkeye, and Echo picks up right after it."
+note = "Maya Lopez is introduced in Hawkeye, and Echo picks up her story afterwards."
 
 [[link]]
 from = "loki1"
@@ -818,8 +817,7 @@ note = "One Last Kill shows where Frank Castle's head is at going in."
 from = "tb"
 to = "bnd"
 strength = "minor"
-only = "cameo"
-note = "Yelena Belova turns up."
+note = "Yelena Belova is back."
 
 [[link]]
 from = "wv"
@@ -831,10 +829,16 @@ note = "A spin-off and sequel to WandaVision."
 from = "aaa"
 to = "vq"
 strength = "helpful"
-note = "Set 18 months after Agatha All Along."
+note = "Picks up after Agatha All Along."
 
 [[link]]
 from = "aou"
 to = "vq"
 strength = "helpful"
 note = "Vision and Ultron both come from Age of Ultron."
+
+[[link]]
+from = "av"
+to = "loki1"
+strength = "helpful"
+note = "Loki's story in this series carries straight on from The Avengers."

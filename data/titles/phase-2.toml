@@ -33,8 +33,8 @@ story_order = 70
 story_year = "2012"
 synopsis = """
 Shaken by the Battle of New York and unable to sleep, Tony Stark buries himself in building \
-suits until a terrorist called the Mandarin strikes his home and leaves him with almost \
-nothing."""
+suits until a terrorist who calls himself the Mandarin strikes his home and leaves him with \
+almost nothing."""
 cast = [
   { name = "Tony Stark", role = "Lead", hero = "Iron Man" },
   { name = "Pepper Potts", role = "Main" },
@@ -47,6 +47,8 @@ cast = [
   { name = "Eric Savin", role = "Supporting" },
   { name = "J.A.R.V.I.S.", role = "Supporting" },
   { name = "Bruce Banner", role = "Post-credits" },
+  { name = "Ellen Brandt", role = "Supporting" },
+  { name = "Matthew Ellis", role = "Supporting" },
 ]
 
 [[title]]
@@ -76,6 +78,9 @@ cast = [
   { name = "Sif", role = "Supporting" },
   { name = "Algrim", role = "Supporting", hero = "Kurse" },
   { name = "Taneleer Tivan", role = "Post-credits", hero = "The Collector" },
+  { name = "Volstagg", role = "Supporting" },
+  { name = "Fandral", role = "Supporting" },
+  { name = "Hogun", role = "Supporting" },
 ]
 
 [[title]]
@@ -89,9 +94,9 @@ row = "Captain America"
 story_order = 90
 story_year = "2014"
 synopsis = """
-Two years after New York, Steve Rogers works for S.H.I.E.L.D. but distrusts its secrets. \
-When Nick Fury is attacked, Steve and Natasha go on the run, hunted by a ghostly assassin \
-known as the Winter Soldier."""
+Steve Rogers is now a S.H.I.E.L.D. agent in Washington, still finding his feet in the modern \
+world and uneasy about how many secrets the agency keeps. When Nick Fury is attacked, Steve \
+and Natasha go on the run, hunted by a ghostly assassin known as the Winter Soldier."""
 cast = [
   { name = "Steve Rogers", role = "Lead", hero = "Captain America" },
   { name = "Natasha Romanoff", role = "Main", hero = "Black Widow" },
@@ -104,10 +109,11 @@ cast = [
   { name = "Brock Rumlow", role = "Supporting" },
   { name = "Jasper Sitwell", role = "Supporting" },
   { name = "Peggy Carter", role = "Supporting" },
-  { name = "Arnim Zola", role = "Supporting" },
+  { name = "Arnim Zola", role = "Supporting", twist = true },
   { name = "Wolfgang von Strucker", role = "Post-credits" },
   { name = "Wanda Maximoff", role = "Post-credits" },
   { name = "Pietro Maximoff", role = "Post-credits" },
+  { name = "Georges Batroc", role = "Supporting" },
 ]
 
 [[title]]
@@ -116,13 +122,13 @@ title = "Guardians of the Galaxy"
 map_lines = ["Guardians of", "the Galaxy"]
 type = "film"
 released = 2014-08-01
-runtime = 121
+runtime = 122
 row = "Guardians"
 story_order = 100
 story_year = "2014"
 synopsis = """
-Space scavenger Peter Quill steals a mysterious orb and falls into an uneasy alliance with \
-an assassin, a warrior, a raccoon and a talking tree, all hunted by the fanatic Ronan."""
+Space scavenger Peter Quill grabs an orb that half the galaxy wants and is thrown together \
+with an assassin, a warrior, a raccoon and a talking tree, all chased by the zealot Ronan."""
 cast = [
   { name = "Peter Quill", role = "Lead", hero = "Star-Lord" },
   { name = "Gamora", role = "Main" },
@@ -137,6 +143,8 @@ cast = [
   { name = "Korath", role = "Supporting" },
   { name = "Rhomann Dey", role = "Supporting" },
   { name = "Howard the Duck", role = "Post-credits" },
+  { name = "Irani Rael", role = "Supporting" },
+  { name = "Jason Quill", role = "Cameo" },
 ]
 
 [[title]]
@@ -176,6 +184,7 @@ cast = [
   { name = "Peggy Carter", role = "Cameo" },
   { name = "Heimdall", role = "Cameo" },
   { name = "Thanos", role = "Post-credits" },
+  { name = "Helen Cho", role = "Supporting" },
 ]
 
 [[title]]
@@ -189,8 +198,8 @@ row = "Ant-Man"
 story_order = 120
 story_year = "2015"
 synopsis = """
-Ex-con Scott Lang is recruited by scientist Hank Pym to steal back the shrinking technology \
-Pym invented, before his former protégé can sell it as a weapon."""
+Ex-con Scott Lang is recruited by scientist Hank Pym to steal a shrinking suit that Pym's \
+former protégé has built from his research, before it can be sold as a weapon."""
 cast = [
   { name = "Scott Lang", role = "Lead", hero = "Ant-Man" },
   { name = "Hope van Dyne", role = "Main" },
@@ -205,5 +214,7 @@ cast = [
   { name = "Peggy Carter", role = "Cameo" },
   { name = "Howard Stark", role = "Cameo" },
   { name = "Steve Rogers", role = "Post-credits" },
-  { name = "Bucky Barnes", role = "Post-credits" },
+  { name = "Bucky Barnes", role = "Post-credits", twist = true },
+  { name = "Kurt", role = "Supporting" },
+  { name = "Dave", role = "Supporting" },
 ]
