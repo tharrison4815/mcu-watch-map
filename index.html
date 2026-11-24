@@ -126,7 +126,7 @@ footer{font-size:14px;color:var(--mute);border-top:1px solid var(--line)}
 </head>
 <body>
 <header class="band">
-  <h1>MCU Watch Map<small>Phases 1 to 5: 36 films, 17 series and 2 specials, 2008 to 2025</small></h1>
+  <h1>MCU Watch Map<small>Phases 1 to 5: 36 films, 17 series, 2 specials and 2 seasons of shorts, 2008 to 2025</small></h1>
   <div class="ctl">
     <div class="seg" role="group" aria-label="Phases shown on the map">
       <button data-ph="1">Phase 1</button>
@@ -143,6 +143,7 @@ footer{font-size:14px;color:var(--mute);border-top:1px solid var(--line)}
     <label class="tog"><input type="checkbox" id="tMnr"> Minor links</label>
     <label class="tog"><input type="checkbox" id="tPc"> Post-credits</label>
     <label class="tog"><input type="checkbox" id="tCam"> Cameos</label>
+    <label class="tog"><input type="checkbox" id="tAn"> Animated</label>
     <button class="btn" id="rowsBtn">Rows</button>
     <button class="btn solid" id="listBtn">Seen list</button>
     <button class="btn" id="reset">Reset</button>
@@ -172,7 +173,7 @@ footer{font-size:14px;color:var(--mute);border-top:1px solid var(--line)}
   <span><svg viewBox="0 0 34 14"><rect x="2" y="1" width="30" height="12" rx="3" fill="#ffd23f" stroke="#141414" stroke-width="1.5"/></svg>Traced character appears</span>
   <span><svg viewBox="0 0 34 14"><line x1="2" y1="7" x2="32" y2="7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-dasharray="0.1 7"/></svg>Unseen titles in between</span>
   <span><svg viewBox="0 0 40 14"><rect x="1" y="1" width="38" height="12" rx="6" fill="none" stroke="currentColor"/></svg>Only a post-credits scene or cameo</span>
-  <span><svg viewBox="0 0 34 14"><rect x="6" y="0" width="22" height="14" rx="3" fill="currentColor"/><text x="17" y="11" text-anchor="middle" font-family="Barlow Condensed" font-weight="700" font-size="11" fill="var(--bg)" stroke="none">TV</text></svg>Series (one box per season) or special</span>
+  <span><svg viewBox="0 0 34 14"><rect x="6" y="0" width="22" height="14" rx="3" fill="currentColor"/><text x="17" y="11" text-anchor="middle" font-family="Barlow Condensed" font-weight="700" font-size="11" fill="var(--bg)" stroke="none">TV</text></svg>Series (one box per season), special or shorts</span>
 </div>
 <main class="band cols">
   <section id="panel" aria-live="polite"></section>
@@ -212,7 +213,7 @@ const E=[
  {id:'fatws',p:4,ty:'show',ep:6,t:'The Falcon and the Winter Soldier',n:['The Falcon and','the Winter Soldier'],d:'2021-03-19',lane:3,so:208,sy:'2024',syn:'Sam Wilson and Bucky Barnes reluctantly team up against the Flag Smashers, a group fighting for a world without borders, while each of them works out what comes next for him.'},
  {id:'loki1',p:4,ty:'show',ep:6,t:'Loki (Season 1)',n:['Loki','Season 1'],d:'2021-06-09',lane:13,so:202,sy:'Outside time',syn:'A version of Loki is arrested by the Time Variance Authority, an organisation that polices the timeline, and is offered a deal: help them hunt down a dangerous fugitive.'},
  {id:'bw',p:4,t:'Black Widow',n:['Black Widow'],d:'2021-07-09',rt:134,lane:11,so:135,sy:'2016',syn:'Natasha Romanoff is forced to confront her past when a conspiracy brings her back to the family she left behind and the Red Room programme that trained her.'},
- {id:'wi1',p:4,ty:'show',ep:9,t:'What If...? (Season 1)',n:['What If...?','Season 1'],d:'2021-08-11',lane:14,so:204,sy:'Multiverse',syn:'An animated anthology. The Watcher observes alternate universes where a single moment went differently, such as Peggy Carter taking the super-soldier serum instead of Steve Rogers.'},
+ {id:'wi1',an:1,p:4,ty:'show',ep:9,t:'What If...? (Season 1)',n:['What If...?','Season 1'],d:'2021-08-11',lane:14,so:204,sy:'Multiverse',syn:'An animated anthology. The Watcher observes alternate universes where a single moment went differently, such as Peggy Carter taking the super-soldier serum instead of Steve Rogers.'},
  {id:'shang',p:4,t:'Shang-Chi and the Legend of the Ten Rings',n:['Shang-Chi and','the Ten Rings'],d:'2021-09-03',rt:132,lane:15,so:212,sy:'2024',syn:'Shang-Chi has spent years living quietly in San Francisco, but when his father, the leader of the secret Ten Rings organisation, comes after him, he has to face the past he ran from.'},
  {id:'eter',p:4,t:'Eternals',n:['Eternals'],d:'2021-11-05',rt:156,lane:16,so:214,sy:'2024',syn:'The Eternals, immortal beings who have secretly lived on Earth for thousands of years, reunite to protect humanity from their ancient enemies, the Deviants.'},
  {id:'hk',p:4,ty:'show',ep:6,t:'Hawkeye',n:['Hawkeye'],d:'2021-11-24',lane:17,so:218,sy:'2024',syn:'In New York at Christmas, Clint Barton just wants to get home to his family, until young archer Kate Bishop gets him tangled up with a dangerous criminal gang.'},
@@ -221,6 +222,7 @@ const E=[
  {id:'mom',p:4,t:'Doctor Strange in the Multiverse of Madness',n:['Doctor Strange:','Multiverse','of Madness'],d:'2022-05-06',rt:126,lane:7,so:222,sy:'2024',syn:'Stephen Strange meets America Chavez, a teenager who can travel between universes, and is pulled across the multiverse protecting her from a powerful threat that wants her ability.'},
  {id:'msm',p:4,ty:'show',ep:6,t:'Ms. Marvel',n:['Ms. Marvel'],d:'2022-06-08',lane:19,so:224,sy:'2025',syn:'Kamala Khan, a Pakistani-American teenager in Jersey City and an Avengers superfan, finds that a family heirloom gives her powers of her own.'},
  {id:'lt',p:4,t:'Thor: Love and Thunder',n:['Thor: Love','and Thunder'],d:'2022-07-08',rt:119,lane:2,so:226,sy:'2025',syn:'Thor\'s search for inner peace is interrupted by Gorr the God Butcher, who is hunting down gods, and he teams up with Valkyrie, Korg and his ex-girlfriend Jane Foster, who now wields Mjolnir.'},
+ {id:'iag1',an:1,p:4,ty:'shorts',ep:5,t:'I Am Groot (Season 1)',n:['I Am Groot','Season 1'],d:'2022-08-10',lane:5,so:102,sy:'2014',syn:'Five animated shorts following Baby Groot\'s misadventures, each a few minutes long.'},
  {id:'sh',p:4,ty:'show',ep:9,t:'She-Hulk: Attorney at Law',n:['She-Hulk:','Attorney at Law'],d:'2022-08-18',lane:1,so:228,sy:'2025',syn:'Lawyer Jennifer Walters gets her cousin Bruce Banner\'s Hulk powers in an accident, and has to balance a new job in superhuman law with being a 6-foot-7 green superhero.'},
  {id:'wbn',p:4,ty:'special',t:'Werewolf by Night',n:['Werewolf','by Night'],d:'2022-10-07',rt:53,lane:20,so:230,sy:'Unclear',syn:'A secret group of monster hunters gathers at Bloodstone Temple after the death of their leader, to compete in a deadly hunt for a powerful relic.'},
  {id:'wf',p:4,t:'Black Panther: Wakanda Forever',n:['Black Panther:','Wakanda Forever'],d:'2022-11-11',rt:161,lane:9,so:232,sy:'2025',syn:'Wakanda mourns its king, and Queen Ramonda, Shuri and the Dora Milaje fight to protect the nation as other powers move against it and a hidden underwater kingdom led by Namor emerges.'},
@@ -228,21 +230,23 @@ const E=[
  {id:'qm',p:5,t:'Ant-Man and the Wasp: Quantumania',n:['Ant-Man:','Quantumania'],d:'2023-02-17',rt:125,lane:6,so:236,sy:'2025',syn:'Scott Lang, Hope van Dyne and their family are pulled into the Quantum Realm, where they discover a hidden world and a powerful exile Janet never told them about.'},
  {id:'gotg3',p:5,t:'Guardians of the Galaxy Vol. 3',n:['Guardians of the','Galaxy Vol. 3'],d:'2023-05-05',rt:150,lane:5,so:238,sy:'2026',syn:'Peter Quill rallies the Guardians on a dangerous mission to protect one of their own, which leads them deep into Rocket\'s mysterious past.'},
  {id:'si',p:5,ty:'show',ep:6,t:'Secret Invasion',n:['Secret Invasion'],d:'2023-06-21',lane:23,so:240,sy:'2026',syn:'Nick Fury races to stop a rebel faction of shape-shifting Skrulls who have been quietly taking the places of people in power on Earth.'},
+ {id:'iag2',an:1,p:5,ty:'shorts',ep:5,t:'I Am Groot (Season 2)',n:['I Am Groot','Season 2'],d:'2023-09-06',lane:5,so:103,sy:'2014',syn:'Five more animated shorts with Baby Groot, each a few minutes long.'},
  {id:'loki2',p:5,ty:'show',ep:6,t:'Loki (Season 2)',n:['Loki','Season 2'],d:'2023-10-05',lane:13,so:203,sy:'Outside time',syn:'Loki finds himself slipping uncontrollably between past, present and future, and has to work with Mobius and Sylvie to save the TVA and the timeline.'},
  {id:'marvels',p:5,t:'The Marvels',n:['The Marvels'],d:'2023-11-10',rt:105,lane:10,so:242,sy:'2026',syn:'Carol Danvers, Kamala Khan and Monica Rambeau find their powers tangled, so that they swap places whenever they use them, and have to work together against a Kree revolutionary.'},
- {id:'wi2',p:5,ty:'show',ep:9,t:'What If...? (Season 2)',n:['What If...?','Season 2'],d:'2023-12-22',lane:14,so:205,sy:'Multiverse',syn:'More animated stories from across the multiverse, each one asking what would happen if a single moment had gone differently.'},
+ {id:'wi2',an:1,p:5,ty:'show',ep:9,t:'What If...? (Season 2)',n:['What If...?','Season 2'],d:'2023-12-22',lane:14,so:205,sy:'Multiverse',syn:'More animated stories from across the multiverse, each one asking what would happen if a single moment had gone differently.'},
  {id:'echo',p:5,ty:'show',ep:5,t:'Echo',n:['Echo'],d:'2024-01-09',lane:24,so:233,sy:'2025',syn:'Maya Lopez returns to her hometown in Oklahoma, where she has to face her family and her heritage while a powerful enemy is on her trail.'},
  {id:'dw',p:5,t:'Deadpool & Wolverine',n:['Deadpool &','Wolverine'],d:'2024-07-26',rt:128,lane:21,so:246,sy:'2024',syn:'A listless Deadpool is pulled into a mission by the Time Variance Authority, and has to team up with a reluctant and very different Wolverine to save his world.'},
  {id:'aaa',p:5,ty:'show',ep:9,t:'Agatha All Along',n:['Agatha','All Along'],d:'2024-09-18',lane:25,so:244,sy:'2026',syn:'Agatha Harkness gathers a coven of misfit witches to walk the legendary Witches\' Road, a series of deadly trials, with a mysterious teenager in tow.'},
- {id:'wi3',p:5,ty:'show',ep:8,t:'What If...? (Season 3)',n:['What If...?','Season 3'],d:'2024-12-22',lane:14,so:207,sy:'Multiverse',syn:'The final season of the animated anthology, with more alternate takes on familiar heroes.'},
- {id:'yfnsm',p:5,ty:'show',ep:10,t:'Your Friendly Neighborhood Spider-Man (Season 1)',n:['Your Friendly','Neighborhood','Spider-Man S1'],d:'2025-01-29',lane:8,so:256,sy:'Another universe',syn:'An animated story set in another universe: Peter Parker\'s first year as Spider-Man, with Norman Osborn as his mentor.'},
+ {id:'wi3',an:1,p:5,ty:'show',ep:8,t:'What If...? (Season 3)',n:['What If...?','Season 3'],d:'2024-12-22',lane:14,so:207,sy:'Multiverse',syn:'The final season of the animated anthology, with more alternate takes on familiar heroes.'},
+ {id:'yfnsm',an:1,p:5,ty:'show',ep:10,t:'Your Friendly Neighborhood Spider-Man (Season 1)',n:['Your Friendly','Neighborhood','Spider-Man S1'],d:'2025-01-29',lane:8,so:256,sy:'Another universe',syn:'An animated story set in another universe: Peter Parker\'s first year as Spider-Man, with Norman Osborn as his mentor.'},
  {id:'bnw',p:5,t:'Captain America: Brave New World',n:['Captain America:','Brave New World'],d:'2025-02-14',rt:118,lane:3,so:250,sy:'2027',syn:'Sam Wilson is caught up in an international incident after meeting the newly elected US President, Thaddeus Ross, and has to uncover the plot behind it.'},
  {id:'dd1',p:5,ty:'show',ep:9,t:'Daredevil: Born Again (Season 1)',n:['Daredevil:','Born Again','Season 1'],d:'2025-03-04',lane:26,so:248,sy:'2026',syn:'Matt Murdock, a blind lawyer who fights crime as Daredevil, crosses paths again with Wilson Fisk, who is running to become mayor of New York.'},
  {id:'tb',p:5,t:'Thunderbolts*',n:['Thunderbolts*'],d:'2025-05-02',rt:127,lane:22,so:252,sy:'2027',syn:'Yelena Belova and a group of disillusioned antiheroes are caught in a deadly trap set by Valentina Allegra de Fontaine, and are forced to work together to get out of it.'},
  {id:'ih',p:5,ty:'show',ep:6,t:'Ironheart',n:['Ironheart'],d:'2025-06-24',lane:27,so:249,sy:'2026',syn:'Young genius inventor Riri Williams returns home to Chicago with her own suit of armour, and gets mixed up with a mysterious criminal known as the Hood.'}
 ];
 E.forEach(e=>{e.p=e.p||1;e.ty=e.ty||'film'});
-const KIND={film:'Film',show:'Series',special:'Special'};
+const KIND={film:'Film',show:'Series',special:'Special',shorts:'Shorts'};
+const kindOf=e=>e.an?'Animated '+KIND[e.ty].toLowerCase():KIND[e.ty];
 const LANES=[['Iron Man','#d7262b'],['Hulk','#2f9e44'],['Thor','#3b8fd9'],['Captain America','#2b4fb8'],['Avengers','#8a8a8a'],['Guardians','#e0861a'],['Ant-Man','#9b4dca'],['Doctor Strange','#0f9d8a'],['Spider-Man','#e0457b'],['Black Panther','#8a6a3c'],['Captain Marvel','#c99a00'],['Black Widow','#6b7d8f'],['WandaVision','#a8327a'],['Loki','#6f9a1f'],['What If...?','#00a3c4'],['Shang-Chi','#e0582a'],['Eternals','#b5892e'],['Hawkeye','#7b3fa0'],['Moon Knight','#7c7c99'],['Ms. Marvel','#2b8fb8'],['Werewolf by Night','#4f6b3a'],['Deadpool','#b8243a'],['Thunderbolts*','#3f6e8c'],['Secret Invasion','#4c8c4a'],['Echo','#9a6fb0'],['Agatha','#6a3d9a'],['Daredevil','#8b1a1a'],['Ironheart','#d4553b']];
 const L=[
  {f:'im',t:'im2',s:3,n:'Direct sequel, picking up right after Tony tells the world he is Iron Man.'},
@@ -336,6 +340,8 @@ const L=[
  {f:'bp',t:'wf',s:3,n:'Sequel to Black Panther.'},
  {f:'gotg2',t:'hs',s:2,n:'The Guardians at Christmas, with Mantis, Drax and Kraglin.'},
  {f:'lt',t:'hs',s:1,n:'Set after the Guardians part ways with Thor in Love and Thunder.'},
+ {f:'gotg2',t:'iag1',s:1,n:'Set around the time of Guardians Vol. 2.'},
+ {f:'iag1',t:'iag2',s:1,n:'More shorts in the same style.'},
  {f:'amw',t:'qm',s:3,n:'Direct sequel: Janet and the Quantum Realm are at the centre of it.'},
  {f:'eg',t:'qm',s:2,n:'Shows Scott\'s life after Endgame.'},
  {f:'loki1',t:'qm',s:2,n:'Builds on where Loki season 1 left the multiverse.'},
@@ -405,6 +411,8 @@ const C={
  wbn:[['Jack Russell','Lead'],['Elsa Bloodstone','Lead'],['Verussa Bloodstone','Main'],['Ted','Supporting','Man-Thing']],
  wf:[['Shuri','Lead'],['Ramonda','Main'],['Okoye','Main'],['Nakia','Main'],['M\'Baku','Main'],['Namor','Main'],['Riri Williams','Main'],['Everett Ross','Supporting'],['Valentina Allegra de Fontaine','Supporting'],['Aneka','Supporting'],['Toussaint','Post-credits',undefined,1]],
  hs:[['Mantis','Lead'],['Drax','Lead'],['Peter Quill','Main','Star-Lord'],['Kevin Bacon','Main'],['Nebula','Supporting'],['Rocket','Supporting'],['Groot','Supporting'],['Kraglin','Supporting'],['Cosmo','Supporting']],
+ iag1:[['Groot','Lead']],
+ iag2:[['Groot','Lead']],
  qm:[['Scott Lang','Lead','Ant-Man'],['Hope van Dyne','Lead','Wasp'],['Janet van Dyne','Main'],['Hank Pym','Main'],['Cassie Lang','Main'],['Kang the Conqueror','Main'],['Jentorra','Supporting'],['Krylar','Supporting'],['Veb','Supporting'],['Darren Cross','Main','M.O.D.O.K.',1],['Victor Timely','Post-credits'],['Loki','Post-credits',undefined,1],['Mobius M. Mobius','Post-credits',undefined,1]],
  gotg3:[['Peter Quill','Lead','Star-Lord'],['Rocket','Lead'],['Gamora','Main'],['Nebula','Main'],['Drax','Main'],['Mantis','Main'],['Groot','Main'],['High Evolutionary','Main'],['Adam Warlock','Main'],['Kraglin','Supporting'],['Cosmo','Supporting'],['Ayesha','Supporting'],['Lylla','Supporting'],['Stakar Ogord','Cameo'],['Jason Quill','Post-credits']],
  si:[['Nick Fury','Lead'],['Talos','Main'],['Gravik','Main'],['G\'iah','Main'],['Sonya Falsworth','Main'],['Maria Hill','Supporting'],['Everett Ross','Supporting'],['James Rhodes','Supporting'],['Priscilla Davis','Supporting'],['Varra','Supporting']],
@@ -435,11 +443,13 @@ const rv=(id,k)=>!!S.rev[id+':'+k];
 const open=(id,k)=>!!S.seen[id]||rv(id,k);
 const order=()=>[...E].sort((a,b)=>S.order==='story'?a.so-b.so:a.d.localeCompare(b.d));
 const PHS=[...new Set(E.map(e=>e.p))];
-const shownE=()=>order().filter(e=>!S.hp[e.p]);
+const inS=e=>!!S.anim||!e.an;
+const ordS=()=>order().filter(inS);
+const shownE=()=>ordS().filter(e=>!S.hp[e.p]);
 const rowKey=e=>S.off[LANES[e.lane][0]]?'x':e.lane;
 const rows=()=>{const u=new Set(shownE().map(rowKey)),r=LANES.map((l,i)=>i).filter(i=>u.has(i));if(u.has('x'))r.push('x');return r};
 const size=()=>{fig.style.minWidth=Math.max(720,shownE().length*112+24)+'px';fig.style.height=(56+rows().length*84)+'px'};
-const linkOn=l=>(l.s===3||(l.s===2&&S.hlp!==false)||(l.s===1&&S.mnr!==false))&&!(l.k==='pc'&&S.pc===false)&&!(l.k==='cameo'&&S.cam===false);
+const linkOn=l=>(l.s===3||(l.s===2&&S.hlp!==false)||(l.s===1&&S.mnr!==false))&&!(l.k==='pc'&&S.pc===false)&&!(l.k==='cameo'&&S.cam===false)&&(!!S.anim||!(byId[l.f].an||byId[l.t].an));
 const minorRole=c=>c[1]==='Post-credits'?'pc':c[1]==='Cameo'?'cameo':'';
 const onMap=c=>{const m=minorRole(c);return !(m==='pc'&&S.pc===false)&&!(m==='cameo'&&S.cam===false)};
 const TAG={pc:'Credits',cameo:'Cameo'};
@@ -504,11 +514,11 @@ const draw=()=>{
     const p=pos[e.id],sn=!!S.seen[e.id],sel=S.sel===e.id,isM=mem.has(e.id),dim=!!ch&&!isM;
     const stroke=sel?'var(--red)':isM?'#141414':sn?'var(--ink)':'var(--mute)';
     o+=`<rect x="${p.x-7}" y="${p.y-7}" width="${p.w+14}" height="${p.h+14}" rx="11" fill="var(--bg)"/>`;
-    o+=`<g class="node" data-id="${e.id}" tabindex="0" role="button" opacity="${dim?.45:1}" aria-label="${esc(e.t)}, ${KIND[e.ty]}, ${sn?'seen':'not seen'}${isM?', '+esc(ch)+' appears':''}${sel?', selected':''}">`;
+    o+=`<g class="node" data-id="${e.id}" tabindex="0" role="button" opacity="${dim?.45:1}" aria-label="${esc(e.t)}, ${kindOf(e)}, ${sn?'seen':'not seen'}${isM?', '+esc(ch)+' appears':''}${sel?', selected':''}">`;
     o+=`<rect class="box" x="${p.x}" y="${p.y}" width="${p.w}" height="${p.h}" rx="6" fill="${isM?(minor[e.id]?'#fff1b8':'#ffd23f'):sn?'var(--card)':'var(--bg)'}" stroke="${stroke}" stroke-width="${sel||isM?3:1.5}" ${(sn||sel||isM)&&!(isM&&minor[e.id]&&!sel)?'':'stroke-dasharray="5 4"'}/>`;
     o+=`<rect x="${p.x+1.5}" y="${p.y+6}" width="5" height="${p.h-12}" rx="2" fill="${LANES[e.lane][1]}" opacity="${sn||isM?1:.45}"/>`;
     e.n.forEach((ln,i)=>{o+=`<text x="${p.cx+3}" y="${p.cy+5+(i-(e.n.length-1)/2)*17}" text-anchor="middle" font-family="Barlow Condensed" font-weight="${sn||isM?700:600}" font-size="15" fill="${isM?'#141414':sn?'var(--ink)':'var(--mute)'}" stroke="none">${esc(ln)}</text>`});
-    if(e.ty!=='film'){const tw=e.ty==='show'?26:50;o+=`<rect x="${p.x+4}" y="${p.y-8}" width="${tw}" height="16" rx="4" fill="var(--ink)"/><text x="${p.x+4+tw/2}" y="${p.y+4}" text-anchor="middle" font-family="Barlow Condensed" font-weight="700" font-size="13" fill="var(--bg)" stroke="none">${e.ty==='show'?'TV':'Special'}</text>`}
+    if(e.ty!=='film'){const tw={show:26,special:50,shorts:46}[e.ty];o+=`<rect x="${p.x+4}" y="${p.y-8}" width="${tw}" height="16" rx="4" fill="var(--ink)"/><text x="${p.x+4+tw/2}" y="${p.y+4}" text-anchor="middle" font-family="Barlow Condensed" font-weight="700" font-size="13" fill="var(--bg)" stroke="none">${{show:'TV',special:'Special',shorts:'Shorts'}[e.ty]}</text>`}
     if(sn)o+=`<circle cx="${p.x+p.w-3}" cy="${p.y+3}" r="9" fill="var(--blue)" stroke="var(--bg)" stroke-width="2"/><path d="M${p.x+p.w-7} ${p.y+3} l3 3 l5 -6" fill="none" stroke="var(--bg)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>`;
     if(isM&&minor[e.id])o+=`<rect x="${p.cx-26}" y="${p.y+p.h-8}" width="52" height="17" rx="8.5" fill="#141414"/><text x="${p.cx}" y="${p.y+p.h+5}" text-anchor="middle" font-family="Barlow Condensed" font-weight="700" font-size="13" fill="#ffd23f" stroke="none">${TAG[minor[e.id]]}</text>`;
     o+='</g>';
@@ -521,11 +531,11 @@ const draw=()=>{
 const twOk=(ch,id)=>!!S.seen[id]||rv(id,'twist')||!!S.ctw[ch];
 const knownApp=(ch,id,c)=>!!S.seen[id]||((rv(id,'cast')||!!S.crev[ch])&&(!c[3]||twOk(ch,id)));
 const det=(ch,id)=>!!S.seen[id]||((rv(id,'cast')||!!S.crev[ch])&&twOk(ch,id));
-function knownChars(){const m=[];for(const e of E)for(const c of C[e.id])if(!m.includes(c[0])&&knownApp(c[0],e.id,c))m.push(c[0]);return m}
-function apps(ch){return order().flatMap(e=>{const c=C[e.id].find(x=>x[0]===ch);return c?[{e,c,known:knownApp(ch,e.id,c)}]:[]})}
+function knownChars(){const m=[];for(const e of E)if(inS(e))for(const c of C[e.id])if(!m.includes(c[0])&&knownApp(c[0],e.id,c))m.push(c[0]);return m}
+function apps(ch){return ordS().flatMap(e=>{const c=C[e.id].find(x=>x[0]===ch);return c?[{e,c,known:knownApp(ch,e.id,c)}]:[]})}
 function label(ch){const al=[];for(const a of apps(ch).sort((x,y)=>x.e.so-y.e.so))if(a.known&&a.c[2]&&!al.includes(a.c[2]))al.push(a.c[2]);return al.length?`${ch} (${al.join(' / ')})`:ch}
 const anyUnknown=()=>E.some(e=>!knownE(e.id));
-function gapBetween(ch,a,b){const ord=order(),i=ord.findIndex(e=>e.id===a),j=ord.findIndex(e=>e.id===b);return ord.slice(i+1,j).some(e=>!det(ch,e.id))}
+function gapBetween(ch,a,b){const ord=ordS(),i=ord.findIndex(e=>e.id===a),j=ord.findIndex(e=>e.id===b);return ord.slice(i+1,j).some(e=>!det(ch,e.id))}
 
 const flap=(id,k,label)=>`<button class="flap" data-r="${id}:${k}"><b>Spoilers</b><span>${label}</span><i>Click to reveal</i></button>`;
 const hide=(id,k)=>rv(id,k)?`<button class="hide" data-h="${id}:${k}">Hide again</button>`:'';
@@ -536,9 +546,9 @@ function panel(){
   const e=byId[S.sel],el=document.getElementById('panel');
   if(!e){el.innerHTML='<h2>Pick a title</h2><p class="muted">Select any title on the map to see what leads into it and what follows.</p>';return}
   const sn=!!S.seen[e.id],id=e.id;
-  let h=`<h2>${esc(e.t)}</h2><p class="meta">${KIND[e.ty]}, ${e.ty==='show'?'first episode released':'released'} ${fmt(e.d)}. ${e.ep?e.ep+' episodes':e.rt+' minutes'}. Phase ${e.p}, set in ${esc(e.sy)}.</p>`;
+  let h=`<h2>${esc(e.t)}</h2><p class="meta">${kindOf(e)}, ${e.ty==='show'?'first episode released':e.ty==='shorts'?'first released':'released'} ${fmt(e.d)}. ${e.ep?e.ep+(e.ty==='shorts'?' shorts':' episodes'):e.rt+' minutes'}. Phase ${e.p}, set in ${esc(e.sy)}.</p>`;
   h+=`<button class="seen ${sn?'on':''}" id="seenBtn" aria-pressed="${sn}">${sn?'Seen: click to unmark':'Mark as seen'}</button>`;
-  const ordP=order(),before=ordP.slice(0,ordP.findIndex(x=>x.id===id));
+  const ordP=ordS(),ixP=ordP.findIndex(x=>x.id===id),before=ixP<0?[]:ordP.slice(0,ixP);
   if(before.some(x=>!S.seen[x.id]))h+=` <button class="hide" data-before="${id}" style="margin-left:10px">Mark everything before this as seen</button>`;
   h+=`<div class="sec"><h3>Story</h3>${open(id,'syn')?`<p>${esc(e.syn)}</p>${hide(id,'syn')}`:flap(id,'syn','Plot summary')}</div>`;
   let cs='';
@@ -582,7 +592,7 @@ function tracer(){
     const ap=apps(S.ch),kn=ap.filter(a=>a.known);
     h+=`<h3>${esc(label(S.ch))}</h3><ul class="chain trace">${kn.map((a,i)=>(i&&gapBetween(S.ch,kn[i-1].e.id,a.e.id)?'<li class="gapli"><span>?</span>Titles you haven\'t seen come in between</li>':'')+`<li><button class="go" data-go="${a.e.id}">${esc(a.e.t)}</button> <span class="muted">${esc(a.c[1])}${a.c[2]?', as '+esc(a.c[2]):''}</span>${S.seen[a.e.id]?'':'<span class="todo">Not seen</span>'}${onMap(a.c)?'':'<span class="todo">Not on map</span>'}${S.hp[a.e.p]?'<span class="todo">Phase hidden</span>':''}</li>`).join('')}</ul>`;
     const q=esc(S.ch);
-    if(!S.crev[S.ch]){if(E.some(e=>!det(S.ch,e.id)))h+=`<div style="margin-top:12px">${flap('','c','Appearances in titles you haven\'t seen').replace('data-r=":c"',`data-rc="${q}"`)}</div>`}
+    if(!S.crev[S.ch]){if(E.some(e=>inS(e)&&!det(S.ch,e.id)))h+=`<div style="margin-top:12px">${flap('','c','Appearances in titles you haven\'t seen').replace('data-r=":c"',`data-rc="${q}"`)}</div>`}
     else{
       h+=`<button class="hide" data-hc="${q}">Hide again</button>`;
       if(S.ctw[S.ch])h+=` <button class="hide" data-htw="${q}">Hide twists again</button>`;
@@ -594,17 +604,17 @@ function tracer(){
 }
 const cQ=document.getElementById('cQ'),tQ=document.getElementById('tQ'),tRes=document.getElementById('tRes');
 function applyCh(){const q=cQ.value.trim();let n=0;document.querySelectorAll('#trBody .chips [data-ch]').forEach(b=>{const ok=!q||hit(q,b.textContent);b.hidden=!ok;if(ok)n++});const nm=document.getElementById('chNone');if(nm)nm.hidden=!(q&&!n)}
-function findT(){const q=tQ.value.trim(),m=q?E.filter(e=>hit(q,e.t+' '+e.d.slice(0,4)+' '+KIND[e.ty]+(e.ty==='show'?' tv':''))):[];
+function findT(){const q=tQ.value.trim(),m=q?E.filter(e=>hit(q,e.t+' '+e.d.slice(0,4)+' '+kindOf(e)+(e.ty==='show'?' tv':''))):[];
   tRes.innerHTML=!q?'':m.length?m.map(e=>`<button data-pick="${e.id}"><i class="lane" style="background:${LANES[e.lane][1]}"></i>${esc(e.t)} <span class="muted">${e.d.slice(0,4)}</span></button>`).join(''):'<span class="muted">No titles match that.</span>'}
 
 let warn=false,undo=null;
 function seenList(){
-  const n=E.filter(e=>S.seen[e.id]).length,all=n===E.length;
-  document.getElementById('listBtn').textContent=`Seen list (${n}/${E.length})`;
-  let h=`<p class="muted" style="margin:0 0 8px">${n} of ${E.length} seen. Tick everything you've watched; the map updates as you go.</p>`;
-  const ord=order();
-  h+=ord.map((e,i)=>`<div class="rowck"><label for="chk-${e.id}"><input type="checkbox" id="chk-${e.id}" data-seen="${e.id}" ${S.seen[e.id]?'checked':''}><i class="lane" style="background:${LANES[e.lane][1]}"></i><span>${esc(e.t)}</span><em>${e.ty==='film'?'':KIND[e.ty]+', '}${S.order==='story'?esc(e.sy):e.d.slice(0,4)}</em></label>${i&&ord.slice(0,i).some(x=>!S.seen[x.id])?`<button class="mini" data-before="${e.id}" aria-label="Mark everything before ${esc(e.t)} as seen">All before</button>`:''}</div>`).join('');
-  if(warn)h+=`<div class="warn" role="alert"><b>Spoiler warning</b><p>This marks all ${E.length} titles as seen and unlocks every story summary, cast list and link on the map at once. Only do this if you've really watched them all.</p><div class="dacts" style="margin:0"><button class="btn go2" data-all="yes">Yes, mark all as seen</button><button class="btn" data-all="no">Cancel</button></div></div>`;
+  const pool=E.filter(inS),n=pool.filter(e=>S.seen[e.id]).length,all=n===pool.length;
+  document.getElementById('listBtn').textContent=`Seen list (${n}/${pool.length})`;
+  let h=`<p class="muted" style="margin:0 0 8px">${n} of ${pool.length} seen. Tick everything you've watched; the map updates as you go.${S.anim?'':' Animated titles are left out: tick Animated in the header to include them.'}</p>`;
+  const ord=ordS();
+  h+=ord.map((e,i)=>`<div class="rowck"><label for="chk-${e.id}"><input type="checkbox" id="chk-${e.id}" data-seen="${e.id}" ${S.seen[e.id]?'checked':''}><i class="lane" style="background:${LANES[e.lane][1]}"></i><span>${esc(e.t)}</span><em>${e.ty==='film'?'':kindOf(e)+', '}${S.order==='story'?esc(e.sy):e.d.slice(0,4)}</em></label>${i&&ord.slice(0,i).some(x=>!S.seen[x.id])?`<button class="mini" data-before="${e.id}" aria-label="Mark everything before ${esc(e.t)} as seen">All before</button>`:''}</div>`).join('');
+  if(warn)h+=`<div class="warn" role="alert"><b>Spoiler warning</b><p>This marks all ${pool.length} titles as seen and unlocks every story summary, cast list and link on the map at once. Only do this if you've really watched them all.</p><div class="dacts" style="margin:0"><button class="btn go2" data-all="yes">Yes, mark all as seen</button><button class="btn" data-all="no">Cancel</button></div></div>`;
   else h+=`<div class="dacts">${all?'':'<button class="btn" data-all="ask">Mark all as seen</button>'}${n?'<button class="btn" data-clear="1">Clear all</button>':''}${undo?'<button class="hide" data-undo="1">Undo last change</button>':''}</div><p class="muted" style="margin:12px 0 0">"All before" follows the map's current order (${S.order==='story'?'story':'release'} order).</p>`;
   document.getElementById('dlgBody').innerHTML=h;
 }
@@ -625,6 +635,7 @@ function render(){
   document.getElementById('tMnr').checked=S.mnr!==false;
   document.getElementById('tPc').checked=S.pc!==false;
   document.getElementById('tCam').checked=S.cam!==false;
+  document.getElementById('tAn').checked=!!S.anim;
   document.getElementById('exNote').textContent=S.ex?'Example progress: Iron Man and The Incredible Hulk are marked as seen. Press Reset to start from nothing.':'';
   size();draw();bar();panel();tracer();seenList();rowList();save();
   if(jump){const p=lastPos[S.sel],w=wrap;if(p)w.scrollLeft=p.cx-w.clientWidth/2;if(jump===2){const n=svg.querySelector(`.node[data-id="${S.sel}"]`);if(n)n.focus({preventScroll:true})}jump=0}
@@ -647,8 +658,8 @@ document.addEventListener('click',ev=>{
   else if(d.rtw){S.ctw[d.rtw]=1}
   else if(d.htw){delete S.ctw[d.htw]}
   else if(d.ph){if(S.hp[d.ph])delete S.hp[d.ph];else if(Object.keys(S.hp).length<PHS.length-1)S.hp[d.ph]=1;else return}
-  else if(d.pick){S.sel=d.pick;delete S.hp[byId[d.pick].p];tQ.value='';findT();jump=2}
-  else if(d.go){S.sel=d.go;if(byId[d.go])delete S.hp[byId[d.go].p];jump=1;window.scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth'})}
+  else if(d.pick){S.sel=d.pick;delete S.hp[byId[d.pick].p];if(byId[d.pick].an)S.anim=true;tQ.value='';findT();jump=2}
+  else if(d.go){S.sel=d.go;if(byId[d.go]){delete S.hp[byId[d.go].p];if(byId[d.go].an)S.anim=true}jump=1;window.scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth'})}
   else if(d.ch){S.ch=S.ch===d.ch?null:d.ch}
   else if(d.o){S.order=d.o}
   else if(b.id==='listBtn'){warn=false;undo=null;seenList();const g=document.getElementById('dlg');try{g.showModal()}catch(e){g.setAttribute('open','')}return}
@@ -659,10 +670,10 @@ document.addEventListener('click',ev=>{
   else if(b.id==='closeList'){warn=false;document.getElementById('dlg').close();return}
   else if(d.all==='ask'){warn=true;seenList();const y=document.querySelector('[data-all="yes"]');if(y)y.focus();return}
   else if(d.all==='no'){warn=false;seenList();return}
-  else if(d.all==='yes'){warn=false;undo=null;E.forEach(e=>{S.seen[e.id]=1});S.ex=0}
+  else if(d.all==='yes'){warn=false;undo=null;E.filter(inS).forEach(e=>{S.seen[e.id]=1});S.ex=0}
   else if(d.clear){undo={...S.seen};S.seen={};S.ex=0}
   else if(d.undo){S.seen=undo||{};undo=null}
-  else if(d.before){const ord=order(),i=ord.findIndex(e=>e.id===d.before);undo={...S.seen};ord.slice(0,i).forEach(e=>{S.seen[e.id]=1});S.ex=0}
+  else if(d.before){const ord=ordS(),i=ord.findIndex(e=>e.id===d.before);undo={...S.seen};ord.slice(0,Math.max(i,0)).forEach(e=>{S.seen[e.id]=1});S.ex=0}
   else if(b.id==='seenBtn'){if(S.seen[S.sel])delete S.seen[S.sel];else S.seen[S.sel]=1;S.ex=0}
   else if(b.id==='reset'){
     if(b.dataset.arm){S={...DEF(),seen:{},sel:null,ch:null,ex:0};b.textContent='Reset';delete b.dataset.arm}
@@ -684,6 +695,7 @@ cQ.addEventListener('input',applyCh);
 cQ.addEventListener('keydown',ev=>{if(ev.key==='Enter'){const b=[...document.querySelectorAll('#trBody .chips [data-ch]')].find(x=>!x.hidden);if(b){ev.preventDefault();S.ch=b.dataset.ch;render()}}else if(ev.key==='Escape'){cQ.value='';applyCh()}});
 document.getElementById('tPc').addEventListener('change',ev=>{S.pc=ev.target.checked;render()});
 document.getElementById('tCam').addEventListener('change',ev=>{S.cam=ev.target.checked;render()});
+document.getElementById('tAn').addEventListener('change',ev=>{S.anim=ev.target.checked;render()});
 document.getElementById('tHlp').addEventListener('change',ev=>{S.hlp=ev.target.checked;render()});
 document.getElementById('tMnr').addEventListener('change',ev=>{S.mnr=ev.target.checked;render()});
 const ro=new ResizeObserver(()=>{draw();bar()});ro.observe(fig);ro.observe(wrap);

@@ -5,8 +5,8 @@ with inline CSS and JS and no build step. It is published as a private claude.ai
 progress is saved in the browser's localStorage under the key `mcu-watch-map-v1`. The README
 covers user-facing behaviour; this file records the rules and decisions behind it.
 
-Status (24 Nov 2026): Phases 1 to 5 done (Iron Man to Ironheart): 36 films, 17 series and 2 specials.
-Left out on purpose: the I Am Groot shorts (both seasons), and X-Men '97, which Marvel releases
+Status (24 Nov 2026): Phases 1 to 5 done (Iron Man to Ironheart): 36 films, 17 series, 2 specials and
+the 2 seasons of I Am Groot shorts. Left out on purpose: X-Men '97, which Marvel releases
 alongside the phases but not as part of them. The Phase 5 list follows Wikipedia's Phase Five
 article; Eyes of Wakanda and Marvel Zombies are not in it.
 
@@ -21,8 +21,8 @@ article; Eyes of Wakanda and Marvel Zombies are not in it.
 
 ## Data (arrays at the top of the script)
 
-- `E` titles: `id`, `p` (phase, defaults to 1), `ty` ('film' default, 'show', 'special'), `ep`
-  (episode count, shows only, which have no `rt`), `t` (title), `n` (title split into node lines; keep
+- `E` titles: `id`, `an` (1 = animated), `p` (phase, defaults to 1), `ty` ('film' default, 'show',
+  'special', 'shorts'), `ep` (episode or short count, for shows and shorts, which have no `rt`), `t` (title), `n` (title split into node lines; keep
   lines short so they fit ~110-150px at 15px Barlow Condensed), `d` (release date), `rt` (minutes),
   `lane` (index into `LANES`), `so` (story-order position), `sy` (in-story year label), `syn`.
   `E` must stay in release order.
@@ -90,6 +90,11 @@ article; Eyes of Wakanda and Marvel Zombies are not in it.
 
 - Names are shown as "Real Name (Hero Name)": not everyone has a hero name, and hero names change.
 - No rule that treats lead roles in a character's own title as public. The user found it messy.
+- Animated titles (What If...?, Your Friendly Neighborhood Spider-Man, I Am Groot) are hidden unless
+  the Animated checkbox is ticked (`S.anim`, off by default). Most viewers treat them as skippable.
+  Off means out of scope everywhere (`inS`, `ordS`): map, links and watch-first chains, tracer
+  appearances and "?" gaps, seen list, mark-all and mark-before. Opening one from search or a
+  panel link turns the setting on.
 - Helpful and minor links can be turned off with header checkboxes (`S.hlp`, `S.mnr`; essential
   links always show). These replaced an All / Helpful / Essential dropdown.
 - Post-credits and cameo appearances or links can be turned off (header checkboxes). When on, they
