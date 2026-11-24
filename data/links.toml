@@ -842,3 +842,34 @@ from = "av"
 to = "loki1"
 strength = "helpful"
 note = "Loki's story in this series carries straight on from The Avengers."
+
+[[link]]
+from = "av"
+to = "eg"
+strength = "essential"
+note = "Endgame leans heavily on The Avengers. Worth having fresh in your mind."
+
+[[link]]
+from = "cap"
+to = "eg"
+strength = "helpful"
+note = "Steve's story from The First Avenger matters a great deal in Endgame."
+
+[[link]]
+from = "tdw"
+to = "eg"
+strength = "helpful"
+note = """
+Characters and events from The Dark World matter more to Endgame than you might expect."""
+
+[[link]]
+from = "gotg"
+to = "eg"
+strength = "helpful"
+note = "Guardians of the Galaxy matters more to Endgame than you might expect."
+
+[[link]]
+from = "tws"
+to = "eg"
+strength = "minor"
+note = "Endgame has a few nods to The Winter Soldier."
