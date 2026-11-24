@@ -58,6 +58,10 @@ Status (24 Nov 2026): Phases 1 to 3 (23 films, Iron Man to Far From Home) done. 
   synopses describe the premise without saying how the previous film ended.
 - No Captain Marvel to Far From Home link: any note on it would hint at Far From Home's
   post-credits twist.
+- Character search (tracer) only filters the chips already listed, matching their visible text
+  (`label()`), so it can never find an unknown character or a hero name that isn't unlocked yet.
+  Its "no match" message must not differ for characters that exist but are hidden. Title search
+  is free to search everything, since titles are always public.
 - Prompts that say how many items are hidden were avoided on purpose; keep reveals count-free.
 
 ## Decisions already made with the user
