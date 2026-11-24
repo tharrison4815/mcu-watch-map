@@ -1,4 +1,4 @@
-// Builds the MCU Watch Map page.
+// Builds the Safe to Watch page (a spoiler-free MCU watch guide).
 //
 //   npm run check   validate the data in data/ and stop
 //   npm run build   validate, then write dist/ (the page with the data inserted, plus fonts and headers)
@@ -212,7 +212,7 @@ for (const [name, value] of Object.entries({ E, LANES, L, C })) {
 }
 // ---------- SEO extras ----------
 
-const SITE = 'https://mcu-watch-map-4ui.pages.dev/';
+const SITE = 'https://safetowatch.pages.dev/';
 const escHtml = (t: string) => t.replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]!));
 const KIND: Record<string, string> = { film: 'Film', show: 'Series', special: 'Special', shorts: 'Shorts' };
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -236,7 +236,8 @@ for (const p of [...new Set(E.map(e => e.p))].sort((a, b) => a - b)) {
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'WebApplication',
-  name: 'MCU Watch Map',
+  name: 'Safe to Watch',
+  alternateName: 'Safe to Watch: spoiler-free MCU watch guide',
   url: SITE,
   description: 'An interactive, spoiler-free map of every Marvel Cinematic Universe film and series in release and story order, showing what to watch first and what is safe to watch next.',
   applicationCategory: 'EntertainmentApplication',

@@ -1,9 +1,9 @@
 {
-  "name": "mcu-watch-map",
+  "name": "safetowatch",
   "private": true,
   "license": "MIT",
   "type": "module",
-  "description": "Builds the MCU Watch Map page from the TOML data in data/",
+  "description": "Builds the Safe to Watch page (a spoiler-free MCU watch guide) from the TOML data in data/",
   "scripts": {
     "check": "node build.ts --check",
     "build": "node build.ts"

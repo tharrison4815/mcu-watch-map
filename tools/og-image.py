@@ -28,10 +28,10 @@ svg=f'''<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox
 <g>{lines}{bx}</g>
 <rect width="640" height="{H}" fill="#111318"/>
 <rect x="640" width="20" height="{H}" fill="#111318" opacity=".6"/>
-<text x="64" y="250" font-family="Anton" font-size="112" fill="#ecebe6">MCU WATCH</text>
-<text x="64" y="370" font-family="Anton" font-size="112" fill="#ff5c61">MAP</text>
-<text x="66" y="440" font-family="Barlow Condensed SemiBold" font-weight="600" font-size="38" fill="#ecebe6">What to watch first, and what's safe</text>
-<text x="66" y="484" font-family="Barlow Condensed SemiBold" font-weight="600" font-size="38" fill="#ecebe6">to watch next. No spoilers.</text>
+<text x="64" y="250" font-family="Anton" font-size="112" fill="#ecebe6">SAFE TO</text>
+<text x="64" y="370" font-family="Anton" font-size="112" fill="#ff5c61">WATCH</text>
+<text x="66" y="440" font-family="Barlow Condensed SemiBold" font-weight="600" font-size="38" fill="#ecebe6">A spoiler-free MCU guide: what to</text>
+<text x="66" y="484" font-family="Barlow Condensed SemiBold" font-weight="600" font-size="38" fill="#ecebe6">watch first, and what's safe next.</text>
 <text x="66" y="568" font-family="Barlow Condensed Medium" font-weight="500" font-size="26" fill="#9a9ca3">Unofficial fan project</text>
 </svg>'''
 open('tools/og.svg','w').write(svg)

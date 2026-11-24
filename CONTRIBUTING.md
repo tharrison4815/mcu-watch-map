@@ -1,4 +1,4 @@
-# Contributing to MCU Watch Map
+# Contributing to Safe to Watch
 
 Thanks for helping. This is an unofficial fan project, and its whole point is to be
 **spoiler-safe**, so most of this page is about keeping it that way.

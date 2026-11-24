@@ -1,4 +1,4 @@
-# MCU Watch Map: notes for Claude
+# Safe to Watch (spoiler-free MCU watch guide): notes for Claude
 
 An unofficial, spoiler-safe map of the MCU. The app is one static page, `src/index.html` (inline
 CSS and JS, no framework), with its data kept in TOML files in `data/`. `build.ts` validates the
@@ -32,7 +32,10 @@ article; Eyes of Wakanda and Marvel Zombies are not in it.
   `fonts/*.woff2` only if the fonts change (never `_headers` or the OFL files). Then commit.
 - Environments: the claude.ai artifact is the test (non-production) copy and the Cloudflare site is
   production. Publish changes to the artifact first for the user to try; push only when they ask.
-- Public site: https://mcu-watch-map-4ui.pages.dev/ on Cloudflare Pages (free plan), connected to
+- Name: "Safe to Watch" since 24 Nov 2026 (was "MCU Watch Map", renamed because another site uses
+  that name at mcu-watch-map.pages.dev). Always pair it with "spoiler-free MCU watch guide" so it
+  isn't read as "suitable for children". The repo and the localStorage key keep the old name.
+- Public site: https://safetowatch.pages.dev/ on Cloudflare Pages (free plan, project "safetowatch"), connected to
   the GitHub repo: every push to `main` runs `npm run build` and deploys `dist/` (Node version from
   `.node-version`). So a push is a public release. Pull requests get preview deploys, and the
   GitHub Action in .github/workflows/check.yml runs `npm run check` on them.

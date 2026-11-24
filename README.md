@@ -1,10 +1,10 @@
-# MCU Watch Map
+# Safe to Watch
 
-An unofficial, spoiler-safe map of the Marvel Cinematic Universe. Pick a title to see what leads
+An unofficial, spoiler-free watch guide and map of the Marvel Cinematic Universe. Pick a title to see what leads
 into it and what follows, mark what you've seen, see what's safe to watch next, and trace a
 character's path through the films and series. Not affiliated with Marvel Studios or Disney.
 
-**Use it at https://mcu-watch-map-4ui.pages.dev/**
+**Use it at https://safetowatch.pages.dev/**
 
 It covers Phases 1 to 6 up to VisionQuest (autumn 2026): 38 films, 22 Disney+ series (one entry
 per season), 3 specials and the I Am Groot shorts. Announced titles that aren't out yet appear as
