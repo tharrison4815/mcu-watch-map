@@ -152,6 +152,9 @@ compact shapes the page's code uses, inserted at the `/*@E*/null`-style markers:
   ("Animated hidden", "Phase hidden", "Hidden on map"). The spoiler rules still decide which
   characters are listed.
 - Selecting the selected title again deselects it.
+- The tracer shows the first 24 known characters (`CHL`, in first-appearance order) plus the
+  selected one, with "Show all characters" (`S.cx`). Typing in the search searches all known
+  characters. The button gives no count, in line with the count-free rule.
 - "Safe to watch next" (`ready()`, right column): unseen titles in scope (`ordS`) whose whole
   watch-first chain (`anc`, the same one the panel lists, so it follows the Paths shown checkboxes)
   is seen, in the map's order. First one is tagged "Next"; it shows 6 until "Show all" (`S.rx`), and

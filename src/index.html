@@ -393,7 +393,7 @@ function tracer(){
   let h='';
   if(!ks.length){el.innerHTML='<p class="muted">Mark a title as seen, or reveal a cast list, and its characters show up here.</p>';return}
   h+='<p class="muted">Only characters from titles you have seen or revealed are listed, and only they can be found.</p>';
-  h+=`<div class="chips">${ks.map(c=>`<button data-ch="${esc(c)}" aria-pressed="${S.ch===c}">${esc(label(c))}</button>`).join('')}</div><p class="muted" id="chNone" hidden>None of the characters you know match that.</p>`;
+  h+=`<div class="chips">${ks.map(c=>`<button data-ch="${esc(c)}" aria-pressed="${S.ch===c}">${esc(label(c))}</button>`).join('')}</div>${ks.length>CHL?`<button class="hide" id="chMore" data-cx="1">${S.cx?'Show fewer':'Show all characters'}</button>`:''}<p class="muted" id="chNone" hidden>None of the characters you know match that.</p>`;
   if(S.ch&&ks.includes(S.ch)){
     const ap=apps(S.ch,1),kn=ap.filter(a=>a.known),sh=new Set(shownE().map(e=>e.id));
     h+=`<h3>${esc(label(S.ch))}</h3><ul class="chain trace">${kn.map((a,i)=>(i&&gapBetween(S.ch,kn[i-1].e.id,a.e.id,1)?'<li class="gapli"><span>?</span>Titles you haven\'t seen come in between</li>':'')+`<li><button class="go" data-go="${a.e.id}">${esc(a.e.t)}</button> <span class="muted">${esc(a.c[1])}${a.c[2]?', as '+esc(a.c[2]):''}</span>${S.seen[a.e.id]?'':'<span class="todo">Not seen</span>'}${!onMap(a.c)?'<span class="todo">Not on map</span>':sh.has(a.e.id)?'':`<span class="todo">${a.e.an&&!S.anim?'Animated hidden':!relSet()&&S.hp[a.e.p]?'Phase hidden':'Hidden on map'}</span>`}</li>`).join('')}</ul>`;
@@ -409,7 +409,8 @@ function tracer(){
   applyCh();
 }
 const cQ=document.getElementById('cQ'),tQ=document.getElementById('tQ'),tRes=document.getElementById('tRes');
-function applyCh(){const q=cQ.value.trim();let n=0;document.querySelectorAll('#trBody .chips [data-ch]').forEach(b=>{const ok=!q||hit(q,b.textContent);b.hidden=!ok;if(ok)n++});const nm=document.getElementById('chNone');if(nm)nm.hidden=!(q&&!n)}
+const CHL=24;
+function applyCh(){const q=cQ.value.trim();let n=0;document.querySelectorAll('#trBody .chips [data-ch]').forEach((b,i)=>{const ok=q?hit(q,b.textContent):(S.cx||i<CHL||b.dataset.ch===S.ch);b.hidden=!ok;if(ok)n++});const mo=document.getElementById('chMore');if(mo)mo.hidden=!!q;const nm=document.getElementById('chNone');if(nm)nm.hidden=!(q&&!n)}
 function findT(){const q=tQ.value.trim(),m=q?E.filter(e=>!e.up&&hit(q,e.t+' '+e.d.slice(0,4)+' '+kindOf(e)+(e.ty==='show'?' tv':''))):[];
   tRes.innerHTML=!q?'':m.length?m.map(e=>`<button data-pick="${e.id}"><i class="lane" style="background:${LANES[e.lane][1]}"></i>${esc(e.t)} <span class="muted">${e.d.slice(0,4)}</span></button>`).join(''):'<span class="muted">No titles match that.</span>'}
 
@@ -488,6 +489,7 @@ document.addEventListener('click',ev=>{
   else if(d.pick){S.sel=d.pick;delete S.hp[byId[d.pick].p];if(byId[d.pick].an)S.anim=true;tQ.value='';findT();jump=2}
   else if(d.go){S.sel=d.go;if(byId[d.go]){delete S.hp[byId[d.go].p];if(byId[d.go].an)S.anim=true}jump=1;window.scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth'})}
   else if(d.ch){S.ch=S.ch===d.ch?null:d.ch}
+  else if(d.cx){S.cx=!S.cx}
   else if(d.o){S.order=d.o}
   else if(b.id==='listBtn'){warn=false;undo=null;seenList();const g=document.getElementById('dlg');try{g.showModal()}catch(e){g.setAttribute('open','')}return}
   else if(b.id==='scrL'||b.id==='scrR'){wrap.scrollBy({left:(b.id==='scrL'?-.8:.8)*wrap.clientWidth,behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth'});return}
